@@ -13,7 +13,11 @@ use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\AuthAdminController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\menu\MenuController;
+use App\Http\Controllers\configuration\AnneeScolaire;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Http\Controllers\configuration\CycleController;
+use App\Http\Controllers\configuration\ClasseController;
+use App\Http\Controllers\configuration\NiveauController;
 use App\Http\Controllers\backend\module\ModuleController;
 use App\Http\Controllers\backend\basic_site\SlideController;
 use App\Http\Controllers\backend\blog\BlogContentController;
@@ -22,6 +26,7 @@ use App\Http\Controllers\backend\blog\BlogCategoryController;
 use App\Http\Controllers\backend\basic_site\ServiceController;
 use App\Http\Controllers\backend\media\MediaContentController;
 use App\Http\Controllers\backend\media\MediaCategoryController;
+use App\Http\Controllers\configuration\AnneeScolaireController;
 use App\Http\Controllers\backend\basic_site\ReferenceController;
 use App\Http\Controllers\backend\basic_site\TemoignageController;
 use App\Http\Controllers\backend\permission\PermissionController;
@@ -88,7 +93,7 @@ Route::middleware(['admin'])->group(function () {
         route::post('delete/{id}', 'delete')->name('role.delete');
     });
 
-    //role
+    //permission
     Route::prefix('permission')->controller(PermissionController::class)->group(function () {
         route::get('', 'index')->name('permission.index');
         route::post('store', 'store')->name('permission.store');
@@ -277,12 +282,56 @@ Route::middleware(['admin'])->group(function () {
             return response()->json(['message' => 'mode maintenance activé', 'status' => 200], 200);
         }
     )->name('setting.maintenance-down');
+
+
+
+
+    ######################      START LOGICIEL ECOLE  ROUTE     ###########################################################
+
+    //configuration-Annee-scolaire
+    Route::prefix('annee-scolaire')->controller(AnneeScolaireController::class)->group(function () {
+        route::get('', 'index')->name('annee-scolaire.index');
+        route::post('store', 'store')->name('annee-scolaire.store');
+        route::post('update/{id}', 'update')->name('annee-scolaire.update');
+        route::get('delete/{id}', 'delete')->name('annee-scolaire.delete');
+        route::post('position/{id}', 'position')->name('annee-scolaire.position');
+    });
+
+
+    //configuration-cycle
+    Route::prefix('cycle')->controller(CycleController::class)->group(function () {
+        route::get('', 'index')->name('cycle.index');
+        route::post('store', 'store')->name('cycle.store');
+        route::post('update/{id}', 'update')->name('cycle.update');
+        route::get('delete/{id}', 'delete')->name('cycle.delete');
+        route::post('position/{id}', 'position')->name('cycle.position');
+    });
+
+
+    //configuration-niveau
+    Route::prefix('niveau')->controller(NiveauController::class)->group(function () {
+        route::get('', 'index')->name('niveau.index');
+        route::post('store', 'store')->name('niveau.store');
+        route::post('update/{id}', 'update')->name('niveau.update');
+        route::get('delete/{id}', 'delete')->name('niveau.delete');
+        route::post('position/{id}', 'position')->name('niveau.position');
+    });
+
+
+     //configuration-classe
+     Route::prefix('classe')->controller(ClasseController::class)->group(function () {
+        route::get('', 'index')->name('classe.index');
+        route::post('store', 'store')->name('classe.store');
+        route::post('update/{id}', 'update')->name('classe.update');
+        route::get('delete/{id}', 'delete')->name('classe.delete');
+        route::post('position/{id}', 'position')->name('classe.position');
+    });
+
+
+
+    ######################      END LOGICIEL ECOLE  ROUTE     ###########################################################
+
 });
-
-
-#############  BASIC PAGE  #####################
-
-
 
 
 

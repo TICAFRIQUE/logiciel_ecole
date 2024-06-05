@@ -1,36 +1,36 @@
 <?php
 
 namespace App\Models;
-
-use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class BlogContent extends Model implements HasMedia
+class Classe extends Model
 {
-    use HasFactory, InteractsWithMedia, sluggable;
-
+    use HasFactory , SoftDeletes,sluggable;
 
     public $incrementing = false;
 
+
     protected $fillable = [
-        'title',
+        'name',
         'slug',
-        'resume', //summary of description
-        'description',
+        'capacite_min',
+        'capacite_max',
         'status',
-        'blog_categories_id',
+        'position',
+        'niveau_id',
     ];
+
 
     public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'blog_contents', 'length' => 10, 'prefix' =>
+            $model->id = IdGenerator::generate(['table' => 'classes', 'length' => 10, 'prefix' =>
             mt_rand()]);
         });
     }
@@ -39,21 +39,22 @@ class BlogContent extends Model implements HasMedia
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'name'
             ]
         ];
     }
 
-
     /**
-     * Get the user that owns the BlogContent
+     * Get the user that owns the Niveau
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function blog_category(): BelongsTo
+    public function niveau(): BelongsTo
     {
-        return $this->belongsTo(BlogCategory::class , 'blog_categories_id' , 'id' );
+        return $this->belongsTo(Niveau::class);
     }
 
-   
+
+
 }
+

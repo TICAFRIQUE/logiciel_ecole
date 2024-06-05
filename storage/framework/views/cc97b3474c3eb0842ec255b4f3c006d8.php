@@ -100,12 +100,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="sidebarAuth">
-                        <i class=" ri-settings-2-fill"></i> <span>PARAMETRE</span>
+                    <a class="nav-link menu-link" href="#sidebarSetting" data-bs-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="sidebarSetting">
+                        <i class=" ri-settings-2-fill"></i> <span>PARAMETRES</span>
                     </a>
                     <div class="collapse menu-dropdown <?php echo e(Route::is('setting.*') || Route::is('module.*') || Route::is('role.*') || Route::is('permission.*') ? 'show' : ''); ?>""
-                        id="sidebarAuth">
+                        id="sidebarSetting">
                         <ul class="nav nav-sm flex-column">
 
                             <li class="nav-item active">
@@ -128,6 +128,34 @@
                     </div>
                 </li>
 
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarConfiguration" data-bs-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="sidebarConfiguration">
+                        <i class=" ri-settings-fill "></i> <span>CONFIGURATIONS</span>
+                    </a>
+                    <div class="collapse menu-dropdown <?php echo e(Route::is('annee-scolaire.*') || Route::is('cycle.*') || Route::is('niveau.*') || Route::is('classe.*') ? 'show' : ''); ?>"
+                        id="sidebarConfiguration">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('annee-scolaire.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('annee-scolaire.*') ? 'active' : ''); ?>">Années scolaires</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('cycle.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('cycle.*') ? 'active' : ''); ?>">Cycles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('niveau.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('niveau.*') ? 'active' : ''); ?>">Niveaux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('classe.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('classe.*') ? 'active' : ''); ?>">Classes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
         </div>
         </li>
 
