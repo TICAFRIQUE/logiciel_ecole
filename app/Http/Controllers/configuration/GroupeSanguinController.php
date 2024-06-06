@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\configuration;
 
-use Carbon\Carbon;
-use App\Models\Cycle;
 use Illuminate\Http\Request;
+use App\Models\GroupeSanguin;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class CycleController extends Controller
+class GroupeSanguinController extends Controller
 {
+    //
     //
     /**
      * Display a listing of the resource.
@@ -17,10 +17,10 @@ class CycleController extends Controller
     public function index()
     {
         //
-        $data_cycle = Cycle::OrderBy('position', 'ASC')->get();
+        $data_groupe_sanguin = GroupeSanguin::OrderBy('position', 'ASC')->get();
 
 
-        return view('backend.pages.configuration.cycle.index', compact('data_cycle'));
+        return view('backend.pages.configuration.groupe_sanguin.index', compact('data_groupe_sanguin'));
     }
 
 
@@ -34,15 +34,15 @@ class CycleController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'status' => 'required',
         ]);
 
 
-        $data_count = Cycle::count();
 
-        $data_cycle = Cycle::firstOrCreate([
+      
+        $data_count = GroupeSanguin::count();
+
+        $data_groupe_sanguin = GroupeSanguin::firstOrCreate([
             'name' => $request['name'],
-            'status' => $request['status'],
             'position' => $data_count + 1,
         ]);
 
@@ -56,7 +56,7 @@ class CycleController extends Controller
         $position = $request['position'];
 
 
-        Cycle::find($id)->update([
+        GroupeSanguin::find($id)->update([
             'position' => $position,
         ]);
 
@@ -73,15 +73,15 @@ class CycleController extends Controller
         //request validation ......
 
         $request->validate([
-
             'name' => 'required',
-            'status' => 'required',
+           
         ]);
 
 
-        $data_cycle = Cycle::find($id)->update([
+ 
+
+        $data_page = GroupeSanguin::find($id)->update([
             'name' => $request['name'],
-            'status' => $request['status'],
         ]);
 
         Alert::success('Opération réussi', 'Success Message');
@@ -94,12 +94,13 @@ class CycleController extends Controller
     public function delete($id)
     {
         //delete content of category
-        Cycle::find($id)->delete();
-        //
-        $data_cycle = Cycle::OrderBy('position', 'ASC')->get();
+        GroupeSanguin::find($id)->delete();
 
-        foreach ($data_cycle as $key => $value) {
-            Cycle::whereId($value['id'])->update([
+        //
+        $data_groupe_sanguin = GroupeSanguin::OrderBy('position', 'ASC')->get();
+
+        foreach ($data_groupe_sanguin as $key => $value) {
+            GroupeSanguin::whereId($value['id'])->update([
                 'position' => $key + 1
             ]);
         }

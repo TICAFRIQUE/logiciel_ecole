@@ -16,6 +16,7 @@ use App\Http\Controllers\backend\menu\MenuController;
 use App\Http\Controllers\configuration\AnneeScolaire;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Http\Controllers\configuration\CycleController;
+use App\Http\Controllers\configuration\VilleController;
 use App\Http\Controllers\configuration\ClasseController;
 use App\Http\Controllers\configuration\NiveauController;
 use App\Http\Controllers\backend\module\ModuleController;
@@ -25,8 +26,11 @@ use App\Http\Controllers\backend\basic_site\EquipeController;
 use App\Http\Controllers\backend\blog\BlogCategoryController;
 use App\Http\Controllers\backend\basic_site\ServiceController;
 use App\Http\Controllers\backend\media\MediaContentController;
+use App\Http\Controllers\configuration\ModePaiementController;
 use App\Http\Controllers\backend\media\MediaCategoryController;
 use App\Http\Controllers\configuration\AnneeScolaireController;
+use App\Http\Controllers\configuration\GroupeSanguinController;
+use App\Http\Controllers\configuration\MotifPaiementController;
 use App\Http\Controllers\backend\basic_site\ReferenceController;
 use App\Http\Controllers\backend\basic_site\TemoignageController;
 use App\Http\Controllers\backend\permission\PermissionController;
@@ -318,8 +322,8 @@ Route::middleware(['admin'])->group(function () {
     });
 
 
-     //configuration-classe
-     Route::prefix('classe')->controller(ClasseController::class)->group(function () {
+    //configuration-classe
+    Route::prefix('classe')->controller(ClasseController::class)->group(function () {
         route::get('', 'index')->name('classe.index');
         route::post('store', 'store')->name('classe.store');
         route::post('update/{id}', 'update')->name('classe.update');
@@ -327,6 +331,43 @@ Route::middleware(['admin'])->group(function () {
         route::post('position/{id}', 'position')->name('classe.position');
     });
 
+    //configuration-groupe-sanguin
+    Route::prefix('groupe-sanguin')->controller(GroupeSanguinController::class)->group(function () {
+        route::get('', 'index')->name('groupe-sanguin.index');
+        route::post('store', 'store')->name('groupe-sanguin.store');
+        route::post('update/{id}', 'update')->name('groupe-sanguin.update');
+        route::get('delete/{id}', 'delete')->name('groupe-sanguin.delete');
+        route::post('position/{id}', 'position')->name('groupe-sanguin.position');
+    });
+
+    //configuration-mode de paiement
+    Route::prefix('mode-paiement')->controller(ModePaiementController::class)->group(function () {
+        route::get('', 'index')->name('mode-paiement.index');
+        route::post('store', 'store')->name('mode-paiement.store');
+        route::post('update/{id}', 'update')->name('mode-paiement.update');
+        route::get('delete/{id}', 'delete')->name('mode-paiement.delete');
+        route::post('position/{id}', 'position')->name('mode-paiement.position');
+    });
+
+
+    //configuration-motif de paiement
+    Route::prefix('motif-paiement')->controller(MotifPaiementController::class)->group(function () {
+        route::get('', 'index')->name('motif-paiement.index');
+        route::post('store', 'store')->name('motif-paiement.store');
+        route::post('update/{id}', 'update')->name('motif-paiement.update');
+        route::get('delete/{id}', 'delete')->name('motif-paiement.delete');
+        route::post('position/{id}', 'position')->name('motif-paiement.position');
+    });
+
+    //configuration-vile & commune
+    Route::prefix('ville')->controller(VilleController::class)->group(function () {
+        route::get('', 'index')->name('ville.index');
+        route::post('store', 'store')->name('ville.store');
+        route::post('update/{id}', 'update')->name('ville.update');
+        route::get('delete/{id}', 'delete')->name('ville.delete');
+        // route::post('position/{id}', 'position')->name('ville.position');
+        route::get('convertData', 'convertData')->name('ville.convertData');
+    });
 
 
     ######################      END LOGICIEL ECOLE  ROUTE     ###########################################################

@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers\configuration;
 
-use Carbon\Carbon;
-use App\Models\Cycle;
 use Illuminate\Http\Request;
+use App\Models\MotifPaiement;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class CycleController extends Controller
+class MotifPaiementController extends Controller
 {
     //
-    /**
+          /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        $data_cycle = Cycle::OrderBy('position', 'ASC')->get();
+        $data_motif_paiement = MotifPaiement::OrderBy('position', 'ASC')->get();
 
 
-        return view('backend.pages.configuration.cycle.index', compact('data_cycle'));
+        return view('backend.pages.configuration.motif_paiement.index', compact('data_motif_paiement'));
     }
 
 
@@ -38,9 +37,9 @@ class CycleController extends Controller
         ]);
 
 
-        $data_count = Cycle::count();
+        $data_count = MotifPaiement::count();
 
-        $data_cycle = Cycle::firstOrCreate([
+        $data_motif_paiement = MotifPaiement::firstOrCreate([
             'name' => $request['name'],
             'status' => $request['status'],
             'position' => $data_count + 1,
@@ -56,7 +55,7 @@ class CycleController extends Controller
         $position = $request['position'];
 
 
-        Cycle::find($id)->update([
+        MotifPaiement::find($id)->update([
             'position' => $position,
         ]);
 
@@ -79,7 +78,7 @@ class CycleController extends Controller
         ]);
 
 
-        $data_cycle = Cycle::find($id)->update([
+        $data_motif_paiement = MotifPaiement::find($id)->update([
             'name' => $request['name'],
             'status' => $request['status'],
         ]);
@@ -94,12 +93,12 @@ class CycleController extends Controller
     public function delete($id)
     {
         //delete content of category
-        Cycle::find($id)->delete();
+        MotifPaiement::find($id)->delete();
         //
-        $data_cycle = Cycle::OrderBy('position', 'ASC')->get();
+        $data_motif_paiement = MotifPaiement::OrderBy('position', 'ASC')->get();
 
-        foreach ($data_cycle as $key => $value) {
-            Cycle::whereId($value['id'])->update([
+        foreach ($data_motif_paiement as $key => $value) {
+            MotifPaiement::whereId($value['id'])->update([
                 'position' => $key + 1
             ]);
         }

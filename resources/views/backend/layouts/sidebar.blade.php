@@ -237,16 +237,17 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarConfiguration" data-bs-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="sidebarConfiguration">
+                    <a class="nav-link menu-link" href="#sidebarConfiguration" data-bs-toggle="collapse"
+                        role="button" aria-expanded="true" aria-controls="sidebarConfiguration">
                         <i class=" ri-settings-fill "></i> <span>CONFIGURATIONS</span>
                     </a>
-                    <div class="collapse menu-dropdown {{ Route::is('annee-scolaire.*') || Route::is('cycle.*') || Route::is('niveau.*') || Route::is('classe.*') ? 'show' : '' }}"
+                    <div class="collapse menu-dropdown {{ Route::is('annee-scolaire.*') || Route::is('cycle.*') || Route::is('niveau.*') || Route::is('classe.*') || Route::is('groupe-sanguin.*') || Route::is('mode-paiement.*') || Route::is('motif-paiement.*') || Route::is('ville.*') ? 'show' : '' }}"
                         id="sidebarConfiguration">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('annee-scolaire.index') }}"
-                                    class="nav-link {{ Route::is('annee-scolaire.*') ? 'active' : '' }}">Années scolaires</a>
+                                    class="nav-link {{ Route::is('annee-scolaire.*') ? 'active' : '' }}">Années
+                                    scolaires</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('cycle.index') }}"
@@ -259,6 +260,25 @@
                             <li class="nav-item">
                                 <a href="{{ route('classe.index') }}"
                                     class="nav-link {{ Route::is('classe.*') ? 'active' : '' }}">Classes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('groupe-sanguin.index') }}"
+                                    class="nav-link {{ Route::is('groupe-sanguin.*') ? 'active' : '' }}">Groupe
+                                    sanguin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('mode-paiement.index') }}"
+                                    class="nav-link {{ Route::is('mode-paiement.*') ? 'active' : '' }}">Mode de
+                                    paiement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('motif-paiement.index') }}"
+                                    class="nav-link {{ Route::is('motif-paiement.*') ? 'active' : '' }}">Motif de
+                                    paiement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('ville.index') }}"
+                                    class="nav-link {{ Route::is('ville.*') ? 'active' : '' }}">Villes</a>
                             </li>
                         </ul>
                     </div>

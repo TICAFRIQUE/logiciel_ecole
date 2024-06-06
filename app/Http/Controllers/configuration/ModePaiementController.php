@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers\configuration;
 
-use Carbon\Carbon;
-use App\Models\Cycle;
+use App\Models\ModePaiement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class CycleController extends Controller
+class ModePaiementController extends Controller
 {
     //
-    /**
+      /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        $data_cycle = Cycle::OrderBy('position', 'ASC')->get();
+        $data_mode_paiement = ModePaiement::OrderBy('position', 'ASC')->get();
 
 
-        return view('backend.pages.configuration.cycle.index', compact('data_cycle'));
+        return view('backend.pages.configuration.mode_paiement.index', compact('data_mode_paiement'));
     }
 
 
@@ -38,9 +37,9 @@ class CycleController extends Controller
         ]);
 
 
-        $data_count = Cycle::count();
+        $data_count = ModePaiement::count();
 
-        $data_cycle = Cycle::firstOrCreate([
+        $data_mode_paiement = ModePaiement::firstOrCreate([
             'name' => $request['name'],
             'status' => $request['status'],
             'position' => $data_count + 1,
@@ -56,7 +55,7 @@ class CycleController extends Controller
         $position = $request['position'];
 
 
-        Cycle::find($id)->update([
+        ModePaiement::find($id)->update([
             'position' => $position,
         ]);
 
@@ -79,7 +78,7 @@ class CycleController extends Controller
         ]);
 
 
-        $data_cycle = Cycle::find($id)->update([
+        $data_mode_paiement = ModePaiement::find($id)->update([
             'name' => $request['name'],
             'status' => $request['status'],
         ]);
@@ -94,12 +93,12 @@ class CycleController extends Controller
     public function delete($id)
     {
         //delete content of category
-        Cycle::find($id)->delete();
+        ModePaiement::find($id)->delete();
         //
-        $data_cycle = Cycle::OrderBy('position', 'ASC')->get();
+        $data_mode_paiement = ModePaiement::OrderBy('position', 'ASC')->get();
 
-        foreach ($data_cycle as $key => $value) {
-            Cycle::whereId($value['id'])->update([
+        foreach ($data_mode_paiement as $key => $value) {
+            ModePaiement::whereId($value['id'])->update([
                 'position' => $key + 1
             ]);
         }
@@ -108,4 +107,7 @@ class CycleController extends Controller
             'status' => 200,
         ]);
     }
+
+
+    
 }

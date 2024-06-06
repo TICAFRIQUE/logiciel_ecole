@@ -11,7 +11,7 @@
              <div class="modal-body">
 
                  <form class="row g-3 needs-validation" method="post"
-                     action="{{ route('cycle.position', $item['id']) }}" novalidate>
+                     action="{{ route('ville.position', $item['id']) }}" novalidate>
                      @csrf
 
                      <div class="col-md-12">

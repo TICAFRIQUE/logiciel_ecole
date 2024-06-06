@@ -1,0 +1,794 @@
+[
+    {
+        "ville_id": "1",
+        "ville_pays": "110",
+        "ville_titre": "Abidjan",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "2",
+        "ville_pays": "110",
+        "ville_titre": "Abengourou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "3",
+        "ville_pays": "110",
+        "ville_titre": "Assinie",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "4",
+        "ville_pays": "110",
+        "ville_titre": "Botro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "5",
+        "ville_pays": "110",
+        "ville_titre": "Brobo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "6",
+        "ville_pays": "110",
+        "ville_titre": "Daloa",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "7",
+        "ville_pays": "110",
+        "ville_titre": "Diawala",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "8",
+        "ville_pays": "110",
+        "ville_titre": "Doropo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "9",
+        "ville_pays": "110",
+        "ville_titre": "Gbeleban",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "10",
+        "ville_pays": "110",
+        "ville_titre": "Goulia",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "11",
+        "ville_pays": "110",
+        "ville_titre": "Grand-Zattry",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "12",
+        "ville_pays": "110",
+        "ville_titre": "Kanakono",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "13",
+        "ville_pays": "110",
+        "ville_titre": "Katiola",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "14",
+        "ville_pays": "110",
+        "ville_titre": "Kongasso",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "15",
+        "ville_pays": "110",
+        "ville_titre": "Kouassi-Kouassikro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "16",
+        "ville_pays": "110",
+        "ville_titre": "Kounahiri",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "17",
+        "ville_pays": "110",
+        "ville_titre": "Mankono",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "18",
+        "ville_pays": "110",
+        "ville_titre": "Minignan",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "19",
+        "ville_pays": "110",
+        "ville_titre": "Ouangolodougou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "20",
+        "ville_pays": "110",
+        "ville_titre": "Plateau",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "21",
+        "ville_pays": "110",
+        "ville_titre": "Sakassou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "22",
+        "ville_pays": "110",
+        "ville_titre": "Sarhala",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "23",
+        "ville_pays": "110",
+        "ville_titre": "Sinfra",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "24",
+        "ville_pays": "110",
+        "ville_titre": "Taabo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "25",
+        "ville_pays": "110",
+        "ville_titre": "Tioroniaradougou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "26",
+        "ville_pays": "110",
+        "ville_titre": "Transua",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "27",
+        "ville_pays": "110",
+        "ville_titre": "Yamoussoukro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "28",
+        "ville_pays": "110",
+        "ville_titre": "Abobo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "29",
+        "ville_pays": "110",
+        "ville_titre": "Bako",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "30",
+        "ville_pays": "110",
+        "ville_titre": "Bocanda",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "31",
+        "ville_pays": "110",
+        "ville_titre": "Bonon",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "32",
+        "ville_pays": "110",
+        "ville_titre": "Buyo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "33",
+        "ville_pays": "110",
+        "ville_titre": "Divo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "34",
+        "ville_pays": "110",
+        "ville_titre": "Dualla",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "35",
+        "ville_pays": "110",
+        "ville_titre": "Foumbolo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "36",
+        "ville_pays": "110",
+        "ville_titre": "Grabo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "37",
+        "ville_pays": "110",
+        "ville_titre": "Guitry",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "38",
+        "ville_pays": "110",
+        "ville_titre": "Kani",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "39",
+        "ville_pays": "110",
+        "ville_titre": "Kokoumbo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "40",
+        "ville_pays": "110",
+        "ville_titre": "Koonan",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "41",
+        "ville_pays": "110",
+        "ville_titre": "Kouibly",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "42",
+        "ville_pays": "110",
+        "ville_titre": "Kouto",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "43",
+        "ville_pays": "110",
+        "ville_titre": "Marcory",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "44",
+        "ville_pays": "110",
+        "ville_titre": "Morondo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "45",
+        "ville_pays": "110",
+        "ville_titre": "Niakaramandougou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "46",
+        "ville_pays": "110",
+        "ville_titre": "Ouaninou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "47",
+        "ville_pays": "110",
+        "ville_titre": "Samatiguila",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "48",
+        "ville_pays": "110",
+        "ville_titre": "Sassandra",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "49",
+        "ville_pays": "110",
+        "ville_titre": "Seydougou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "50",
+        "ville_pays": "110",
+        "ville_titre": "Sipilou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "51",
+        "ville_pays": "110",
+        "ville_titre": "Tabou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "52",
+        "ville_pays": "110",
+        "ville_titre": "Tortiya",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "53",
+        "ville_pays": "110",
+        "ville_titre": "Treichville",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "54",
+        "ville_pays": "110",
+        "ville_titre": "Yopougon",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "55",
+        "ville_pays": "110",
+        "ville_titre": "Aboisso",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "56",
+        "ville_pays": "110",
+        "ville_titre": "Agboville",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "57",
+        "ville_pays": "110",
+        "ville_titre": "Anoumaba",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "58",
+        "ville_pays": "110",
+        "ville_titre": "Bangolo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "59",
+        "ville_pays": "110",
+        "ville_titre": "Biankouma",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "60",
+        "ville_pays": "110",
+        "ville_titre": "Bodokro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "61",
+        "ville_pays": "110",
+        "ville_titre": "Bonoua",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "62",
+        "ville_pays": "110",
+        "ville_titre": "Cocody",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "63",
+        "ville_pays": "110",
+        "ville_titre": "Daoukro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "64",
+        "ville_pays": "110",
+        "ville_titre": "Djebonoua",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "65",
+        "ville_pays": "110",
+        "ville_titre": "Fresco",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "66",
+        "ville_pays": "110",
+        "ville_titre": "Gbon",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "67",
+        "ville_pays": "110",
+        "ville_titre": "Grand-Bassam",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "68",
+        "ville_pays": "110",
+        "ville_titre": "Kaniasso",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "69",
+        "ville_pays": "110",
+        "ville_titre": "Kolia",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "70",
+        "ville_pays": "110",
+        "ville_titre": "Korhogo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "71",
+        "ville_pays": "110",
+        "ville_titre": "Koumassi",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "72",
+        "ville_pays": "110",
+        "ville_titre": "Lakota",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "73",
+        "ville_pays": "110",
+        "ville_titre": "Madinani",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "74",
+        "ville_pays": "110",
+        "ville_titre": "Massala",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "75",
+        "ville_pays": "110",
+        "ville_titre": "Prikro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "76",
+        "ville_pays": "110",
+        "ville_titre": "San Pedro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "77",
+        "ville_pays": "110",
+        "ville_titre": "Satama-Sokoro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "78",
+        "ville_pays": "110",
+        "ville_titre": "Sirasso",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "79",
+        "ville_pays": "110",
+        "ville_titre": "Tiapoum",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "80",
+        "ville_pays": "110",
+        "ville_titre": "Touba",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "81",
+        "ville_pays": "110",
+        "ville_titre": "Vavoua",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "82",
+        "ville_pays": "110",
+        "ville_titre": "Zikisso",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "83",
+        "ville_pays": "110",
+        "ville_titre": "Anyama",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "84",
+        "ville_pays": "110",
+        "ville_titre": "Attiegouakro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "85",
+        "ville_pays": "110",
+        "ville_titre": "Bassawa",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "86",
+        "ville_pays": "110",
+        "ville_titre": "Bondoukou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "87",
+        "ville_pays": "110",
+        "ville_titre": "Booko",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "88",
+        "ville_pays": "110",
+        "ville_titre": "Bouna",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "89",
+        "ville_pays": "110",
+        "ville_titre": "Dabakala",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "90",
+        "ville_pays": "110",
+        "ville_titre": "Diabo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "91",
+        "ville_pays": "110",
+        "ville_titre": "Dikodougou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "92",
+        "ville_pays": "110",
+        "ville_titre": "Ettrokro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "93",
+        "ville_pays": "110",
+        "ville_titre": "Fronan",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "94",
+        "ville_pays": "110",
+        "ville_titre": "Issia",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "95",
+        "ville_pays": "110",
+        "ville_titre": "Karakoro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "96",
+        "ville_pays": "110",
+        "ville_titre": "Komborodougou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "97",
+        "ville_pays": "110",
+        "ville_titre": "Koro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "98",
+        "ville_pays": "110",
+        "ville_titre": "Koumbala",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "99",
+        "ville_pays": "110",
+        "ville_titre": "Mayo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "100",
+        "ville_pays": "110",
+        "ville_titre": "Niofoin",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "101",
+        "ville_pays": "110",
+        "ville_titre": "Rubino",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "102",
+        "ville_pays": "110",
+        "ville_titre": "Satama-Sokoura",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "103",
+        "ville_pays": "110",
+        "ville_titre": "Sikensi",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "104",
+        "ville_pays": "110",
+        "ville_titre": "Songon",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "105",
+        "ville_pays": "110",
+        "ville_titre": "Worofla",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "106",
+        "ville_pays": "110",
+        "ville_titre": "Zouan-Hounien",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "107",
+        "ville_pays": "110",
+        "ville_titre": "Adzope",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "107",
+        "ville_pays": "110",
+        "ville_titre": "Agou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "108",
+        "ville_pays": "110",
+        "ville_titre": "Arrah",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "109",
+        "ville_pays": "110",
+        "ville_titre": "Bingerville",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "110",
+        "ville_pays": "110",
+        "ville_titre": "Bongouanou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "111",
+        "ville_pays": "110",
+        "ville_titre": "Borotou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "112",
+        "ville_pays": "110",
+        "ville_titre": "Boundiali",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "113",
+        "ville_pays": "110",
+        "ville_titre": "Dabou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "114",
+        "ville_pays": "110",
+        "ville_titre": "Dianra",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "115",
+        "ville_pays": "110",
+        "ville_titre": "Dimbokro",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "116",
+        "ville_pays": "110",
+        "ville_titre": "Djibrosso",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "117",
+        "ville_pays": "110",
+        "ville_titre": "Facobly",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "118",
+        "ville_pays": "110",
+        "ville_titre": "Gagnoa",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "119",
+        "ville_pays": "110",
+        "ville_titre": "Gohitafla",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "120",
+        "ville_pays": "110",
+        "ville_titre": "Grand-Lahou",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "121",
+        "ville_pays": "110",
+        "ville_titre": "Guiglo",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "122",
+        "ville_pays": "110",
+        "ville_titre": "Jacqueville",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "123",
+        "ville_pays": "110",
+        "ville_titre": "Kong",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "124",
+        "ville_pays": "110",
+        "ville_titre": "Koun-Fao",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "125",
+        "ville_pays": "110",
+        "ville_titre": "Man",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "126",
+        "ville_pays": "110",
+        "ville_titre": "Nassian",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "127",
+        "ville_pays": "110",
+        "ville_titre": "Ouragahio",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "128",
+        "ville_pays": "110",
+        "ville_titre": "Tanda",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "129",
+        "ville_pays": "110",
+        "ville_titre": "Tienko",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "130",
+        "ville_pays": "110",
+        "ville_titre": "Toumodi",
+        "ville_public": "1"
+    },
+    {
+        "ville_id": "131",
+        "ville_pays": "110",
+        "ville_titre": "Zoukougbeu",
+        "ville_public": "1"
+    }
+]

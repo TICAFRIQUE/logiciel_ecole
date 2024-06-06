@@ -11,14 +11,14 @@
              <div class="modal-body">
 
                  <form class="row g-3 needs-validation" method="post"
-                     action="{{ route('cycle.position', $item['id']) }}" novalidate>
+                     action="{{ route('mode-paiement.position', $item['id']) }}" novalidate>
                      @csrf
 
                      <div class="col-md-12">
                          <label for="validationCustom01" class="form-label">Position actuelle <span
                                  class="text-primary">{{ $item['position'] }} </span> </label>
                          <select name="position" class="form-control">
-                             @for ($i = 1; $i <= count($data_cycle); $i++)
+                             @for ($i = 1; $i <= count($data_mode_paiement); $i++)
                                  <option value="{{ $i }}" {{ $item['position'] == $i ? 'selected' : '' }}>
                                      {{ $i }}
                                  </option>
