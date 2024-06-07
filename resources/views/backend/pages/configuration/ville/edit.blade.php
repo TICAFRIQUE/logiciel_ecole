@@ -16,7 +16,7 @@
 
 
                      <div class="row">
-                         <div class="col-md-6">
+                         {{-- <div class="col-md-6">
                              <label for="validationCustom01" class="form-label">Pays</label>
                              <select name="country" class="js-example-basic-single form-control" required>
                                  <option disabled selected value>Sélectionner...</option>
@@ -27,9 +27,9 @@
                              <div class="valid-feedback">
                                  Looks good!
                              </div>
-                         </div>
+                         </div> --}}
 
-                         <div class="col-md-6">
+                         <div class="col-md-12">
                              <label for="validationCustom01" class="form-label">Ville ou commune</label>
                              <input type="text" name="city" value="{{ $item['city'] }}" class="form-control"
                                  id="validationCustom01" required>
