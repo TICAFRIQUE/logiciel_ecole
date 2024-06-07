@@ -13,14 +13,33 @@
                  <form class="row g-3 needs-validation" method="post" action="<?php echo e(route('ville.update', $item['id'])); ?>"
                      novalidate>
                      <?php echo csrf_field(); ?>
-                     <div class="col-md-12">
-                         <label for="validationCustom01" class="form-label">Ville ou commune</label>
-                         <input type="text" name="city" value="<?php echo e($item['city']); ?>" class="form-control"
-                             id="validationCustom01" required>
-                         <div class="valid-feedback">
-                             Looks good!
+
+
+                     <div class="row">
+                         <div class="col-md-6">
+                             <label for="validationCustom01" class="form-label">Pays</label>
+                             <select name="country" class="js-example-basic-single form-control" required>
+                                 <option disabled selected value>Sélectionner...</option>
+                                 <?php $__currentLoopData = $data_pays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                     <option value="<?php echo e($item['id']); ?>"><?php echo e($item['country']); ?></option>
+                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                             </select>
+                             <div class="valid-feedback">
+                                 Looks good!
+                             </div>
                          </div>
+
+                         <div class="col-md-6">
+                             <label for="validationCustom01" class="form-label">Ville ou commune</label>
+                             <input type="text" name="city" value="<?php echo e($item['city']); ?>" class="form-control"
+                                 id="validationCustom01" required>
+                             <div class="valid-feedback">
+                                 Looks good!
+                             </div>
+                         </div>
+
                      </div>
+
 
                      
              </div>
@@ -32,6 +51,4 @@
          </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
  </div><!-- /.modal -->
-
- 
 <?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/configuration/ville/edit.blade.php ENDPATH**/ ?>

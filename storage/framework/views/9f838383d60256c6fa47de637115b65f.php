@@ -7,7 +7,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Créer une nouveau cycle </h5>
+                            <h5 class="modal-title" id="myModalLabel">Créer une nouvelle ville </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
@@ -16,7 +16,19 @@
                             <form class="row g-3 needs-validation" method="post" action="<?php echo e(route('ville.store')); ?>"
                                 novalidate>
                                 <?php echo csrf_field(); ?>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <label for="validationCustom01" class="form-label">Pays</label>
+                                    <select name="country" class="js-example-basic-single form-control" required>
+                                        <option disabled selected value>Sélectionner...</option>
+                                        <?php $__currentLoopData = $data_pays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($item['id']); ?>"><?php echo e($item['country']); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <label for="validationCustom01" class="form-label">Ville ou commune</label>
                                     <input type="text" name="city" class="form-control" id="validationCustom01"
                                         required>
@@ -25,7 +37,7 @@
                                     </div>
                                 </div>
 
-                             
+
                                 
                         </div>
                         <div class="modal-footer">
@@ -39,8 +51,5 @@
         </div><!-- end col -->
     </div><!-- end row -->
 </div><!-- end col -->
-</div>
 <!--end row-->
-
-
 <?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/configuration/ville/create.blade.php ENDPATH**/ ?>

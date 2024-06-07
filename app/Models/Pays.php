@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Ville extends Model
+class Pays extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -17,27 +16,28 @@ class Ville extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'city',
-        'pays_id'
+        'country',
+        'nationality',
+        'iso2'
     ];
 
     public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'villes', 'length' => 10, 'prefix' =>
+            $model->id = IdGenerator::generate(['table' => 'pays', 'length' => 10, 'prefix' =>
             mt_rand()]);
         });
     }
 
 
     /**
-     * Get the pays that owns the Ville
+     * Get all of the cities for the Pays
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pays(): BelongsTo
+    public function villes(): HasMany
     {
-        return $this->belongsTo(Pays::class, 'pays_id');
+        return $this->hasMany(Ville::class);
     }
 }

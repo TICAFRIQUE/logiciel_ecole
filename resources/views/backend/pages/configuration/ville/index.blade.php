@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('title')
     {{-- @lang('translation.datatables') --}}
-  Ville
+    Ville
 @endsection
 @section('css')
     <!--datatable css-->
@@ -10,6 +10,7 @@
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" rel="stylesheet"
         type="text/css" />
     <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
     @component('backend.components.breadcrumb')
@@ -17,7 +18,7 @@
             Liste des Villes
         @endslot
         @slot('title')
-          Ville
+            Ville
         @endslot
     @endcomponent
 
@@ -39,7 +40,6 @@
                                     <th>#</th>
                                     <th>Pays</th>
                                     <th>Ville /Commune</th>
-                                    <th>Iso</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -47,9 +47,8 @@
                                 @foreach ($data_ville as $key => $item)
                                     <tr id="row_{{ $item['id'] }}">
                                         <td> {{ ++$key }} </td>
-                                        <td>{{ $item['country'] }}</td>
+                                        <td>{{ $item['pays']['country'] }}</td>
                                         <td> {{ $item['city'] }}</td>
-                                        <td> {{ $item['iso2'] }} </td>
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -109,10 +108,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="{{ URL::asset('build/js/pages/datatables.init.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="{{ URL::asset('build/js/pages/select2.init.js') }}"></script>
+
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 
     <script>
         $(document).ready(function() {
+
             $('.delete').on("click", function(e) {
                 e.preventDefault();
                 var Id = $(this).attr('data-id');

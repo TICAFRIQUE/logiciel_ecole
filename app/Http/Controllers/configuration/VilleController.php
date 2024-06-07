@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\configuration;
 
-use Illuminate\Support\Facades\File;
+use App\Models\Pays;
 use App\Models\Ville;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VilleController extends Controller
@@ -15,10 +16,11 @@ class VilleController extends Controller
     public function index()
     {
         //
+        $data_pays = Pays::orderBy('country', 'ASC')->get();
         $data_ville = Ville::OrderBy('city', 'ASC')->get();
 
 
-        return view('backend.pages.configuration.ville.index', compact('data_ville'));
+        return view('backend.pages.configuration.ville.index', compact('data_ville', 'data_pays'));
     }
 
     //insert data of json in table ville
@@ -26,14 +28,18 @@ class VilleController extends Controller
     {
         $data_json = File::get(resource_path('json/cities2-list.json'));
         $data = json_decode($data_json);
+        // dd($data);
 
         foreach ($data as $value) {
             $data_ville = Ville::firstOrcreate([
                 'city' => $value->ville_titre,
-                'country' =>'Côte d’Ivoire',
-                'iso2' => 'CI',
+                'pays_id' => 2546794827,
             ]);
         }
+
+        Alert::success('Operation réussi', 'Success Message');
+
+        return back();
     }
 
 
@@ -47,6 +53,8 @@ class VilleController extends Controller
 
         $request->validate([
             'city' => 'required|unique:villes',
+            'country' => 'required',
+
         ]);
 
 
@@ -54,8 +62,8 @@ class VilleController extends Controller
 
         $data_ville = Ville::firstOrCreate([
             'city' => $request['city'],
-            'country' =>'Côte d’Ivoire',
-            'iso2' => 'CI',
+            'pays_id' => $request['country'],
+            // 'iso2' => 'CI',
             // 'status' => $request['status'],
             // 'position' => $data_count + 1,
         ]);
@@ -89,13 +97,13 @@ class VilleController extends Controller
         $request->validate([
 
             'city' => 'required|unique:villes',
+            'country' => 'required',
         ]);
 
 
         $data_ville = Ville::find($id)->update([
             'city' => $request['city'],
-            'country' =>'Côte d’Ivoire',
-            'iso2' => 'CI',
+            'pays_id' => $request['country'],
             // 'status' => $request['status'],
         ]);
 

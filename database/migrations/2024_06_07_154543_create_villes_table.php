@@ -14,8 +14,14 @@ return new class extends Migration
         Schema::create('villes', function (Blueprint $table) {
             $table->id();
             $table->string('city')->unique()->nullable();
-            $table->string('country')->nullable();
-            $table->string('iso2')->nullable(); // Abreviation du pays
+            // $table->string('country')->nullable();
+            // $table->string('iso2')->nullable(); // Abreviation du pays
+            
+            $table->foreignId('pays_id')
+                ->nullable()
+                ->constrained('pays')
+                ->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });
