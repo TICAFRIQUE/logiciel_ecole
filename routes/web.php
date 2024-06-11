@@ -20,6 +20,7 @@ use App\Http\Controllers\configuration\VilleController;
 use App\Http\Controllers\configuration\ClasseController;
 use App\Http\Controllers\configuration\NiveauController;
 use App\Http\Controllers\backend\module\ModuleController;
+use App\Http\Controllers\configuration\MatiereController;
 use App\Http\Controllers\backend\basic_site\SlideController;
 use App\Http\Controllers\backend\blog\BlogContentController;
 use App\Http\Controllers\backend\basic_site\EquipeController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\configuration\MotifPaiementController;
 use App\Http\Controllers\backend\basic_site\ReferenceController;
 use App\Http\Controllers\backend\basic_site\TemoignageController;
 use App\Http\Controllers\backend\permission\PermissionController;
+use App\Http\Controllers\configuration\MatiereCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -368,6 +370,25 @@ Route::middleware(['admin'])->group(function () {
         // route::post('position/{id}', 'position')->name('ville.position');
         route::get('convertData', 'convertData')->name('ville.convertData');
     });
+
+      //configuration-matiere-categorie
+      Route::prefix('matiere-category')->controller(MatiereCategoryController::class)->group(function () {
+        route::get('', 'index')->name('matiere-category.index');
+        route::post('store', 'store')->name('matiere-category.store');
+        route::post('update/{id}', 'update')->name('matiere-category.update');
+        route::get('delete/{id}', 'delete')->name('matiere-category.delete');
+        route::post('position/{id}', 'position')->name('matiere-category.position');
+    });
+
+
+        //configuration-matiere-categorie
+        Route::prefix('matiere')->controller(MatiereController::class)->group(function () {
+            route::get('', 'index')->name('matiere.index');
+            route::post('store', 'store')->name('matiere.store');
+            route::post('update/{id}', 'update')->name('matiere.update');
+            route::get('delete/{id}', 'delete')->name('matiere.delete');
+            route::post('position/{id}', 'position')->name('matiere.position');
+        });
 
 
     ######################      END LOGICIEL ECOLE  ROUTE     ###########################################################

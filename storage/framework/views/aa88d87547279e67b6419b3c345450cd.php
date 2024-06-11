@@ -16,9 +16,22 @@
 
 
                      <div class="row">
-                         
+                         <div class="col-md-6">
+                             <label for="validationCustom01" class="form-label">Pays</label>
+                             <select data-choices id="choices-single-default" name="country" class="form-control"
+                                 required>
+                                 <option disabled selected value>Sélectionner...</option>
+                                 <?php $__currentLoopData = $data_pays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                     <option value="<?php echo e($item['id']); ?>"><?php echo e($item['country']); ?></option>
+                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                             </select>
+                             <div class="valid-feedback">
+                                 Looks good!
+                             </div>
+                         </div>
 
-                         <div class="col-md-12">
+
+                         <div class="col-md-6">
                              <label for="validationCustom01" class="form-label">Ville ou commune</label>
                              <input type="text" name="city" value="<?php echo e($item['city']); ?>" class="form-control"
                                  id="validationCustom01" required>

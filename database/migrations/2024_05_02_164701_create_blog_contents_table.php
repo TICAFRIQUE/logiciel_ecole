@@ -23,7 +23,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('blog_categories')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
 
 
             $table->softDeletes();

@@ -18,7 +18,7 @@
                                 <?php echo csrf_field(); ?>
                                 <div class="col-md-6">
                                     <label for="validationCustom01" class="form-label">Pays</label>
-                                    <select name="country" class="js-example-basic-single form-control" required>
+                                    <select data-choices id="choices-single-default" name="country" class="form-control" required>
                                         <option disabled selected value>Sélectionner...</option>
                                         <?php $__currentLoopData = $data_pays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($item['id']); ?>"><?php echo e($item['country']); ?></option>

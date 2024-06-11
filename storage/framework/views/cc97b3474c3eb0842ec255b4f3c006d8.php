@@ -134,7 +134,7 @@
                         role="button" aria-expanded="true" aria-controls="sidebarConfiguration">
                         <i class=" ri-settings-fill "></i> <span>CONFIGURATIONS</span>
                     </a>
-                    <div class="collapse menu-dropdown <?php echo e(Route::is('annee-scolaire.*') || Route::is('cycle.*') || Route::is('niveau.*') || Route::is('classe.*') || Route::is('groupe-sanguin.*') || Route::is('mode-paiement.*') || Route::is('motif-paiement.*') || Route::is('ville.*') ? 'show' : ''); ?>"
+                    <div class="collapse menu-dropdown <?php echo e(Route::is('annee-scolaire.*') || Route::is('cycle.*') || Route::is('niveau.*') || Route::is('classe.*') || Route::is('groupe-sanguin.*') || Route::is('mode-paiement.*') || Route::is('motif-paiement.*') || Route::is('ville.*') || Route::is('matiere-category.*') || Route::is('matiere.*') ? 'show' : ''); ?>"
                         id="sidebarConfiguration">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
@@ -173,19 +173,43 @@
                                 <a href="<?php echo e(route('ville.index')); ?>"
                                     class="nav-link <?php echo e(Route::is('ville.*') ? 'active' : ''); ?>">Villes</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="#sidebarMedia"
+                                    class="nav-link <?php echo e(Route::is('matiere-category.*') || Route::is('matiere.*') ? 'active' : ''); ?>"
+                                    data-bs-toggle="collapse" role="button" aria-expanded="false"
+                                    aria-controls="sidebarMedia">
+                                    Matières
+                                </a>
+                                <div class="collapse menu-dropdown <?php echo e(Route::is('matiere-category.*') || Route::is('matiere.*') ? 'show' : ''); ?>"
+                                    id="sidebarMedia">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item ">
+                                            <a href="<?php echo e(route('matiere-category.index')); ?>"
+                                                class="nav-link <?php echo e(Route::is('matiere-category.*') ? 'active' : ''); ?>">
+                                                Categories </a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a href="<?php echo e(route('matiere.index')); ?>"
+                                                class="nav-link <?php echo e(Route::is('matiere.*') ? 'active' : ''); ?>">
+                                                Matières </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </li>
+
+
+
+                
         </div>
-        </li>
 
-
-        </ul>
     </div>
     <!-- Sidebar -->
 </div>
 <div class="sidebar-background"></div>
-</div>
 <!-- Left Sidebar End -->
 <!-- Vertical Overlay-->
 <div class="vertical-overlay"></div>

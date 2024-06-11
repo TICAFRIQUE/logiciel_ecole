@@ -1,7 +1,7 @@
 
 <?php $__env->startSection('title'); ?>
     
-    Ville
+    Matiere
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
     <!--datatable css-->
@@ -14,10 +14,10 @@
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('backend.components.breadcrumb'); ?>
         <?php $__env->slot('li_1'); ?>
-            Liste des Villes
+            Categorie
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
-            Ville
+            Matiere
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
@@ -27,9 +27,9 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Liste des Ville</h5>
+                    <h5 class="card-title mb-0">Liste des categorie</h5>
                     <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal">Créer
-                        un Ville</button>
+                        une categorie</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -37,17 +37,23 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Pays</th>
-                                    <th>Ville /Commune</th>
+                                    <th>statut</th>
+                                    <th>Nom de la categorie</th>
+                                    <th>Date creation</th>
+                                    <th>Position</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $__currentLoopData = $data_ville; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $data_matiere_category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="row_<?php echo e($item['id']); ?>">
                                         <td> <?php echo e(++$key); ?> </td>
-                                        <td><?php echo e($item['pays']['country']); ?></td>
-                                        <td> <?php echo e($item['city']); ?></td>
+                                        <td><?php echo e($item['status']); ?></td>
+                                        <td>
+                                            <?php echo e($item['name']); ?></td>
+                                        <td> <?php echo e($item['created_at']); ?> </td>
+                                        <td> <?php echo e($item['position']); ?> </td>
+
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -77,8 +83,8 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php echo $__env->make('backend.pages.configuration.ville.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                    
+                                    <?php echo $__env->make('backend.pages.configuration.matiere.category.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                    <?php echo $__env->make('backend.pages.configuration.matiere.category.position', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
@@ -88,7 +94,7 @@
             </div>
         </div>
     </div>
-    <?php echo $__env->make('backend.pages.configuration.ville.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('backend.pages.configuration.matiere.category.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <!--end row-->
 <?php $__env->stopSection(); ?>
@@ -106,11 +112,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="<?php echo e(URL::asset('build/js/pages/datatables.init.js')); ?>"></script>
+
     <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 
     <script>
         $(document).ready(function() {
-
             $('.delete').on("click", function(e) {
                 e.preventDefault();
                 var Id = $(this).attr('data-id');
@@ -131,7 +137,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/ville/delete/" + Id,
+                            url: "/matiere-category/delete/" + Id,
                             dataType: "json",
                             // data: {
                             //     _token: '<?php echo e(csrf_token()); ?>',
@@ -187,4 +193,4 @@
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/configuration/ville/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/configuration/matiere/category/index.blade.php ENDPATH**/ ?>

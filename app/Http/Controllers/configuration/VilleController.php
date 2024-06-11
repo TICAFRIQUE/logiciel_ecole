@@ -97,7 +97,7 @@ class VilleController extends Controller
         $request->validate([
 
             'city' => 'required|unique:villes',
-            'country' => '',
+            'country' => 'required',
         ]);
 
 

@@ -23,7 +23,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('media_categories')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
                 $table->timestamps();
         });
     }

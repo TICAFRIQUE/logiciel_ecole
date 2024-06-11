@@ -11,14 +11,14 @@
              <div class="modal-body">
 
                  <form class="row g-3 needs-validation" method="post"
-                     action="<?php echo e(route('cycle.position', $item['id'])); ?>" novalidate>
+                     action="<?php echo e(route('matiere-category.position', $item['id'])); ?>" novalidate>
                      <?php echo csrf_field(); ?>
 
                      <div class="col-md-12">
                          <label for="validationCustom01" class="form-label">Position actuelle <span
                                  class="text-primary"><?php echo e($item['position']); ?> </span> </label>
                          <select name="position" class="form-control">
-                             <?php for($i = 1; $i <= count($data_cycle); $i++): ?>
+                             <?php for($i = 1; $i <= count($data_matiere_category); $i++): ?>
                                  <option value="<?php echo e($i); ?>" <?php echo e($item['position'] == $i ? 'selected' : ''); ?>>
                                      <?php echo e($i); ?>
 
@@ -41,4 +41,4 @@
  </div><!-- /.modal -->
 
  
-<?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/configuration/cycle/position.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/configuration/matiere/category/position.blade.php ENDPATH**/ ?>

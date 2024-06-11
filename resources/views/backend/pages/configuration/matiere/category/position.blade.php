@@ -1,5 +1,5 @@
  <!-- Default Modals -->
- <div id="myModalPosition<?php echo e($item['id']); ?>" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel"
+ <div id="myModalPosition{{ $item['id'] }}" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel"
      aria-hidden="true" style="display: none;">
      <div class="modal-dialog">
          <div class="modal-content">
@@ -11,19 +11,18 @@
              <div class="modal-body">
 
                  <form class="row g-3 needs-validation" method="post"
-                     action="<?php echo e(route('cycle.position', $item['id'])); ?>" novalidate>
-                     <?php echo csrf_field(); ?>
+                     action="{{ route('matiere-category.position', $item['id']) }}" novalidate>
+                     @csrf
 
                      <div class="col-md-12">
                          <label for="validationCustom01" class="form-label">Position actuelle <span
-                                 class="text-primary"><?php echo e($item['position']); ?> </span> </label>
+                                 class="text-primary">{{ $item['position'] }} </span> </label>
                          <select name="position" class="form-control">
-                             <?php for($i = 1; $i <= count($data_cycle); $i++): ?>
-                                 <option value="<?php echo e($i); ?>" <?php echo e($item['position'] == $i ? 'selected' : ''); ?>>
-                                     <?php echo e($i); ?>
-
+                             @for ($i = 1; $i <= count($data_matiere_category); $i++)
+                                 <option value="{{ $i }}" {{ $item['position'] == $i ? 'selected' : '' }}>
+                                     {{ $i }}
                                  </option>
-                             <?php endfor; ?>
+                             @endfor
 
                          </select>
                          <div class="valid-feedback">
@@ -40,5 +39,10 @@
      </div><!-- /.modal-dialog -->
  </div><!-- /.modal -->
 
- 
-<?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/configuration/cycle/position.blade.php ENDPATH**/ ?>
+ {{-- @section('script')
+    <script src="{{ URL::asset('build/libs/prismjs/prism.js') }}"></script>
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+    <script src="{{ URL::asset('build/js/pages/modal.init.js') }}"></script>
+
+    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+@endsection --}}
