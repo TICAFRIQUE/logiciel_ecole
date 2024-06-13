@@ -310,6 +310,15 @@
 
 
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ Route::is('eleve.*') ? 'active' : '' }}"
+                        href="{{ route('eleve.index') }}">
+                        <i class=" ri ri-user-add-fill"></i> <span>ELEVES</span>
+                    </a>
+                </li>
+
+
+
 
         </div>
 

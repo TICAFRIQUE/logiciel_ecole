@@ -8,6 +8,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ville extends Model
 {
@@ -31,13 +32,15 @@ class Ville extends Model
     }
 
 
-    /**
-     * Get the pays that owns the Ville
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+//RelationShips
+
     public function pays(): BelongsTo
     {
         return $this->belongsTo(Pays::class, 'pays_id');
+    }
+
+    public function eleves(): HasMany
+    {
+        return $this->hasMany(Eleve::class);
     }
 }

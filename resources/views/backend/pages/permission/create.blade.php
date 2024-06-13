@@ -33,7 +33,7 @@
 
                                  <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Roles</label>
-                                    <select name="role" class="form-control">
+                                    <select data-choices id="choices-single-default" name="role" class="form-control">
                                         <option disabled selected value>Selectionner</option>
                                         @foreach ($role as $roles)
                                             <option value="{{ $roles['id'] }}">{{ $roles['name'] }} </option>

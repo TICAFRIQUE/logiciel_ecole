@@ -30,14 +30,16 @@ class Pays extends Model
         });
     }
 
+    //RelationShips
 
-    /**
-     * Get all of the cities for the Pays
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function villes(): HasMany
     {
         return $this->hasMany(Ville::class);
+    }
+
+
+    public function eleves(): HasMany
+    {
+        return $this->hasMany(Eleve::class);
     }
 }

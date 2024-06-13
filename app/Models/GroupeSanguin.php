@@ -37,4 +37,12 @@ class GroupeSanguin extends Model
             ]
         ];
     }
+
+
+
+    //Relationships
+    public function eleves()
+    {
+        return $this->hasMany(Eleve::class);
+    }
 }

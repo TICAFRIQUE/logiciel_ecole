@@ -16,6 +16,7 @@ use App\Http\Controllers\backend\menu\MenuController;
 use App\Http\Controllers\configuration\AnneeScolaire;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Http\Controllers\configuration\CycleController;
+use App\Http\Controllers\configuration\EleveController;
 use App\Http\Controllers\configuration\VilleController;
 use App\Http\Controllers\configuration\ClasseController;
 use App\Http\Controllers\configuration\NiveauController;
@@ -371,8 +372,8 @@ Route::middleware(['admin'])->group(function () {
         route::get('convertData', 'convertData')->name('ville.convertData');
     });
 
-      //configuration-matiere-categorie
-      Route::prefix('matiere-category')->controller(MatiereCategoryController::class)->group(function () {
+    //configuration-matiere-categorie
+    Route::prefix('matiere-category')->controller(MatiereCategoryController::class)->group(function () {
         route::get('', 'index')->name('matiere-category.index');
         route::post('store', 'store')->name('matiere-category.store');
         route::post('update/{id}', 'update')->name('matiere-category.update');
@@ -381,14 +382,25 @@ Route::middleware(['admin'])->group(function () {
     });
 
 
-        //configuration-matiere-categorie
-        Route::prefix('matiere')->controller(MatiereController::class)->group(function () {
-            route::get('', 'index')->name('matiere.index');
-            route::post('store', 'store')->name('matiere.store');
-            route::post('update/{id}', 'update')->name('matiere.update');
-            route::get('delete/{id}', 'delete')->name('matiere.delete');
-            route::post('position/{id}', 'position')->name('matiere.position');
-        });
+    //configuration-matiere-categorie
+    Route::prefix('matiere')->controller(MatiereController::class)->group(function () {
+        route::get('', 'index')->name('matiere.index');
+        route::post('store', 'store')->name('matiere.store');
+        route::post('update/{id}', 'update')->name('matiere.update');
+        route::get('delete/{id}', 'delete')->name('matiere.delete');
+        route::post('position/{id}', 'position')->name('matiere.position');
+    });
+
+
+       //Eleve--Fiche 
+       Route::prefix('eleve')->controller(EleveController::class)->group(function () {
+        route::get('', 'index')->name('eleve.index');
+        route::get('create', 'create')->name('eleve.create');
+        route::post('store', 'store')->name('eleve.store');
+        route::post('update/{id}', 'update')->name('eleve.update');
+        route::get('delete/{id}', 'delete')->name('eleve.delete');
+        route::post('position/{id}', 'position')->name('eleve.position');
+    });
 
 
     ######################      END LOGICIEL ECOLE  ROUTE     ###########################################################

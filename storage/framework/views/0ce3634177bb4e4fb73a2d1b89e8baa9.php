@@ -33,7 +33,7 @@
 
                                  <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">Roles</label>
-                                    <select name="role" class="form-control">
+                                    <select data-choices id="choices-single-default" name="role" class="form-control">
                                         <option disabled selected value>Selectionner</option>
                                         <?php $__currentLoopData = $role; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $roles): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($roles['id']); ?>"><?php echo e($roles['name']); ?> </option>
