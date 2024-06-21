@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->nullable();
-            $table->string('matricule')->nullable();
-            $table->string('numero_extrait')->nullable();
+            $table->string('code')->unique()->nullable();
+            $table->string('matricule')->unique()->nullable();
+            $table->string('numero_extrait')->unique()->nullable();
             $table->string('handicap')->nullable(); // oui ou non
             $table->string('sexe')->nullable();
             $table->string('nom')->nullable();
-            $table->string('prenom')->nullable();
+            $table->string('prenoms')->nullable();
             $table->string('contact')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('date_naissance')->nullable();
@@ -28,22 +28,22 @@ return new class extends Migration
 
             //foreign Id
             $table->foreignId('groupe_sanguin_id')
-            ->nullable()
-            ->constrained('groupe_sanguins')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->nullable()
+                ->constrained('groupe_sanguins')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->foreignId('pays_id')
-            ->nullable()
-            ->constrained('pays')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->nullable()
+                ->constrained('pays')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->foreignId('ville_id') //commmune
-            ->nullable()
-            ->constrained('villes')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->nullable()
+                ->constrained('villes')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
 
             $table->string('quartier')->nullable();
@@ -59,9 +59,9 @@ return new class extends Migration
             $table->string('contact_mere')->nullable();
             $table->string('statut_vivant_mere')->nullable();
 
-            $table->date('date_emission')->nullable();
+            $table->date('date_admission')->nullable();
             $table->date('date_sortie')->nullable();
-            
+
 
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class Eleve extends Model implements HasMedia
 
     protected $fillable = [
         'code',
-        'Matricule',
+        'matricule',
         'numero_extrait',
         'handicap',
         'sexe',
@@ -32,14 +32,14 @@ class Eleve extends Model implements HasMedia
         'quartier', //quartier de residence
         'etablissement_origine',
         'nom_pere',
-        'prenom_pere',
+        'prenoms_pere',
         'contact_pere',
         'statut_vivant_pere', //boolean --oui ou non
         'nom_mere',
-        'prenom_mere',
+        'prenoms_mere',
         'contact_mere',
         'statut_vivant_mere', //boolean --oui ou non
-        'date_emission',
+        'date_admission',
         'date_sortie',
 
     ];
@@ -53,8 +53,8 @@ class Eleve extends Model implements HasMedia
             $model->id = IdGenerator::generate(['table' => 'eleves', 'length' => 10, 'prefix' =>
             mt_rand()]);
 
-            $model->code = IdGenerator::generate(['table' => 'eleves', 'length' => 4, 'prefix' =>
-            mt_rand()]);
+            // $model->code = IdGenerator::generate(['table' => 'eleves', 'length' => 4, 'prefix' =>
+            // mt_rand()]);
         });
     }
 
