@@ -1,25 +1,25 @@
-@extends('backend.layouts.master')
-@section('title')
-    @lang('translation.datatables')
-@endsection
-@section('css')
+
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('translation.datatables'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
     <!--datatable css-->
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <!--datatable responsive css-->
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" rel="stylesheet"
         type="text/css" />
     <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
-    @component('backend.components.breadcrumb')
-        @slot('li_1')
-            eleve
-        @endslot
-        @slot('title')
-            Liste des eleves
-        @endslot
-    @endcomponent
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('backend.components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
+            inscription
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
+            Liste des inscriptions
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
 
 
@@ -27,13 +27,12 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Liste des eleves</h5>
-                    {{-- <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal">Créer
-                        un role</button> --}}
+                    <h5 class="card-title mb-0">Liste des inscriptions</h5>
+                    
 
 
-                    <a href="{{ route('eleve.create') }}" type="button" class="btn btn-primary ">Créer
-                        un eleve</a>
+                    <a href="<?php echo e(route('inscription.create')); ?>" type="button" class="btn btn-primary ">Créer
+                        un inscription</a>
 
                 </div>
                 <div class="card-body">
@@ -52,15 +51,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data_eleve as $key => $item)
-                                    <tr id="row_{{ $item['id'] }}">
-                                        <td> {{ ++$key }} </td>
-                                        <td>{{ $item['code'] }}</td>
-                                        <td>{{ $item['matricule'] }}</td>
-                                        <td>{{ $item['nom'] }}</td>
-                                        <td>{{ $item['prenoms'] }}</td>
-                                        <td>{{ $item['contact'] }}</td>
-                                        <td> {{ $item['created_at'] }} </td>
+                                <?php $__currentLoopData = $data_inscription; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr id="row_<?php echo e($item['id']); ?>">
+                                        <td> <?php echo e(++$key); ?> </td>
+                                        <td><?php echo e($item['code']); ?></td>
+                                        <td><?php echo e($item['matricule']); ?></td>
+                                        <td><?php echo e($item['nom']); ?></td>
+                                        <td><?php echo e($item['prenoms']); ?></td>
+                                        <td><?php echo e($item['contact']); ?></td>
+                                        <td> <?php echo e($item['created_at']); ?> </td>
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -69,7 +68,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
 
-                                                    <li><a href="{{ route('eleve.detail', $item['id']) }}"
+                                                    <li><a href="<?php echo e(route('inscription.detail', $item['id'])); ?>"
                                                             class="dropdown-item"><i
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                             Details</a>
@@ -77,7 +76,7 @@
 
 
 
-                                                    <li><a href="{{ route('eleve.edit', $item['id']) }}" type="button"
+                                                    <li><a href="<?php echo e(route('inscription.edit', $item['id'])); ?>" type="button"
                                                             class="dropdown-item edit-item-btn"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a>
@@ -87,7 +86,7 @@
 
                                                     <li>
                                                         <a href="#" class="dropdown-item remove-item-btn delete"
-                                                            data-id={{ $item['id'] }}>
+                                                            data-id=<?php echo e($item['id']); ?>>
                                                             <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Delete
                                                         </a>
@@ -98,7 +97,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -107,8 +106,8 @@
         </div>
     </div>
     <!--end row-->
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -121,9 +120,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="{{ URL::asset('build/js/pages/datatables.init.js') }}"></script>
+    <script src="<?php echo e(URL::asset('build/js/pages/datatables.init.js')); ?>"></script>
 
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 
 
     <script>
@@ -148,7 +147,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/eleve/delete/" + Id,
+                            url: "/inscription/delete/" + Id,
                             dataType: "json",
 
                             success: function(response) {
@@ -172,4 +171,6 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/inscription/index.blade.php ENDPATH**/ ?>

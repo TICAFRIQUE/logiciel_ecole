@@ -14,7 +14,7 @@
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('backend.components.breadcrumb'); ?>
         <?php $__env->slot('li_1'); ?>
-            Eleves
+            eleve
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
             Liste des eleves
@@ -30,10 +30,10 @@
                     <h5 class="card-title mb-0">Liste des eleves</h5>
                     
 
-                  
-                        <a href="<?php echo e(route('eleve.create')); ?>" type="button" class="btn btn-primary ">Créer
-                            un eleve</a>
-                 
+
+                    <a href="<?php echo e(route('eleve.create')); ?>" type="button" class="btn btn-primary ">Créer
+                        un eleve</a>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -41,8 +41,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>statut</th>
-                                    <th>Nom du role</th>
+                                    <th>Code</th>
+                                    <th>Matricule</th>
+                                    <th>Nom</th>
+                                    <th>Prenoms</th>
+                                    <th>Contact</th>
                                     <th>Date creation</th>
                                     <th>Actions</th>
                                 </tr>
@@ -51,8 +54,11 @@
                                 <?php $__currentLoopData = $data_eleve; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="row_<?php echo e($item['id']); ?>">
                                         <td> <?php echo e(++$key); ?> </td>
-                                        <td><?php echo e($item['status']); ?></td>
-                                        <td><?php echo e($item['name']); ?></td>
+                                        <td><?php echo e($item['code']); ?></td>
+                                        <td><?php echo e($item['matricule']); ?></td>
+                                        <td><?php echo e($item['nom']); ?></td>
+                                        <td><?php echo e($item['prenoms']); ?></td>
+                                        <td><?php echo e($item['contact']); ?></td>
                                         <td> <?php echo e($item['created_at']); ?> </td>
                                         <td>
                                             <div class="dropdown d-inline-block">
@@ -61,30 +67,31 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                  
-                                                        <li><a href="#!" class="dropdown-item"><i
-                                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                                View</a>
-                                                        </li>
-                                                 
 
-                                                 
-                                                        <li><a href="<?php echo e(route('eleve.edit', $item['id'])); ?>" type="button"
-                                                                class="dropdown-item edit-item-btn"><i
-                                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                                Edit</a>
-                                                        </li>
-                                                  
+                                                    <li><a href="<?php echo e(route('eleve.detail', $item['id'])); ?>"
+                                                            class="dropdown-item"><i
+                                                                class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                            Details</a>
+                                                    </li>
 
-                                                  
-                                                        <li>
-                                                            <a href="#" class="dropdown-item remove-item-btn delete"
-                                                                data-id=<?php echo e($item['id']); ?>>
-                                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                                Delete
-                                                            </a>
-                                                        </li>
-                                                   
+
+
+                                                    <li><a href="<?php echo e(route('eleve.edit', $item['id'])); ?>" type="button"
+                                                            class="dropdown-item edit-item-btn"><i
+                                                                class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                            Edit</a>
+                                                    </li>
+
+
+
+                                                    <li>
+                                                        <a href="#" class="dropdown-item remove-item-btn delete"
+                                                            data-id=<?php echo e($item['id']); ?>>
+                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                            Delete
+                                                        </a>
+                                                    </li>
+
 
                                                 </ul>
                                             </div>
@@ -139,13 +146,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            type: "POST",
+                            type: "GET",
                             url: "/eleve/delete/" + Id,
                             dataType: "json",
-                            data: {
-                                _token: '<?php echo e(csrf_token()); ?>',
 
-                            },
                             success: function(response) {
                                 if (response.status == 200) {
                                     Swal.fire({

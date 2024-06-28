@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\EleveController;
+use App\Http\Controllers\VersementController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\SettingController;
@@ -16,7 +19,6 @@ use App\Http\Controllers\backend\menu\MenuController;
 use App\Http\Controllers\configuration\AnneeScolaire;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Http\Controllers\configuration\CycleController;
-use App\Http\Controllers\configuration\EleveController;
 use App\Http\Controllers\configuration\VilleController;
 use App\Http\Controllers\configuration\ClasseController;
 use App\Http\Controllers\configuration\NiveauController;
@@ -396,10 +398,36 @@ Route::middleware(['admin'])->group(function () {
        Route::prefix('eleve')->controller(EleveController::class)->group(function () {
         route::get('', 'index')->name('eleve.index');
         route::get('create', 'create')->name('eleve.create');
+        route::get('detail/{id}', 'detail')->name('eleve.detail');
+        route::get('edit/{id}', 'edit')->name('eleve.edit');
         route::post('store', 'store')->name('eleve.store');
         route::post('update/{id}', 'update')->name('eleve.update');
         route::get('delete/{id}', 'delete')->name('eleve.delete');
         route::post('position/{id}', 'position')->name('eleve.position');
+    });
+
+
+     //Eleve--Inscription 
+     Route::prefix('inscription')->controller(InscriptionController::class)->group(function () {
+        route::get('', 'index')->name('inscription.index');
+        route::get('create', 'create')->name('inscription.create');
+        route::get('detail/{id}', 'detail')->name('inscription.detail');
+        route::get('edit/{id}', 'edit')->name('inscription.edit');
+        route::post('store', 'store')->name('inscription.store');
+        route::post('update/{id}', 'update')->name('inscription.update');
+        route::get('delete/{id}', 'delete')->name('inscription.delete');
+    });
+
+
+       //Eleve--Versement 
+       Route::prefix('versement')->controller(VersementController::class)->group(function () {
+        route::get('', 'index')->name('versement.index');
+        route::get('create', 'create')->name('versement.create');
+        route::get('detail/{id}', 'detail')->name('versement.detail');
+        route::get('edit/{id}', 'edit')->name('versement.edit');
+        route::post('store', 'store')->name('versement.store');
+        route::post('update/{id}', 'update')->name('versement.update');
+        route::get('delete/{id}', 'delete')->name('versement.delete');
     });
 
 

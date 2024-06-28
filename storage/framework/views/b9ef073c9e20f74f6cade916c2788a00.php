@@ -5,7 +5,7 @@
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('backend.components.breadcrumb'); ?>
         <?php $__env->slot('li_1'); ?>
-            Eleve
+            eleve
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
             Créer un eleve

@@ -21,6 +21,7 @@ class AnneeScolaire extends Model
         'position'
     ];
 
+
     public static function boot()
     {
         parent::boot();
@@ -28,5 +29,12 @@ class AnneeScolaire extends Model
             $model->id = IdGenerator::generate(['table' => 'annee_scolaires', 'length' => 10, 'prefix' =>
             mt_rand()]);
         });
+    }
+
+
+    
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class);
     }
 }

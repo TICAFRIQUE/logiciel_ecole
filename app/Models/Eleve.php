@@ -76,4 +76,9 @@ class Eleve extends Model implements HasMedia
     {
         return $this->belongsTo(Ville::class);
     }
+
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class);
+    }
 }

@@ -14,10 +14,10 @@
 @section('content')
     @component('backend.components.breadcrumb')
         @slot('li_1')
-            eleve
+            inscription
         @endslot
         @slot('title')
-            Liste des eleves
+            Liste des inscriptions
         @endslot
     @endcomponent
 
@@ -27,13 +27,13 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Liste des eleves</h5>
+                    <h5 class="card-title mb-0">Liste des inscriptions</h5>
                     {{-- <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal">Créer
                         un role</button> --}}
 
 
-                    <a href="{{ route('eleve.create') }}" type="button" class="btn btn-primary ">Créer
-                        un eleve</a>
+                    <a href="{{ route('inscription.create') }}" type="button" class="btn btn-primary ">Créer
+                        un inscription</a>
 
                 </div>
                 <div class="card-body">
@@ -52,7 +52,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data_eleve as $key => $item)
+                                @foreach ($data_inscription as $key => $item)
                                     <tr id="row_{{ $item['id'] }}">
                                         <td> {{ ++$key }} </td>
                                         <td>{{ $item['code'] }}</td>
@@ -69,7 +69,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
 
-                                                    <li><a href="{{ route('eleve.detail', $item['id']) }}"
+                                                    <li><a href="{{ route('inscription.detail', $item['id']) }}"
                                                             class="dropdown-item"><i
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                             Details</a>
@@ -77,7 +77,7 @@
 
 
 
-                                                    <li><a href="{{ route('eleve.edit', $item['id']) }}" type="button"
+                                                    <li><a href="{{ route('inscription.edit', $item['id']) }}" type="button"
                                                             class="dropdown-item edit-item-btn"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a>
@@ -148,7 +148,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/eleve/delete/" + Id,
+                            url: "/inscription/delete/" + Id,
                             dataType: "json",
 
                             success: function(response) {

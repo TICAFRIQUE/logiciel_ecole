@@ -1,12 +1,14 @@
 @extends('backend.layouts.master')
-
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
     @component('backend.components.breadcrumb')
         @slot('li_1')
-            Page
+            eleve
         @endslot
         @slot('title')
-            Modifier une page
+            Modifier un eleve
         @endslot
     @endcomponent
 
@@ -14,39 +16,316 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post"
-                        action="{{ route('page.update', $data_page['id']) }}" novalidate>
+                    <form class="row g-3 needs-validation" method="post" action="{{ route('eleve.update', $data_eleve['id']) }}"
+                        novalidate>
                         @csrf
-                        <div class="col-md-8">
-                            <label for="validationCustom01" class="form-label">Nom de la page </label>
-                            <input type="text" name="name" value="{{ $data_page['name'] }}" class="form-control"
-                                id="validationCustom01" placeholder="Ex: Nos partenaires" required>
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Matricule </label>
+                            <input type="text" name="matricule" class="form-control" id="validationCustom01"
+                                placeholder="Ex: MT000543T6" value="{{ $data_eleve['matricule'] }}" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="validationCustom01" class="form-label">Statut</label>
-                            <select name="status" class="form-control">
-                                <option value="active" {{ $data_page['status'] == 'active' ? 'selected' : '' }}>Activé
+
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Extrait de naissance (Numero) </label>
+                            <input type="text" name="numero_extrait" class="form-control" id="validationCustom01"
+                                placeholder="Ex: N°000543T6" value="{{ $data_eleve['numero_extrait'] }}" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Sexe</label>
+                            <select name="sexe" class="form-control" required>
+                                <option selected disabled value>Choisir</option>
+                                <option value="masculin" {{ $data_eleve['sexe'] == 'masculin' ? 'selected' : '' }}>Masculin
                                 </option>
-                                <option value="desactive" {{ $data_page['status'] == 'desactive' ? 'selected' : '' }}>Desactivé</option>
+                                <option value="feminin" {{ $data_eleve['sexe'] == 'feminin' ? 'selected' : '' }}>Feminin
+                                </option>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label">Contenu de la page</label>
-                            <textarea name="content" class="tinymce-editor">{{$data_page['content']}} </textarea><!-- End TinyMCE Editor -->
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Handicap</label>
+                            <select name="handicap" class="form-control" required>
+                                <option selected disabled value>Choisir</option>
+                                <option value="oui" {{ $data_eleve['handicap'] == 'oui' ? 'selected' : '' }}>Oui</option>
+                                <option value="non" {{ $data_eleve['handicap'] == 'non' ? 'selected' : '' }}>Non</option>
+                            </select>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
+
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Groupe sanguin </label>
+                            <select name="groupe_sanguin_id" class="form-control">
+                                <option selected disabled value>Choisir</option>
+                                @foreach ($data_groupe_sanguin as $item)
+                                    <option value="{{ $item['id'] }}"
+                                        {{ $data_eleve['groupe_sanguin_id'] == $item['id'] ? 'selected' : '' }}>
+                                        {{ $item['name'] }} </option>
+                                @endforeach
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <hr>
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Nom de famille </label>
+                            <input type="text" name="nom" value="{{ $data_eleve['nom'] }}" class="form-control"
+                                id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Prenoms</label>
+                            <input type="text" name="prenoms" value="{{ $data_eleve['prenoms'] }}" class="form-control"
+                                id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Contact</label>
+                            <input type="number" name="contact" value="{{ $data_eleve['contact'] }}" class="form-control"
+                                id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Email</label>
+                            <input type="email" name="email" value="{{ $data_eleve['email'] }}" class="form-control"
+                                id="validationCustom01">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Date de naissance</label>
+                            <input type="date" name="date_naissance" value="{{ $data_eleve['date_naissance'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Lieu de naissance</label>
+                            <input type="text" name="lieu_naissance" value="{{ $data_eleve['lieu_naissance'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Pays</label>
+                            <select name="pays_id" class="form-control  js-example-basic-single" required>
+                                <option disabled selected value>Sélectionner...</option>
+                                @foreach ($data_pays as $item)
+                                    <option
+                                        value="{{ $item['id'] }}"{{ $data_eleve['pays_id'] == $item['id'] ? 'selected' : '' }}>
+                                        {{ $item['country'] }}</option>
+                                @endforeach
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Commune / Ville</label>
+                            <select name="ville_id" class="form-control  js-example-basic-single" required>
+                                <option disabled selected value>Sélectionner...</option>
+                                @foreach ($data_ville as $item)
+                                    <option
+                                        value="{{ $item['id'] }}"{{ $data_eleve['ville_id'] == $item['id'] ? 'selected' : '' }}>
+                                        {{ $item['city'] }}</option>
+                                @endforeach
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Quartier</label>
+                            <input type="text" name="quartier" value="{{ $data_eleve['quartier'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Etablissement d'origine</label>
+                            <input type="text" name="etablissement_origine"
+                                value="{{ $data_eleve['etablissement_origine'] }}" class="form-control"
+                                id="validationCustom01">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Nom du père</label>
+                            <input type="text" name="nom_pere" value="{{ $data_eleve['nom_pere'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label for="validationCustom01" class="form-label">Prenoms du père</label>
+                            <input type="text" name="prenoms_pere" value="{{ $data_eleve['prenoms_pere'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Contact du père</label>
+                            <input type="number" name="contact_pere" value="{{ $data_eleve['contact_pere'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Vivant ? (Père)</label>
+                            <select name="statut_vivant_pere" class="form-control" required>
+                                <option selected disabled value>Choisir</option>
+                                <option value="oui" {{ $data_eleve['statut_vivant_pere'] == 'oui' ? 'selected' : '' }}>
+                                    Oui
+                                </option>
+
+                                <option value="non"{{ $data_eleve['statut_vivant_pere'] == 'non' ? 'selected' : '' }}>
+                                    Non
+                                </option>
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label for="validationCustom01" class="form-label">Nom de la mère</label>
+                            <input type="text" name="nom_mere" value="{{ $data_eleve['nom_mere'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label for="validationCustom01" class="form-label">Prenoms de la mere</label>
+                            <input type="text" name="prenoms_mere" value="{{ $data_eleve['prenoms_mere'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Contact de la mère</label>
+                            <input type="number" name="contact_mere" value="{{ $data_eleve['contact_mere'] }}"
+                                class="form-control" id="validationCustom01" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Vivant ? (Mère)</label>
+                            <select name="statut_vivant_mere" class="form-control" required>
+                                <option selected disabled value>Choisir</option>
+                                <option value="oui" {{ $data_eleve['statut_vivant_pere'] == 'oui' ? 'selected' : '' }}>
+                                    Oui
+                                </option>
+
+                                <option value="non"{{ $data_eleve['statut_vivant_pere'] == 'non' ? 'selected' : '' }}>
+                                    Non
+                                </option>
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <hr>
+                        <!--Get date now with carbon-->
+                        <p class="py-2 rounded-3" id="MsgError"></p>
+                        @inject('carbon', 'Carbon\Carbon') <!--Import carbon in blade-->
+                        @php
+                            $date_now = $carbon::now()->format('Y-m-d');
+                        @endphp
+                        <div class="col-md-6">
+                            <label for="validationCustom01" class="form-label">Date d'admision</label>
+                            <input type="date" name="date_admission"
+                                value="{{ $data_eleve['date_admission'] ?? $date_now }}" class="form-control"
+                                id="date_start" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div> <!-- End Get date now with carbon-->
+
+                        <div class="col-md-6">
+                            <label for="validationCustom01" class="form-label">Date de sortie</label>
+                            <input type="date" name="date_sortie" value="{{$data_eleve['date_sortie']}}" class="form-control" id="date_end" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+
+                        {{-- <div class="col-md-2">
+                            <label class="form-check-label" for="customSwitchsizelg">Handicap</label>
+
+                            <div class="form-check form-switch form-switch-lg col-md-2" dir="ltr">
+                                <input type="checkbox" name="handicap" class="form-check-input" id="customSwitchsizelg" checked="">
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div> --}}
+
+
+
+
+
                 </div>
                 <div class="">
-                    <button type="submit" class="btn btn-primary w-100 ">Valider</button>
+                    <button type="submit" class="btn btn-primary w-100 btn-submit ">Valider</button>
                 </div>
                 </form>
             </div>
@@ -56,111 +335,68 @@
     <!--end row-->
 
 @section('script')
-    <script src="{{ URL::asset('build/libs/prismjs/prism.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
-    <script src="{{ URL::asset('build/js/pages/modal.init.js') }}"></script>
-    {{-- <script src="{{ URL::asset('build/js/pages/form-editor.init.js') }}"></script> --}}
-    <script src="{{ URL::asset('build/tinymce/tinymce.min.js') }}"></script>
+
+    <!--select2 cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="{{ URL::asset('build/js/pages/select2.init.js') }}"></script>
+    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+
 
     <script>
-        /**
-         * Initiate TinyMCE Editor
-         */
+        $(function() {
+            //comparaison des dates admission et sortie
 
-        var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            $('#date_start').change(function(e) {
+                var date_start = $(this).val();
+                var date_end = $('#date_end').val();
 
-        tinymce.init({
-            deprecation_warnings: false,
-            selector: 'textarea.tinymce-editor',
-            plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
-            imagetools_cors_hosts: ['picsum.photos'],
-            menubar: 'file edit view insert format tools table help',
-            toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-            toolbar_sticky: true,
-            autosave_ask_before_unload: true,
-            autosave_interval: '30s',
-            autosave_prefix: '{path}{query}-{id}-',
-            autosave_restore_when_empty: false,
-            autosave_retention: '2m',
-            image_advtab: true,
-            link_list: [{
-                    title: 'My page 1',
-                    value: 'https://www.tiny.cloud'
-                },
-                {
-                    title: 'My page 2',
-                    value: 'http://www.moxiecode.com'
-                }
-            ],
-            image_list: [{
-                    title: 'My page 1',
-                    value: 'https://www.tiny.cloud'
-                },
-                {
-                    title: 'My page 2',
-                    value: 'http://www.moxiecode.com'
-                }
-            ],
-            image_class_list: [{
-                    title: 'None',
-                    value: ''
-                },
-                {
-                    title: 'Some class',
-                    value: 'class-name'
-                }
-            ],
-            importcss_append: true,
-            file_picker_callback: function(callback, value, meta) {
-                /* Provide file and text for the link dialog */
-                if (meta.filetype === 'file') {
-                    callback('https://www.google.com/logos/google.jpg', {
-                        text: 'My text'
+                if (date_start > date_end) {
+                    $('#MsgError').html(
+                        'La date d\'admission  ne doit pas etre superieur à la date de sortie de l\'élève'
+                    ).css({
+                        'color': 'white',
+                        'text-align': 'center',
+                        'background-color': '#f06548',
+                        'font-size': '16px'
                     });
+                    $('.btn-submit').prop('disabled', true)
+                } else {
+                    $('#MsgError').html(' ')
+                    $('.btn-submit').prop('disabled', false)
                 }
+            });
 
-                /* Provide image and alt text for the image dialog */
-                if (meta.filetype === 'image') {
-                    callback('https://www.google.com/logos/google.jpg', {
-                        alt: 'My alt text'
-                    });
-                }
 
-                /* Provide alternative source and posted for the media dialog */
-                if (meta.filetype === 'media') {
-                    callback('movie.mp4', {
-                        source2: 'alt.ogg',
-                        poster: 'https://www.google.com/logos/google.jpg'
+            $('#date_end').change(function(e) {
+                var date_end = $(this).val();
+                var date_start = $('#date_start').val();
+
+                if (date_end < date_start) {
+                    $('#MsgError').html(
+                        'La date de sortie ne doit pas etre inferieur à la date d\'admission de l\'élève'
+                    ).css({
+                        'color': 'white',
+                        'text-align': 'center',
+                        'background-color': '#f06548',
+                        'font-size': '16px'
                     });
+                    $('.btn-submit').prop('disabled', true)
+                } else {
+                    $('#MsgError').html(' ')
+                    $('.btn-submit').prop('disabled', false)
                 }
-            },
-            templates: [{
-                    title: 'New Table',
-                    description: 'creates a new table',
-                    content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>'
-                },
-                {
-                    title: 'Starting my story',
-                    description: 'A cure for writers block',
-                    content: 'Once upon a time...'
-                },
-                {
-                    title: 'New list with dates',
-                    description: 'New List with dates',
-                    content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>'
-                }
-            ],
-            template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
-            template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
-            height: 600,
-            image_caption: true,
-            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-            noneditable_noneditable_class: 'mceNonEditable',
-            toolbar_mode: 'sliding',
-            contextmenu: 'link image imagetools table',
-            skin: useDarkMode ? 'oxide-dark' : 'oxide',
-            content_css: useDarkMode ? 'dark' : 'default',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
+
+
+
+
+
+
+
         });
     </script>
 @endsection

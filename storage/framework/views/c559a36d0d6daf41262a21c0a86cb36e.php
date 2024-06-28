@@ -4,9 +4,9 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="row">
-        <div class="col-xxl-9">
+        <div class="col-xxl-12 ">
             <div class="card mt-xxl-n5">
-                <div class="card-header">
+                <div class="card-header mt-5">
                     <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab">

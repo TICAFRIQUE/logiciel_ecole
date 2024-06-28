@@ -62,7 +62,6 @@ return new class extends Migration
             $table->date('date_admission')->nullable();
             $table->date('date_sortie')->nullable();
 
-
             $table->timestamps();
         });
     }

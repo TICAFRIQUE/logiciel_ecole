@@ -215,7 +215,7 @@
                         id="sidebarSetting">
                         <ul class="nav nav-sm flex-column">
 
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a href="{{ route('setting.index') }}"
                                     class="nav-link {{ Route::is('setting.*') ? 'active' : '' }}">Informations</a>
                             </li>
@@ -309,17 +309,30 @@
                 </li>
 
 
-
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ Route::is('eleve.*') ? 'active' : '' }}"
-                        href="{{ route('eleve.index') }}">
-                        <i class=" ri ri-user-add-fill"></i> <span>ELEVES</span>
+                    <a class="nav-link menu-link" href="#sidebarEleve" data-bs-toggle="collapse"
+                        role="button" aria-expanded="true" aria-controls="sidebarEleve">
+                        <i class=" ri ri-user-add-fill "></i> <span>ELEVES</span>
                     </a>
+                    <div class="collapse menu-dropdown {{ Route::is('eleve.*') ? 'show' : '' }}"
+                        id="sidebarEleve">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link menu-link {{ Route::is('eleve.*') ? 'active' : '' }}"
+                                    href="{{ route('eleve.index') }}">
+                                    <i class=" ri ri-user-add-fill"></i> <span>Liste des élèves</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link {{ Route::is('inscription.*') ? 'active' : '' }}"
+                                    href="{{ route('inscription.index') }}">
+                                    <i class=" ri ri-user-add-fill"></i> <span>Faire une inscription</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-
-
-
-
         </div>
 
     </div>

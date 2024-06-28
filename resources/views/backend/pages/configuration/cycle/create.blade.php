@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
 
-                             
+
                                 <div class="col-md-12">
                                     <label for="validationCustom01" class="form-label">Statut</label>
                                     <select name="status" class="form-control">

@@ -73,7 +73,6 @@ class CycleController extends Controller
         //request validation ......
 
         $request->validate([
-
             'name' => 'required',
             'status' => 'required',
         ]);
