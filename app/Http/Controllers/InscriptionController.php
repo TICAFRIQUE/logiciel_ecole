@@ -83,8 +83,8 @@ class InscriptionController extends Controller
                 'remise' => '',
                 // 'montant_scolarite' => 'required',
                 'montant_remise_scolarite' => '',
-                'montant_scolarite_paye' => 'required',
-                'montant_scolarite_restant' => 'required',
+                'montant_scolarite_paye' => '',
+                'montant_scolarite_restant' => '',
                 'statut' => '',
                 // 'mode_paiement_id' => 'required',
                 // 'motif_paiement_id' => 'required',
@@ -131,19 +131,21 @@ class InscriptionController extends Controller
 
 
             //enregistrer les données du versmement(1er versement)
-            $code = '';
-            for ($i = 0; $i <= 4; $i++) {
-                $code .= rand(0, 9);
+            if ($request['montant_scolarite_paye']) {
+                $code = '';
+                for ($i = 0; $i <= 4; $i++) {
+                    $code .= rand(0, 9);
+                }
+                $data_versement = Versement::create([
+                    'code' => 'v-' . $code . date('Y'),
+                    'inscription_id' => $data_inscription['id'],
+                    'montant_scolarite' => $request['montant_scolarite'], // from inscription request
+                    'montant_verse' => $request['montant_scolarite_paye'], // from inscription request
+                    'montant_restant' => $request['montant_scolarite_restant'], // from inscription request
+                    'mode_paiement_id' => $request['mode_paiement_id'],
+                    'motif_paiement_id' => $request['motif_paiement_id'],
+                ]);
             }
-            $data_versement = Versement::create([
-                'code' => 'v-' . $code . date('Y'),
-                'inscription_id' => $data_inscription['id'],
-                'montant_scolarite' => $request['montant_scolarite'], // from inscription request
-                'montant_verse' => $request['montant_scolarite_paye'], // from inscription request
-                'montant_restant' => $request['montant_scolarite_restant'], // from inscription request
-                'mode_paiement_id' => $request['mode_paiement_id'],
-                'motif_paiement_id' => $request['motif_paiement_id'],
-            ]);
 
             Alert::success('Operation réussi', 'Success Message');
             return back();

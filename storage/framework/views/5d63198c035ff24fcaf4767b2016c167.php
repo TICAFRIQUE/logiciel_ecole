@@ -213,7 +213,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Mode paiement</label>
                             <select name="mode_paiement_id" class="form-control  js-example-basic-single"
-                                id="modePaiement" required>
+                                id="modePaiement" >
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_mode_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
@@ -228,7 +228,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Motif du paiement</label>
                             <select name="motif_paiement_id" class="form-control  js-example-basic-single"
-                                id="motifPaiement" required>
+                                id="motifPaiement" >
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_motif_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
@@ -243,7 +243,7 @@
                             <label for="validationCustom01" class="form-label">Montant versé <span class="text-danger"
                                     id="montantMinimun"></span></label>
                             <input type="number" name="montant_scolarite_paye" class="form-control" id="montantVerse"
-                                required>
+                                >
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -333,7 +333,7 @@
                 $('#montantMinimun').html('(' + 'minimun ' + getDataNiveaux[0].montant_inscription + ')');
 
                 //Initialisation lorsque la remise change d"etat
-                $('#montantRestant').val('');
+                $('#montantRestant').val(getDataNiveaux[0].total_scolarite);
                 $('#montantVerse').val('');
                 //
 
@@ -368,6 +368,8 @@
                     var scolarite_remise = scolarite - montant_remise
 
                     $('#montantTotalScolarite').val((scolarite_remise.toFixed(0)))
+                    $('#montantRestant').val((scolarite_remise.toFixed(0)))
+
 
                     $('#MsgError').html(' ')
                     $('.btn-submit').prop('disabled', false)

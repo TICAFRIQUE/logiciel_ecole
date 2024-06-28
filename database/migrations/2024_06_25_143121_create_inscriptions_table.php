@@ -57,10 +57,10 @@ return new class extends Migration
 
             //Scolarite
             $table->integer('remise')->nullable();
-            $table->double('montant_scolarite')->default(0);
-            $table->double('montant_remise_scolarite')->default(0); //montant apres remise
-            $table->double('montant_scolarite_paye')->default(0);
-            $table->double('montant_scolarite_restant')->default(0);
+            $table->double('montant_scolarite')->nullable();
+            $table->double('montant_remise_scolarite')->nullable(); //montant apres remise
+            $table->double('montant_scolarite_paye')->nullable();
+            $table->double('montant_scolarite_restant')->nullable();
             $table->string('statut')->nullable(); //impayé ,  soldé
 
 
