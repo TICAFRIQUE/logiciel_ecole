@@ -68,6 +68,12 @@ class Niveau extends Model
         return $this->hasMany(Classe::class);
     }
 
+    public function inscriptions(): HasMany
+    {
+        return $this->hasMany(Inscription::class);
+    }
+
+
 
 
 }

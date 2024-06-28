@@ -2,6 +2,10 @@
 <?php $__env->startSection('css'); ?>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?>
+    
+    Inscription
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('backend.components.breadcrumb'); ?>
         <?php $__env->slot('li_1'); ?>

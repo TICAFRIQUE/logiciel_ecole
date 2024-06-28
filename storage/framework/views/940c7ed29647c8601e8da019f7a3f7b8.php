@@ -20,7 +20,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post" action="<?php echo e(route('inscription.store')); ?>" novalidate>
+                    <form class="row g-3 needs-validation" method="post"
+                        action="<?php echo e(route('inscription.update', $data_inscription['id'])); ?>" novalidate>
                         <?php echo csrf_field(); ?>
 
                         <div class="col-md-2">
@@ -28,7 +29,9 @@
                             <select name="annee_scolaire_id" class="form-control  js-example-basic-single" required>
                                 
                                 <?php $__currentLoopData = $data_annee_scolaire; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['indice']); ?></option>
+                                    <option value="<?php echo e($item['id']); ?>"
+                                        <?php echo e($item['id'] == $data_inscription['annee_scolaire_id'] ? 'selected' : ''); ?>>
+                                        <?php echo e($item['indice']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
@@ -41,7 +44,9 @@
                             <select name="eleve_id" class="form-control  js-example-basic-single" required>
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_eleve; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['nom']); ?> <?php echo e($item['prenoms']); ?></option>
+                                    <option value="<?php echo e($item['id']); ?>"
+                                        <?php echo e($item['id'] == $data_inscription['eleve_id'] ? 'selected' : ''); ?>>
+                                        <?php echo e($item['nom']); ?> <?php echo e($item['prenoms']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
@@ -54,7 +59,9 @@
                             <select id="niveau" name="niveau_id" class="form-control  js-example-basic-single" required>
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_niveaux; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
+                                    <option value="<?php echo e($item['id']); ?>"
+                                        <?php echo e($item['id'] == $data_inscription['niveau_id'] ? 'selected' : ''); ?>>
+                                        <?php echo e($item['name']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
@@ -66,7 +73,11 @@
                             <label for="validationCustom01" class="form-label">Classe</label>
                             <select name="classe_id" class="form-control  js-example-basic-single" id="classe">
                                 <option disabled selected value>Sélectionner...</option>
-                                
+                                <?php $__currentLoopData = $data_classe_edit; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item['id']); ?>"
+                                        <?php echo e($item['id'] == $data_inscription['classe_id'] ? 'selected' : ''); ?>>
+                                        <?php echo e($item['name']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -79,7 +90,8 @@
                             <label class="form-check-label" for="customAff">Affecté(e)</label>
 
                             <div class="form-check form-switch form-switch-lg col-md-2" dir="ltr">
-                                <input type="checkbox" name="affecte" class="form-check-input" id="customAff">
+                                <input type="checkbox" name="affecte" class="form-check-input" id="customAff"
+                                    <?php echo e($data_inscription['affecte'] != null ? 'checked' : ''); ?>>
                             </div>
                             <div class="valid-feedback">
                                 Looks good!
@@ -90,7 +102,8 @@
                             <label class="form-check-label" for="customRed">Redoublant(e)</label>
 
                             <div class="form-check form-switch form-switch-lg col-md-2" dir="ltr">
-                                <input type="checkbox" name="redoublant" class="form-check-input" id="customRed">
+                                <input type="checkbox" name="redoublant" class="form-check-input" id="customRed"
+                                    <?php echo e($data_inscription['redoublant'] != null ? 'checked' : ''); ?>>
                             </div>
                             <div class="valid-feedback">
                                 Looks good!
@@ -101,7 +114,8 @@
                             <label class="form-check-label" for="customBr">Boursier(e)</label>
 
                             <div class="form-check form-switch form-switch-lg col-md-2" dir="ltr">
-                                <input type="checkbox" name="boursier" class="form-check-input" id="customBr">
+                                <input type="checkbox" name="boursier" class="form-check-input" id="customBr"
+                                    <?php echo e($data_inscription['boursier'] != null ? 'checked' : ''); ?>>
                             </div>
                             <div class="valid-feedback">
                                 Looks good!
@@ -113,7 +127,8 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Nom du tuteur </label>
-                            <input type="text" name="nom_tuteur" class="form-control" id="validationCustom01" required>
+                            <input type="text" name="nom_tuteur" value="<?php echo e($data_inscription['nom_tuteur']); ?>"
+                                class="form-control" id="validationCustom01" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -122,8 +137,8 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Prenoms du tuteur</label>
-                            <input type="text" name="prenoms_tuteur" class="form-control" id="validationCustom01"
-                                required>
+                            <input type="text" name="prenoms_tuteur" value="<?php echo e($data_inscription['prenoms_tuteur']); ?>"
+                                class="form-control" id="validationCustom01" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -132,8 +147,8 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Contact du tuteur</label>
-                            <input type="number" name="contact1_tuteur" class="form-control" id="validationCustom01"
-                                required>
+                            <input type="number" name="contact1_tuteur" value="<?php echo e($data_inscription['contact1_tuteur']); ?>"
+                                class="form-control" id="validationCustom01" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -141,7 +156,9 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Autre Contact du tuteur</label>
-                            <input type="number" name="contact2_tuteur" class="form-control" id="validationCustom01">
+                            <input type="number" name="contact2_tuteur"
+                                value="<?php echo e($data_inscription['contact2_tuteur']); ?>" class="form-control"
+                                id="validationCustom01">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -153,7 +170,8 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Remise (%)</label>
-                            <input type="number" name="remise" class="form-control" id="remise">
+                            <input type="number" name="remise" value="<?php echo e($data_inscription['remise']); ?>"
+                                class="form-control" id="remise">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -161,16 +179,17 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Frais d'inscription</label>
-                            <input type="number" class="form-control" id="montantInscription" readonly>
+                            <input type="number" value="<?php echo e($data_inscription['niveau']['montant_inscription']); ?>"
+                                class="form-control" id="montantInscription" readonly>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
 
-
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Frais scolarité</label>
-                            <input type="number" class="form-control" id="montantScolarite" readonly>
+                            <input type="number" value="<?php echo e($data_inscription['niveau']['montant_scolarite']); ?>"
+                                class="form-control" id="montantScolarite" readonly>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -194,8 +213,8 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Total net</label>
-                            <input type="number" name="montant_scolarite" class="form-control"
-                                id="montantTotalScolarite" readonly>
+                            <input type="number" value="<?php echo e($data_inscription['versements'][0]['montant_scolarite']); ?>"
+                                name="montant_scolarite" class="form-control" id="montantTotalScolarite" readonly>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -216,7 +235,9 @@
                                 id="modePaiement" required>
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_mode_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
+                                    <option value="<?php echo e($item['id']); ?>"
+                                        <?php echo e($item['id'] == $data_inscription['versements'][0]['mode_paiement_id'] ? 'selected' : ''); ?>>
+                                        <?php echo e($item['name']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
@@ -231,7 +252,9 @@
                                 id="motifPaiement" required>
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_motif_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
+                                    <option
+                                        value="<?php echo e($item['id']); ?>"<?php echo e($item['id'] == $data_inscription['versements'][0]['motif_paiement_id'] ? 'selected' : ''); ?>>
+                                        <?php echo e($item['name']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
@@ -242,7 +265,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant versé <span class="text-danger"
                                     id="montantMinimun"></span></label>
-                            <input type="number" name="montant_scolarite_paye" class="form-control" id="montantVerse"
+                            <input type="number" value="<?php echo e($data_inscription['versements'][0]['montant_verse']); ?>" name="montant_scolarite_paye" class="form-control" id="montantVerse"
                                 required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -251,7 +274,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant restant</label>
-                            <input type="number" name="montant_scolarite_restant" class="form-control"
+                            <input type="number" value="<?php echo e($data_inscription['versements'][0]['montant_restant']); ?>" name="montant_scolarite_restant" class="form-control"
                                 id="montantRestant" readonly>
                             <div class="valid-feedback">
                                 Looks good!
