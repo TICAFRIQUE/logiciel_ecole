@@ -213,7 +213,8 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Total net</label>
-                            <input type="number" value="{{ $data_inscription['versements'][0]['montant_scolarite'] }}"
+                            <input type="number" value="{{ $data_inscription['versements']['montant_scolarite'] ?? 0 }}"
+
                                 name="montant_scolarite" class="form-control" id="montantTotalScolarite" readonly>
                             <div class="valid-feedback">
                                 Looks good!
@@ -236,7 +237,7 @@
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_mode_paiement as $item)
                                     <option value="{{ $item['id'] }}"
-                                        {{ $item['id'] == $data_inscription['versements'][0]['mode_paiement_id'] ? 'selected' : '' }}>
+                                      >
                                         {{ $item['name'] }}</option>
                                 @endforeach
                             </select>
@@ -253,7 +254,7 @@
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_motif_paiement as $item)
                                     <option
-                                        value="{{ $item['id'] }}"{{ $item['id'] == $data_inscription['versements'][0]['motif_paiement_id'] ? 'selected' : '' }}>
+                                        value="{{ $item['id'] }}">
                                         {{ $item['name'] }}</option>
                                 @endforeach
                             </select>
@@ -265,7 +266,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant versé <span class="text-danger"
                                     id="montantMinimun"></span></label>
-                            <input type="number" value="{{ $data_inscription['versements'][0]['montant_verse'] }}" name="montant_scolarite_paye" class="form-control" id="montantVerse"
+                            <input type="number" value="" name="montant_scolarite_paye" class="form-control" id="montantVerse"
                                 required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -274,7 +275,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant restant</label>
-                            <input type="number" value="{{ $data_inscription['versements'][0]['montant_restant'] }}" name="montant_scolarite_restant" class="form-control"
+                            <input type="number" value="" name="montant_scolarite_restant" class="form-control"
                                 id="montantRestant" readonly>
                             <div class="valid-feedback">
                                 Looks good!

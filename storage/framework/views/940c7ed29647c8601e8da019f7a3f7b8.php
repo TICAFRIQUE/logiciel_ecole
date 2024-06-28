@@ -213,7 +213,8 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Total net</label>
-                            <input type="number" value="<?php echo e($data_inscription['versements'][0]['montant_scolarite']); ?>"
+                            <input type="number" value="<?php echo e($data_inscription['versements']['montant_scolarite'] ?? 0); ?>"
+
                                 name="montant_scolarite" class="form-control" id="montantTotalScolarite" readonly>
                             <div class="valid-feedback">
                                 Looks good!
@@ -236,7 +237,7 @@
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_mode_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($item['id']); ?>"
-                                        <?php echo e($item['id'] == $data_inscription['versements'][0]['mode_paiement_id'] ? 'selected' : ''); ?>>
+                                      >
                                         <?php echo e($item['name']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
@@ -253,7 +254,7 @@
                                 <option disabled selected value>Sélectionner...</option>
                                 <?php $__currentLoopData = $data_motif_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option
-                                        value="<?php echo e($item['id']); ?>"<?php echo e($item['id'] == $data_inscription['versements'][0]['motif_paiement_id'] ? 'selected' : ''); ?>>
+                                        value="<?php echo e($item['id']); ?>">
                                         <?php echo e($item['name']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
@@ -265,7 +266,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant versé <span class="text-danger"
                                     id="montantMinimun"></span></label>
-                            <input type="number" value="<?php echo e($data_inscription['versements'][0]['montant_verse']); ?>" name="montant_scolarite_paye" class="form-control" id="montantVerse"
+                            <input type="number" value="" name="montant_scolarite_paye" class="form-control" id="montantVerse"
                                 required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -274,7 +275,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant restant</label>
-                            <input type="number" value="<?php echo e($data_inscription['versements'][0]['montant_restant']); ?>" name="montant_scolarite_restant" class="form-control"
+                            <input type="number" value="" name="montant_scolarite_restant" class="form-control"
                                 id="montantRestant" readonly>
                             <div class="valid-feedback">
                                 Looks good!
