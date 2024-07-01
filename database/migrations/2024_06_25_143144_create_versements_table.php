@@ -35,14 +35,14 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-                
+
             $table->foreignId('inscription_id')
                 ->nullable()
                 ->constrained('inscriptions')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-                $table->softDeletes();
+            $table->softDeletes();
 
             $table->timestamps();
         });

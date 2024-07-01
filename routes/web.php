@@ -414,7 +414,7 @@ Route::middleware(['admin'])->group(function () {
         route::get('detail/{id}', 'detail')->name('inscription.detail');
         route::get('edit/{id}', 'edit')->name('inscription.edit');
         route::post('store', 'store')->name('inscription.store');
-        route::post('update/{id}', 'update')->name('inscription.update');
+        route::post('update/{id}', 'update')->name('inscripti on.update');
         route::get('delete/{id}', 'delete')->name('inscription.delete');
     });
 

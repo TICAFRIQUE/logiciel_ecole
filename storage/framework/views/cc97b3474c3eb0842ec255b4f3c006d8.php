@@ -90,48 +90,9 @@
 
 
 
-
-
                 <li class="nav-item">
-                    <a class="nav-link menu-link <?php echo e(Route::is('admin-register.*') ? 'active' : ''); ?>"
-                        href="<?php echo e(route('admin-register.index')); ?>">
-                        <i class="ri ri-lock-2-line"></i> <span>ADMINISTRATEURS</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarSetting" data-bs-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="sidebarSetting">
-                        <i class=" ri-settings-2-fill"></i> <span>PARAMETRES</span>
-                    </a>
-                    <div class="collapse menu-dropdown <?php echo e(Route::is('setting.*') || Route::is('module.*') || Route::is('role.*') || Route::is('permission.*') ? 'show' : ''); ?>""
-                        id="sidebarSetting">
-                        <ul class="nav nav-sm flex-column">
-
-                            <li class="nav-item">
-                                <a href="<?php echo e(route('setting.index')); ?>"
-                                    class="nav-link <?php echo e(Route::is('setting.*') ? 'active' : ''); ?>">Informations</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo e(route('module.index')); ?>"
-                                    class="nav-link <?php echo e(Route::is('module.*') ? 'active' : ''); ?>">Modules</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo e(route('role.index')); ?>"
-                                    class="nav-link <?php echo e(Route::is('role.*') ? 'active' : ''); ?>">Roles</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo e(route('permission.index')); ?>"
-                                    class="nav-link <?php echo e(Route::is('permission.*') ? 'active' : ''); ?>">Permissions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarConfiguration" data-bs-toggle="collapse"
-                        role="button" aria-expanded="true" aria-controls="sidebarConfiguration">
+                    <a class="nav-link menu-link" href="#sidebarConfiguration" data-bs-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="sidebarConfiguration">
                         <i class=" ri-settings-fill "></i> <span>CONFIGURATIONS</span>
                     </a>
                     <div class="collapse menu-dropdown <?php echo e(Route::is('annee-scolaire.*') || Route::is('cycle.*') || Route::is('niveau.*') || Route::is('classe.*') || Route::is('groupe-sanguin.*') || Route::is('mode-paiement.*') || Route::is('motif-paiement.*') || Route::is('ville.*') || Route::is('matiere-category.*') || Route::is('matiere.*') ? 'show' : ''); ?>"
@@ -203,11 +164,11 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarEleve" data-bs-toggle="collapse"
-                        role="button" aria-expanded="true" aria-controls="sidebarEleve">
+                    <a class="nav-link menu-link" href="#sidebarEleve" data-bs-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="sidebarEleve">
                         <i class=" ri ri-user-add-fill "></i> <span>ELEVES</span>
                     </a>
-                    <div class="collapse menu-dropdown <?php echo e(Route::is('eleve.*') ? 'show' : ''); ?>"
+                    <div class="collapse menu-dropdown <?php echo e(Route::is('eleve.*') || Route::is('inscription.*') ? 'show' : ''); ?>"
                         id="sidebarEleve">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
@@ -226,6 +187,45 @@
                         </ul>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link <?php echo e(Route::is('admin-register.*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('admin-register.index')); ?>">
+                        <i class="ri ri-lock-2-line"></i> <span>ADMINISTRATEURS</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarSetting" data-bs-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="sidebarSetting">
+                        <i class=" ri-settings-2-fill"></i> <span>PARAMETRES</span>
+                    </a>
+                    <div class="collapse menu-dropdown <?php echo e(Route::is('setting.*') || Route::is('module.*') || Route::is('role.*') || Route::is('permission.*') ? 'show' : ''); ?>""
+                        id="sidebarSetting">
+                        <ul class="nav nav-sm flex-column">
+
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('setting.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('setting.*') ? 'active' : ''); ?>">Informations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('module.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('module.*') ? 'active' : ''); ?>">Modules</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('role.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('role.*') ? 'active' : ''); ?>">Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('permission.index')); ?>"
+                                    class="nav-link <?php echo e(Route::is('permission.*') ? 'active' : ''); ?>">Permissions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+
         </div>
 
     </div>

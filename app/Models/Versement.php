@@ -36,4 +36,17 @@ class Versement extends Model
         return $this->belongsTo(Inscription::class);
     }
 
+
+    public function modePaiement()
+    {
+        return $this->belongsTo(ModePaiement::class);
+    }
+
+    public function motifPaiement()
+    {
+        return $this->belongsTo(MotifPaiement::class);
+    }
+
+
+
 }

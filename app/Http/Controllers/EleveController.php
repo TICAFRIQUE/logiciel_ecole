@@ -67,7 +67,7 @@ class EleveController extends Controller
                 'contact_mere' => 'required',
                 'statut_vivant_mere' => 'required', //boolean --oui ou non
                 'date_admission' => 'required',
-                'date_sortie' => 'required',
+                'date_sortie' => '',
             ]);
 
 
@@ -175,7 +175,7 @@ class EleveController extends Controller
                 'contact_mere' => 'required',
                 'statut_vivant_mere' => 'required', //boolean --oui ou non
                 'date_admission' => 'required',
-                'date_sortie' => 'required',
+                'date_sortie' => '',
             ]);
             $eleve = Eleve::find($id);
             $eleve->update($data);

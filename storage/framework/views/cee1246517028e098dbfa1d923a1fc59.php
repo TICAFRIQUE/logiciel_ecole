@@ -41,12 +41,13 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Code</th>
-                                    <th>Matricule</th>
-                                    <th>Nom</th>
-                                    <th>Prenoms</th>
-                                    <th>Contact</th>
-                                    <th>Date creation</th>
+                                    <th>Annee Scolaire</th>◘
+                                    <th>No inscription</th>
+                                    <th>Eleve</th>
+                                    <th>Niveau</th>
+                                    <th>classe</th>
+                                    <th>Scolarité</th>
+                                    <th>Date inscription</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -54,11 +55,12 @@
                                 <?php $__currentLoopData = $data_inscription; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="row_<?php echo e($item['id']); ?>">
                                         <td> <?php echo e(++$key); ?> </td>
-                                        <td><?php echo e($item['code']); ?></td>
-                                        <td><?php echo e($item['matricule']); ?></td>
-                                        <td><?php echo e($item['nom']); ?></td>
-                                        <td><?php echo e($item['prenoms']); ?></td>
-                                        <td><?php echo e($item['contact']); ?></td>
+                                        <td><?php echo e($item['anneeScolaire']['indice']); ?></td>◘
+                                        <td><?php echo e($item['numero_inscription']); ?></td>
+                                        <td><?php echo e($item['eleve']['nom']); ?> <?php echo e($item['eleve']['prenoms']); ?></td>
+                                        <td><?php echo e($item['niveau']['name']); ?></td>
+                                        <td><?php echo e($item['classe']['name']); ?></td>
+                                        <td><?php echo e($item['statut']); ?></td>
                                         <td> <?php echo e($item['created_at']); ?> </td>
                                         <td>
                                             <div class="dropdown d-inline-block">
@@ -76,7 +78,7 @@
 
 
 
-                                                    <li><a href="<?php echo e(route('inscription.edit', $item['id'])); ?>" type="button"
+                                                    <li class="<?php echo e($item['versements_count'] < 2 ? 'd-block' : 'd-none'); ?>"><a href="<?php echo e(route('inscription.edit', $item['id'])); ?>" type="button"
                                                             class="dropdown-item edit-item-btn"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a>

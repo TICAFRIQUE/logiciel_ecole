@@ -39,12 +39,12 @@
                         <ul>
                             <li>Handicap : <b>{{ $data_eleve['handicap'] }} </b></li>
                             <li>Sexe : <b>{{ $data_eleve['sexe'] }} </b></li>
-                            <li>Groupe Sanguin : <b>{{ $data_eleve['groupe_sanguin']['name'] }} </b></li>
+                            <li>Groupe Sanguin : <b>{{ $data_eleve['groupe_sanguin']['name'] ?? 'pas defini' }} </b></li>
                             <li>Date de naissance :
                                 <b>{{ \Carbon\carbon::parse($data_eleve['date_naissance'])->format('d-m-Y') }} </b></li>
                             <li>Lieu de naissance : <b>{{ $data_eleve['lieu_naissance'] }} </b></li>
-                            <li>Pays : <b>{{ $data_eleve['pays']['country'] }} </b></li>
-                            <li>Ville / Commune : <b>{{ $data_eleve['ville']['city'] }} </b></li>
+                            <li>Pays : <b>{{ $data_eleve['pays']['country'] ?? 'pas defini' }} </b></li>
+                            <li>Ville / Commune : <b>{{ $data_eleve['ville']['city'] ?? 'pas defini' }} </b></li>
                             <li>Quartier : <b>{{ $data_eleve['quartier'] }} </b></li>
 
 

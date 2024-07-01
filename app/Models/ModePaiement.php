@@ -38,4 +38,10 @@ class ModePaiement extends Model
             ]
         ];
     }
+
+
+    public function versements()
+    {
+        return $this->hasMany(Versement::class);
+    }
 }

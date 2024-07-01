@@ -253,7 +253,7 @@
                         </div>
 
                         <hr>
-                        <p class="py-2 rounded-3" id="MsgError"></p>
+                        <p class="rounded-3" id="MsgError"></p>
                         @inject('carbon', 'Carbon\Carbon')
                         @php
                             $date_now = $carbon::now()->format('Y-m-d');
@@ -261,7 +261,7 @@
                         <div class="col-md-6">
                             <label for="validationCustom01" class="form-label">Date d'admision</label>
                             <input type="date" name="date_admission" value="{{ $date_now }}" class="form-control"
-                                id="date_start" required>
+                                id="date_start" required readonly>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -269,7 +269,7 @@
 
                         <div class="col-md-6">
                             <label for="validationCustom01" class="form-label">Date de sortie</label>
-                            <input type="date" name="date_sortie" class="form-control" id="date_end" required>
+                            <input type="date" name="date_sortie" class="form-control" id="date_end">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -319,46 +319,49 @@
         $(function() {
             //comparaison des dates admission et sortie
 
-            $('#date_start').change(function(e) {
-                var date_start = $(this).val();
-                var date_end = $('#date_end').val();
+            // $('#date_start').change(function(e) {
+            //     var date_start = $(this).val();
+            //     var date_end = $('#date_end').val();
+            //     console.log(date_end);
 
-                if (date_start > date_end) {
-                    $('#MsgError').html(
-                        'La date d\'admission  ne doit pas etre superieur à la date de sortie de l\'élève'
-                        ).css({
-                        'color': 'white',
-                        'text-align': 'center',
-                        'background-color': '#f06548',
-                        'font-size': '16px'
-                    });
-                    $('.btn-submit').prop('disabled', true)
-                } else {
-                    $('#MsgError').html(' ')
-                    $('.btn-submit').prop('disabled', false)
-                }
-            });
+            //     if (date_start > date_end) {
+            //         $('#MsgError').html(
+            //             'La date d\'admission  ne doit pas etre superieur à la date de sortie de l\'élève'
+            //             ).css({
+            //             'color': 'white',
+            //             'text-align': 'center',
+            //             'background-color': '#f06548',
+            //             'font-size': '16px',
+            //         });
+            //         $('.btn-submit').prop('disabled', true)
+            //     } else {
+            //         $('#MsgError').html(' ')
+            //         $('.btn-submit').prop('disabled', false)
+            //     }
+            // });
 
 
-            $('#date_end').change(function(e) {
-                var date_end = $(this).val();
-                var date_start = $('#date_start').val();
+            // $('#date_end').change(function(e) {
+            //     var date_end = $(this).val();
+            //     var date_start = $('#date_start').val();
 
-                if (date_end < date_start) {
-                    $('#MsgError').html(
-                        'La date de sortie ne doit pas etre inferieur à la date d\'admission de l\'élève'
-                        ).css({
-                        'color': 'white',
-                        'text-align': 'center',
-                        'background-color': '#f06548',
-                        'font-size': '16px'
-                    });
-                    $('.btn-submit').prop('disabled', true)
-                } else {
-                    $('#MsgError').html(' ')
-                    $('.btn-submit').prop('disabled', false)
-                }
-            });
+            //     if (date_end < date_start) {
+            //         $('#MsgError').html(
+            //             'La date de sortie ne doit pas etre inferieur à la date d\'admission de l\'élève'
+            //             ).css({
+            //             'color': 'white',
+            //             'text-align': 'center',
+            //             'background-color': '#f06548',
+            //             'font-size': '16px',
+
+
+            //         });
+            //         $('.btn-submit').prop('disabled', true)
+            //     } else {
+            //         $('#MsgError').html(' ')
+            //         $('.btn-submit').prop('disabled', false)
+            //     }
+            // });
 
 
 

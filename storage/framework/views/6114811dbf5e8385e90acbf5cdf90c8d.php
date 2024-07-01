@@ -40,12 +40,12 @@
                         <ul>
                             <li>Handicap : <b><?php echo e($data_eleve['handicap']); ?> </b></li>
                             <li>Sexe : <b><?php echo e($data_eleve['sexe']); ?> </b></li>
-                            <li>Groupe Sanguin : <b><?php echo e($data_eleve['groupe_sanguin']['name']); ?> </b></li>
+                            <li>Groupe Sanguin : <b><?php echo e($data_eleve['groupe_sanguin']['name'] ?? 'pas defini'); ?> </b></li>
                             <li>Date de naissance :
                                 <b><?php echo e(\Carbon\carbon::parse($data_eleve['date_naissance'])->format('d-m-Y')); ?> </b></li>
                             <li>Lieu de naissance : <b><?php echo e($data_eleve['lieu_naissance']); ?> </b></li>
-                            <li>Pays : <b><?php echo e($data_eleve['pays']['country']); ?> </b></li>
-                            <li>Ville / Commune : <b><?php echo e($data_eleve['ville']['city']); ?> </b></li>
+                            <li>Pays : <b><?php echo e($data_eleve['pays']['country'] ?? 'pas defini'); ?> </b></li>
+                            <li>Ville / Commune : <b><?php echo e($data_eleve['ville']['city'] ?? 'pas defini'); ?> </b></li>
                             <li>Quartier : <b><?php echo e($data_eleve['quartier']); ?> </b></li>
 
 

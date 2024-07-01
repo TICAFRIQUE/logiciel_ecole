@@ -39,6 +39,11 @@ class MotifPaiement extends Model
             ]
         ];
     }
+
+    public function versements()
+    {
+        return $this->hasMany(Versement::class);
+    }
 }
 
 

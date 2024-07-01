@@ -42,12 +42,13 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Code</th>
-                                    <th>Matricule</th>
-                                    <th>Nom</th>
-                                    <th>Prenoms</th>
-                                    <th>Contact</th>
-                                    <th>Date creation</th>
+                                    <th>Annee Scolaire</th>◘
+                                    <th>No inscription</th>
+                                    <th>Eleve</th>
+                                    <th>Niveau</th>
+                                    <th>classe</th>
+                                    <th>Scolarité</th>
+                                    <th>Date inscription</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -55,11 +56,12 @@
                                 @foreach ($data_inscription as $key => $item)
                                     <tr id="row_{{ $item['id'] }}">
                                         <td> {{ ++$key }} </td>
-                                        <td>{{ $item['code'] }}</td>
-                                        <td>{{ $item['matricule'] }}</td>
-                                        <td>{{ $item['nom'] }}</td>
-                                        <td>{{ $item['prenoms'] }}</td>
-                                        <td>{{ $item['contact'] }}</td>
+                                        <td>{{ $item['anneeScolaire']['indice'] }}</td>◘
+                                        <td>{{ $item['numero_inscription'] }}</td>
+                                        <td>{{ $item['eleve']['nom'] }} {{ $item['eleve']['prenoms'] }}</td>
+                                        <td>{{ $item['niveau']['name'] }}</td>
+                                        <td>{{ $item['classe']['name'] }}</td>
+                                        <td>{{ $item['statut'] }}</td>
                                         <td> {{ $item['created_at'] }} </td>
                                         <td>
                                             <div class="dropdown d-inline-block">
@@ -77,7 +79,7 @@
 
 
 
-                                                    <li><a href="{{ route('inscription.edit', $item['id']) }}" type="button"
+                                                    <li class="{{$item['versements_count'] < 2 ? 'd-block' : 'd-none'}}"><a href="{{ route('inscription.edit', $item['id']) }}" type="button"
                                                             class="dropdown-item edit-item-btn"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a>
