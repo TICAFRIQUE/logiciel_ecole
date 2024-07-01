@@ -13,11 +13,13 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="card-title mb-0">Liste des versements</h5>
+                <button type="button"
+                    class="btn btn-primary <?php echo e($data_inscription['montant_scolarite_restant'] == 0 ? 'd-none' : 'd-block'); ?> "
+                    data-bs-toggle="modal" data-bs-target="#myModal">Ajouter
+                    un versement</button>
+
+
                 
-
-
-                <a href="<?php echo e(route('inscription.create')); ?>" type="button" class="btn btn-primary ">Ajouter
-                    un versement</a>
 
             </div>
             <div class="card-body">
@@ -54,13 +56,6 @@
                                                 <i class="ri-more-fill align-middle"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-
-                                                <li><a href="<?php echo e(route('inscription.detail', $item['id'])); ?>"
-                                                        class="dropdown-item"><i
-                                                            class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                        Details</a>
-                                                </li>
-
 
 
                                                 <li class="<?php echo e($item['versements_count'] < 2 ? 'd-block' : 'd-none'); ?>">
@@ -135,7 +130,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/inscription/delete/" + Id,
+                            url: "/versement/delete/" + Id,
                             dataType: "json",
 
                             success: function(response) {
@@ -151,6 +146,7 @@
                                     })
 
                                     $('#row_' + Id).remove();
+                                    location.reload();
                                 }
                             }
                         });

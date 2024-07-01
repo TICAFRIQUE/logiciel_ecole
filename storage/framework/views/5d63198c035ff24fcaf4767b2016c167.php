@@ -224,7 +224,6 @@
                             </div>
                         </div>
 
-
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Motif du paiement</label>
                             <select name="motif_paiement_id" class="form-control  js-example-basic-single"
@@ -257,9 +256,6 @@
                                 Looks good!
                             </div>
                         </div>
-
-
-
 
 
                         <!-- ========== End Versement ========== -->

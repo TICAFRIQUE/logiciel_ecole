@@ -25,7 +25,7 @@
                         </p>
 
                         <p class="mt-3">
-                            Statut :<span class="badge badge-gradient-primary fs-4"><i class="mdi mdi-circle-medium"></i>
+                            Statut : <span class="badge badge-gradient-primary fs-4"><i class="mdi mdi-circle-medium"></i>
                                 {{ $data_inscription['statut'] }}</span>
 
                         </p>
@@ -77,7 +77,7 @@
             <!--end card-->
         </div>
         <!--end col-->
-        <div class="col-xxl-8">
+        <div class="col-xxl-12">
             <div class="card mt-xxl-n5">
                 <div class="card-header">
                     <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
@@ -158,6 +158,8 @@
         <!--end col-->
     </div>
     <!--end row-->
+
+    @include('backend.pages.inscription.create-versement')
 @endsection
 @section('script')
     <script src="{{ URL::asset('build/js/pages/profile-setting.init.js') }}"></script>

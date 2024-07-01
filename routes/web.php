@@ -394,8 +394,8 @@ Route::middleware(['admin'])->group(function () {
     });
 
 
-       //Eleve--Fiche 
-       Route::prefix('eleve')->controller(EleveController::class)->group(function () {
+    //Eleve--Fiche 
+    Route::prefix('eleve')->controller(EleveController::class)->group(function () {
         route::get('', 'index')->name('eleve.index');
         route::get('create', 'create')->name('eleve.create');
         route::get('detail/{id}', 'detail')->name('eleve.detail');
@@ -407,20 +407,20 @@ Route::middleware(['admin'])->group(function () {
     });
 
 
-     //Eleve--Inscription 
-     Route::prefix('inscription')->controller(InscriptionController::class)->group(function () {
+    //Eleve--Inscription 
+    Route::prefix('inscription')->controller(InscriptionController::class)->group(function () {
         route::get('', 'index')->name('inscription.index');
         route::get('create', 'create')->name('inscription.create');
         route::get('detail/{id}', 'detail')->name('inscription.detail');
         route::get('edit/{id}', 'edit')->name('inscription.edit');
         route::post('store', 'store')->name('inscription.store');
-        route::post('update/{id}', 'update')->name('inscripti on.update');
+        route::post('update/{id}', 'update')->name('inscription.update');
         route::get('delete/{id}', 'delete')->name('inscription.delete');
     });
 
 
-       //Eleve--Versement 
-       Route::prefix('versement')->controller(VersementController::class)->group(function () {
+    //Eleve--Versement 
+    Route::prefix('versement')->controller(VersementController::class)->group(function () {
         route::get('', 'index')->name('versement.index');
         route::get('create', 'create')->name('versement.create');
         route::get('detail/{id}', 'detail')->name('versement.detail');
