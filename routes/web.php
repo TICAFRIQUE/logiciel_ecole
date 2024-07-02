@@ -416,6 +416,7 @@ Route::middleware(['admin'])->group(function () {
         route::post('store', 'store')->name('inscription.store');
         route::post('update/{id}', 'update')->name('inscription.update');
         route::get('delete/{id}', 'delete')->name('inscription.delete');
+        route::get('print/{id}', 'print')->name('inscription.print');
     });
 
 

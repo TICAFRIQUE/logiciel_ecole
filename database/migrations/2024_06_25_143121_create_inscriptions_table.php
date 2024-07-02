@@ -62,6 +62,7 @@ return new class extends Migration
             $table->double('montant_scolarite_paye')->nullable();
             $table->double('montant_scolarite_restant')->nullable();
             $table->string('statut')->nullable(); //impayé ,  soldé
+            $table->longText('observation')->nullable();
 
 
             $table->softDeletes();

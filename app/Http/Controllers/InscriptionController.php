@@ -14,6 +14,7 @@ use App\Models\AnneeScolaire;
 use App\Models\MotifPaiement;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class InscriptionController extends Controller
 {
@@ -313,6 +314,7 @@ class InscriptionController extends Controller
                     'montant_scolarite' => $montant_scolarite,
                     'montant_scolarite_paye' => $request['montant_scolarite_paye'],
                     'montant_scolarite_restant' => $request['montant_scolarite_restant'],
+                    
                 ]
 
             );
@@ -339,7 +341,7 @@ class InscriptionController extends Controller
                     'mode_paiement_id' => $request['mode_paiement_id'],
                     'motif_paiement_id' => $request['motif_paiement_id'],
                 ]);
-            }elseif ($request['remise'] != $inscription->remise) {
+            } elseif ($request['remise'] != $inscription->remise) {
                 Versement::where('inscription_id', $data_inscription['id'])->delete();
             }
 
@@ -393,6 +395,34 @@ class InscriptionController extends Controller
             ]);
         } catch (\Throwable $th) {
             Alert::error('Erreur', $th->getMessage());
+            return back();
+        }
+    }
+
+    public function print($id)
+    {
+        try {
+            $data_inscription = Inscription::find($id);
+            $data_eleve = Eleve::find($data_inscription['eleve_id']);
+            $data_versement = Versement::where('inscription_id', $id)->with([
+                'inscription',
+                'modePaiement',
+                'motifPaiement'
+            ])->get();
+
+    
+                return PDF::loadView('backend.pages.inscription.fiche-pdf', compact('data_inscription'))
+                ->setPaper('a4', 'portrait')
+                ->setWarnings(true)
+                ->stream(Str::slug($data_eleve->matricule) . ".pdf");
+
+
+
+
+            return view('backend.pages.inscription.fiche-pdf', compact('data_inscription'));
+        } catch (\Throwable $e) {
+            return  $e->getMessage();
+            // Alert::error('Erreur', $e->getMessage());
             return back();
         }
     }
