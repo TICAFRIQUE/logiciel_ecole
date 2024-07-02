@@ -63,10 +63,10 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="#!" class="dropdown-item"><i
+                                                    {{-- <li><a href="#!" class="dropdown-item"><i
                                                                 class="ri-lock-fill align-bottom me-2 text-muted"></i>
                                                             Change password</a>
-                                                    </li>
+                                                    </li> --}}
                                                     <li><a type="button" class="dropdown-item edit-item-btn"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#myModalEdit{{ $item['id'] }}"><i

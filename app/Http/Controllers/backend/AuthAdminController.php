@@ -142,6 +142,7 @@ class AuthAdminController extends Controller
 
     public function profil($id)
     {
+        
         $data_admin = User::find($id);
         $data_role = Role::get();
         return view('backend.pages.auth-admin.register.profil', compact('data_admin', 'data_role'));

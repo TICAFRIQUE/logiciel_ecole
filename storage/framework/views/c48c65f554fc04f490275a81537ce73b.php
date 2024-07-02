@@ -56,14 +56,12 @@
                                                 <i class="ri-more-fill align-middle"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-
-
-                                                <li class="<?php echo e($item['versements_count'] < 2 ? 'd-block' : 'd-none'); ?>">
-                                                    <a href="<?php echo e(route('inscription.edit', $item['id'])); ?>"
-                                                        type="button" class="dropdown-item edit-item-btn"><i
-                                                            class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                        Edit</a>
+                                                <li><a href="" class="dropdown-item"><i
+                                                            class=" ri-printer-fill  align-bottom me-2 text-muted"></i>
+                                                        Imprimer</a>
                                                 </li>
+
+                                                
 
 
 

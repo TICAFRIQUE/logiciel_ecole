@@ -6,8 +6,9 @@
     <div class="row mt-5">
         <div class="col-xxl-12">
             <div class="card mt-n5">
-                <a href="javascript:history.back()" class="btn btn-primary w-50"><i class="ri ri-arrow-left-fill"></i> Retour à
+                <a href="javascript:history.back()" class="btn btn-primary w-25"><i class="ri ri-arrow-left-fill"></i> Retour à
                     la liste </a>
+                    
                 <div class="card-body p-4">
                     <div class="text-center">
                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
@@ -27,7 +28,7 @@
                         </p>
 
                         <p class="mt-3">
-                            Statut : <span class="badge badge-gradient-primary fs-4"><i class="mdi mdi-circle-medium"></i>
+                            Statut : <span class="badge badge-gradient-primary fs-4"><i class=" ri ri-money-dollar-circle-fill"></i>
                                 <?php echo e($data_inscription['statut']); ?></span>
 
                         </p>

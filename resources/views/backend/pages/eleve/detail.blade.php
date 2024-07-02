@@ -4,9 +4,10 @@
 @endsection
 @section('content')
     <div class="row mt-5">
-        <div class="col-xxl-4">
+        <div class="col-xxl-12">
             <div class="card mt-n5">
-                <a href="javascript:history.back()" class="btn btn-primary w-50"><i class="ri ri-arrow-left-fill"></i> Retour à la liste </a>
+                <a href="javascript:history.back()" class="btn btn-primary w-50"><i class="ri ri-arrow-left-fill"></i> Retour à
+                    la liste </a>
                 <div class="card-body p-4">
                     <div class="text-center">
                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
@@ -20,7 +21,7 @@
                         <p class="text-muted mb-0"><b><i class=" ri ri-calendar-fill"></i>
                                 {{ \Carbon\carbon::parse($data_eleve['date_naissance'])->age }}</b> Ans</p>
                         <p class="text-muted mb-0"><b><i class=" ri ri-phone-fill"></i> {{ $data_eleve['contact'] }}</b></p>
-                        <p class="text-muted mb-0"> Classe Actuelle : ???</p>
+                        <p class="text-muted mb-0"> Classe Actuelle : {{ $classe['name'] ?? '' }} </p>
 
                     </div>
                 </div>
@@ -35,40 +36,48 @@
                         </div>
 
                     </div>
-                    <div class="mb-3 d-flex">
-                        <ul>
-                            <li>Handicap : <b>{{ $data_eleve['handicap'] }} </b></li>
-                            <li>Sexe : <b>{{ $data_eleve['sexe'] }} </b></li>
-                            <li>Groupe Sanguin : <b>{{ $data_eleve['groupe_sanguin']['name'] ?? 'pas defini' }} </b></li>
-                            <li>Date de naissance :
-                                <b>{{ \Carbon\carbon::parse($data_eleve['date_naissance'])->format('d-m-Y') }} </b></li>
-                            <li>Lieu de naissance : <b>{{ $data_eleve['lieu_naissance'] }} </b></li>
-                            <li>Pays : <b>{{ $data_eleve['pays']['country'] ?? 'pas defini' }} </b></li>
-                            <li>Ville / Commune : <b>{{ $data_eleve['ville']['city'] ?? 'pas defini' }} </b></li>
-                            <li>Quartier : <b>{{ $data_eleve['quartier'] }} </b></li>
+                    <div class="mb-3">
+                        <ul class="d-flex">
+                            <div class="col-md-4">
+                                <li>Handicap : <b>{{ $data_eleve['handicap'] }} </b></li>
+                                <li>Sexe : <b>{{ $data_eleve['sexe'] }} </b></li>
+                                <li>Groupe Sanguin : <b>{{ $data_eleve['groupe_sanguin']['name'] ?? 'pas defini' }}
+                                    </b>
+                                </li>
+                                <li>Date de naissance :
+                                    <b>{{ \Carbon\carbon::parse($data_eleve['date_naissance'])->format('d-m-Y') }}
+                                    </b>
+                                </li>
+                                <li>Lieu de naissance : <b>{{ $data_eleve['lieu_naissance'] }} </b></li>
+                                <li>Pays : <b>{{ $data_eleve['pays']['country'] ?? 'pas defini' }} </b></li>
+                                <li>Ville / Commune : <b>{{ $data_eleve['ville']['city'] ?? 'pas defini' }} </b>
+                                </li>
+                                <li>Quartier : <b>{{ $data_eleve['quartier'] }} </b></li>
 
+                            </div>
 
-                            <hr>
-                            <li>Nom du père : <b>{{ $data_eleve['nom_pere'] }} </b></li>
-                            <li>Prenoms du père : <b>{{ $data_eleve['prenoms_pere'] }} </b></li>
-                            <li>Contact du père : <b>{{ $data_eleve['contact_pere'] }} </b></li>
-                            <li>statut vivant (père): <b>{{ $data_eleve['statut_vivant_pere'] }} </b></li>
+                            <div class="col-md-4">
+                                <li>Nom du père : <b>{{ $data_eleve['nom_pere'] }} </b></li>
+                                <li>Prenoms du père : <b>{{ $data_eleve['prenoms_pere'] }} </b></li>
+                                <li>Contact du père : <b>{{ $data_eleve['contact_pere'] }} </b></li>
+                                <li>statut vivant (père): <b>{{ $data_eleve['statut_vivant_pere'] }} </b></li>
+                                <li>Nom de la mère : <b>{{ $data_eleve['nom_mere'] }} </b></li>
+                                <li>Prenoms de la mère : <b>{{ $data_eleve['prenoms_mere'] }} </b></li>
+                                <li>Contact de la mère : <b>{{ $data_eleve['contact_mere'] }} </b></li>
+                                <li>statut vivant(mère) : <b>{{ $data_eleve['statut_vivant_mere'] }} </b></li>
 
+                            </div>
 
-                            <hr>
-                            <li>Nom de la mère : <b>{{ $data_eleve['nom_mere'] }} </b></li>
-                            <li>Prenoms de la mère : <b>{{ $data_eleve['prenoms_mere'] }} </b></li>
-                            <li>Contact de la mère : <b>{{ $data_eleve['contact_mere'] }} </b></li>
-                            <li>statut vivant(mère) : <b>{{ $data_eleve['statut_vivant_mere'] }} </b></li>
-
-                            <hr>
-                            <li>Date d'admission :
-                                <b>{{ \Carbon\carbon::parse($data_eleve['date_admission'])->format('d-m-Y') }} </b></li>
-                            <li>Date de sortie :
-                                <b>{{ \Carbon\carbon::parse($data_eleve['date_sortie'])->format('d-m-Y') }} </b></li>
-
-
-
+                            <div class="col-md-4">
+                                <li>Date d'admission :
+                                    <b>{{ \Carbon\carbon::parse($data_eleve['date_admission'])->format('d-m-Y') }}
+                                    </b>
+                                </li>
+                                <li>Date de sortie :
+                                    <b>{{ \Carbon\carbon::parse($data_eleve['date_sortie'])->format('d-m-Y') }}
+                                    </b>
+                                </li>
+                            </div>
                         </ul>
                     </div>
 
@@ -77,7 +86,7 @@
             <!--end card-->
         </div>
         <!--end col-->
-        <div class="col-xxl-8">
+        <div class="col-xxl-12">
             <div class="card mt-xxl-n5">
                 <div class="card-header">
                     <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">

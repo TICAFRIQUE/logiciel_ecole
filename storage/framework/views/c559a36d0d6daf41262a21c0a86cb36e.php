@@ -51,6 +51,7 @@
                                     <input type="number" value="<?php echo e($data_admin['phone']); ?>" name="phone"
                                         class="form-control" id="username" required>
                                 </div>
+                                <input type="text" name="role" value="<?php echo e($data_admin['roles'][0]['name']); ?>" hidden>
 
                                 
 

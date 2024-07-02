@@ -152,6 +152,44 @@
                     </div>
                 </div>
 
+                <div class="dropdown topbar-head-dropdown ms-1 header-item">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='bx bx-category-alt fs-22'></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg p-0 dropdown-menu-end">
+                       
+                        <div class="p-2">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <a class="dropdown-icon-item" href="<?php echo e(route('eleve.index')); ?>">
+                                        <i class="ri ri-user-2-fill fs-2"></i>
+                                        <span>ELEVES</span>
+                                    </a>
+                                </div>
+
+                                 <div class="col-md-4">
+                                    <a class="dropdown-icon-item" href="<?php echo e(route('inscription.index')); ?>">
+                                        <i class="ri ri-ticket-2-fill fs-2"></i>
+                                        <span>INSCRIPTIONS</span>
+                                    </a>
+                                </div>
+
+                                 <div class="col-md-4">
+                                    <a class="dropdown-icon-item" href="<?php echo e(route('inscription.index')); ?>">
+                                        <i class="ri ri-money-dollar-box-fill fs-2"></i>
+                                        <span>VERSEMENTS</span>
+                                    </a>
+                                </div>
+                               
+                               
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ========== Start language ========== -->
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
                     <button type="button"
@@ -603,25 +641,26 @@
                             <span class="text-start ms-xl-2">
                                 <span
                                     class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo e(Auth::user()->name); ?></span>
-                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text"><?php echo e(Auth::user()->role); ?></span>
+                                <span
+                                    class="d-none d-xl-block ms-1 fs-12 user-name-sub-text"><?php echo e(Auth::user()->role); ?></span>
                             </span>
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">Welcome <?php echo e(Auth::user()->first_name); ?> !</h6>
-                        <a class="dropdown-item" href="<?php echo e(route('admin-register.profil' , Auth::user()->id)); ?>"><i
+                        <a class="dropdown-item" href="<?php echo e(route('admin-register.profil', Auth::user()->id)); ?>"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
                         <a class="dropdown-item" href="apps-chat"><i
                                 class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Messages</span></a>
-                      
+
                         <a class="dropdown-item" href="pages-faqs"><i
                                 class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Aide</span></a>
                         <div class="dropdown-divider"></div>
-                       
+
                         <a class="dropdown-item" href="pages-profile-settings"><i
                                 class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Parametre</span></a>

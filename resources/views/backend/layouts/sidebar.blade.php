@@ -200,7 +200,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarConfiguration" data-bs-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="sidebarConfiguration">
-                        <i class=" ri-settings-fill "></i> <span>CONFIGURATIONS</span>
+                        <i class="ri-list-settings-line"></i> <span>CONFIGURATIONS</span>
                     </a>
                     <div class="collapse menu-dropdown {{ Route::is('annee-scolaire.*') || Route::is('cycle.*') || Route::is('niveau.*') || Route::is('classe.*') || Route::is('groupe-sanguin.*') || Route::is('mode-paiement.*') || Route::is('motif-paiement.*') || Route::is('ville.*') || Route::is('matiere-category.*') || Route::is('matiere.*') ? 'show' : '' }}"
                         id="sidebarConfiguration">
@@ -288,11 +288,18 @@
                             <li class="nav-item">
                                 <a class="nav-link menu-link {{ Route::is('inscription.*') ? 'active' : '' }}"
                                     href="{{ route('inscription.index') }}">
-                                    <i class=" ri ri-user-add-fill"></i> <span>Faire une inscription</span>
+                                    <i class=" ri ri-user-add-fill"></i> <span>Liste des inscriptions</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ Route::is('admin-register.*') ? 'active' : '' }}"
+                        href="{{ route('admin-register.index') }}">
+                        <i class="ri ri-swap-line"></i> <span>CAISSE</span>
+                    </a>
                 </li>
 
                 <li class="nav-item">
@@ -331,7 +338,7 @@
                     </div>
                 </li>
 
-
+            </ul>
 
         </div>
 

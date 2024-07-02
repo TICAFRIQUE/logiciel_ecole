@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Pays;
 use App\Models\Eleve;
 use App\Models\Ville;
+use App\Models\Classe;
 use Nette\Utils\Random;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\GroupeSanguin;
-use App\Http\Controllers\Controller;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EleveController extends Controller
@@ -124,7 +125,17 @@ class EleveController extends Controller
         try {
             $data_eleve = Eleve::find($id);
 
-            return view('backend.pages.eleve.detail', compact('data_eleve'));
+            $classe = $data_eleve->with(['inscriptions' => fn ($q) => $q->withWhereHas(
+                'anneeScolaire',
+                fn ($q) => $q->whereStatus('active')
+            )])->first();
+
+            $classe = Classe::find($classe->inscriptions[0]->classe_id);
+
+
+            // dd($classe->toArray());
+
+            return view('backend.pages.eleve.detail', compact('data_eleve' , 'classe'));
         } catch (\Throwable $th) {
             Alert::error('Erreur', $th->getMessage());
             return back();

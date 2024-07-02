@@ -196,7 +196,8 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Contact du père</label>
-                            <input type="number" name="contact_pere" class="form-control" id="validationCustom01" required>
+                            <input type="number" name="contact_pere" class="form-control" id="validationCustom01"
+                                required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -234,7 +235,8 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Contact de la mère</label>
-                            <input type="number" name="contact_mere" class="form-control" id="validationCustom01" required>
+                            <input type="number" name="contact_mere" class="form-control" id="validationCustom01"
+                                required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -253,12 +255,13 @@
                         </div>
 
                         <hr>
+                       
                         <p class="rounded-3" id="MsgError"></p>
                         @inject('carbon', 'Carbon\Carbon')
                         @php
                             $date_now = $carbon::now()->format('Y-m-d');
                         @endphp
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Date d'admision</label>
                             <input type="date" name="date_admission" value="{{ $date_now }}" class="form-control"
                                 id="date_start" required readonly>
@@ -267,9 +270,17 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Date de sortie</label>
                             <input type="date" name="date_sortie" class="form-control" id="date_end">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                         <div class="col-md-6">
+                            <label for="validationCustom01" class="form-label">Ajouter un fichier</label>
+                            <input type="file" name="file" accept="image/pdf" class="form-control">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
