@@ -169,7 +169,7 @@
                                 </div>
 
                                  <div class="col-md-4">
-                                    <a class="dropdown-icon-item" href="{{route('inscription.index')}}">
+                                    <a class="dropdown-icon-item" href="{{route('inscription.create')}}">
                                         <i class="ri ri-ticket-2-fill fs-2"></i>
                                         <span>INSCRIPTIONS</span>
                                     </a>

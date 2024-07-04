@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('sexe')->nullable();
             $table->string('nom')->nullable();
             $table->string('prenoms')->nullable();
-            $table->string('contact')->unique()->nullable();
+            $table->string('contact')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('date_naissance')->nullable();
             $table->string('lieu_naissance')->nullable();

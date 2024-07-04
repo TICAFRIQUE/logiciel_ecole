@@ -21,7 +21,7 @@
                         <p class="text-muted mb-0"><b><i class=" ri ri-calendar-fill"></i>
                                 {{ \Carbon\carbon::parse($data_eleve['date_naissance'])->age }}</b> Ans</p>
                         <p class="text-muted mb-0"><b><i class=" ri ri-phone-fill"></i> {{ $data_eleve['contact'] }}</b></p>
-                        <p class="text-muted mb-0"> Classe Actuelle : {{ $classe['name'] ?? '' }} </p>
+                        <p class="text-muted mb-0"> Classe Actuelle : {{ $classe['name'] ?? ' ??' }} </p>
 
                     </div>
                 </div>

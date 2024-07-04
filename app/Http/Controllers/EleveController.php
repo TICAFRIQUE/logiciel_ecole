@@ -20,7 +20,7 @@ class EleveController extends Controller
 
     public function index()
     {
-        $data_eleve = Eleve::get();
+        $data_eleve = Eleve::with('media')->get();
         return view('backend.pages.eleve.index', compact('data_eleve'));
     }
 
@@ -46,28 +46,28 @@ class EleveController extends Controller
             $data =  $request->validate([
                 'matricule' => 'required|unique:eleves',
                 'numero_extrait' => 'required|unique:eleves',
-                'handicap' => 'required',
+                'handicap' => '',
                 'sexe' => 'required',
                 'groupe_sanguin_id' => '',
                 'nom' => 'required',
                 'prenoms' => 'required',
-                'email' => 'required',
-                'contact' => 'required|unique:eleves',
-                'date_naissance' => 'required',
-                'lieu_naissance' => 'required',
-                'pays_id' => 'required', //pays de naissance
-                'ville_id' => 'required', //commune de residence
-                'quartier' => 'required', //quartier de residence
+                'email' => '',
+                'contact' => '',
+                'date_naissance' => '',
+                'lieu_naissance' => '',
+                'pays_id' => '', //pays de naissance
+                'ville_id' => '', //commune de residence
+                'quartier' => '', //quartier de residence
                 'etablissement_origine' => '',
-                'nom_pere' => 'required',
-                'prenoms_pere' => 'required',
-                'contact_pere' => 'required',
-                'statut_vivant_pere' => 'required', //boolean --oui ou non
-                'nom_mere' => 'required',
-                'prenoms_mere' => 'required',
-                'contact_mere' => 'required',
-                'statut_vivant_mere' => 'required', //boolean --oui ou non
-                'date_admission' => 'required',
+                'nom_pere' => '',
+                'prenoms_pere' => '',
+                'contact_pere' => '',
+                'statut_vivant_pere' => '', //boolean --oui ou non
+                'nom_mere' => '',
+                'prenoms_mere' => '',
+                'contact_mere' => '',
+                'statut_vivant_mere' => '', //boolean --oui ou non
+                'date_admission' => '',
                 'date_sortie' => '',
             ]);
 
@@ -109,6 +109,15 @@ class EleveController extends Controller
                 // 'date_sortie'=>$request['date_sortie'],
             ], $data);
 
+            if (request()->hasFile('profil_file')) {
+                $data_eleve->addMediaFromRequest('profil_file')->toMediaCollection('profilFile');
+            }
+
+            if (request()->hasFile('extrait_file')) {
+                $data_eleve->addMediaFromRequest('extrait_file')->toMediaCollection('extraitFile');
+            }
+
+
             Alert::success('Operation réussi', 'Success Message');
 
             return back();
@@ -125,17 +134,23 @@ class EleveController extends Controller
         try {
             $data_eleve = Eleve::find($id);
 
-            $classe = $data_eleve->with(['inscriptions' => fn ($q) => $q->withWhereHas(
+            // dd($data_eleve->inscriptions->toArray());
+
+            //recuperer la classe en cour de l'eleve
+            $data_classe = Eleve::with(['inscriptions' => fn ($q) => $q->withWhereHas(
                 'anneeScolaire',
                 fn ($q) => $q->whereStatus('active')
-            )])->first();
+            )])->withCount('inscriptions')->whereId($id)->first();
 
-            $classe = Classe::find($classe->inscriptions[0]->classe_id);
-
+            $classe = '';
+            if ($data_classe->inscriptions_count > 0) {
+                $classe = Classe::whereId($data_classe->inscriptions[0]->classe_id)->first();
+            } //
 
             // dd($classe->toArray());
 
-            return view('backend.pages.eleve.detail', compact('data_eleve' , 'classe'));
+
+            return view('backend.pages.eleve.detail', compact('data_eleve', 'classe'));
         } catch (\Throwable $th) {
             Alert::error('Erreur', $th->getMessage());
             return back();
@@ -147,6 +162,7 @@ class EleveController extends Controller
     {
         try {
             $data_eleve = Eleve::findOrFail($id);
+            // dd($data_eleve->toArray());
             $data_groupe_sanguin = GroupeSanguin::OrderBy('position', 'ASC')->get();
             $data_pays = Pays::orderBy('country', 'ASC')->get();
             $data_ville = Ville::OrderBy('city', 'ASC')->get();
@@ -164,32 +180,46 @@ class EleveController extends Controller
             $data =  $request->validate([
                 'matricule' => 'required',
                 'numero_extrait' => 'required',
-                'handicap' => 'required',
+                'handicap' => '',
                 'sexe' => 'required',
                 'groupe_sanguin_id' => '',
                 'nom' => 'required',
                 'prenoms' => 'required',
-                'email' => 'required',
-                'contact' => 'required',
-                'date_naissance' => 'required',
-                'lieu_naissance' => 'required',
-                'pays_id' => 'required', //pays de naissance
-                'ville_id' => 'required', //commune de residence
-                'quartier' => 'required', //quartier de residence
+                'email' => '',
+                'contact' => '',
+                'date_naissance' => '',
+                'lieu_naissance' => '',
+                'pays_id' => '', //pays de naissance
+                'ville_id' => '', //commune de residence
+                'quartier' => '', //quartier de residence
                 'etablissement_origine' => '',
-                'nom_pere' => 'required',
-                'prenoms_pere' => 'required',
-                'contact_pere' => 'required',
-                'statut_vivant_pere' => 'required', //boolean --oui ou non
-                'nom_mere' => 'required',
-                'prenoms_mere' => 'required',
-                'contact_mere' => 'required',
-                'statut_vivant_mere' => 'required', //boolean --oui ou non
-                'date_admission' => 'required',
+                'nom_pere' => '',
+                'prenoms_pere' => '',
+                'contact_pere' => '',
+                'statut_vivant_pere' => '', //boolean --oui ou non
+                'nom_mere' => '',
+                'prenoms_mere' => '',
+                'contact_mere' => '',
+                'statut_vivant_mere' => '', //boolean --oui ou non
+                'date_admission' => '',
                 'date_sortie' => '',
             ]);
             $eleve = Eleve::find($id);
             $eleve->update($data);
+
+            if (request()->hasFile('profil_file')) {
+                $eleve->clearMediaCollection('profilFile');
+                $eleve->addMediaFromRequest('profil_file')->toMediaCollection('profilFile');
+            }
+            if (request()->hasFile('extrait_file')) {
+                $eleve->clearMediaCollection('extraitFile');
+                $eleve->addMediaFromRequest('extrait_file')->toMediaCollection('extraitFile');
+            }
+
+
+
+
+
             Alert::success('Opération réussi', 'Success Message');
             return back();
         } catch (\Throwable $e) {

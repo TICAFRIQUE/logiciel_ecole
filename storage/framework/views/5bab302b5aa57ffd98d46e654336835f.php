@@ -16,8 +16,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post" action="<?php echo e(route('eleve.update', $data_eleve['id'])); ?>"
-                        novalidate>
+                    <form class="row g-3 needs-validation" method="post"
+                        action="<?php echo e(route('eleve.update', $data_eleve['id'])); ?>" enctype="multipart/form-data" novalidate>
                         <?php echo csrf_field(); ?>
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Matricule </label>
@@ -288,19 +288,58 @@
                         <?php
                             $date_now = $carbon::now()->format('Y-m-d');
                         ?>
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Date d'admision</label>
                             <input type="date" name="date_admission"
                                 value="<?php echo e($data_eleve['date_admission'] ?? $date_now); ?>" class="form-control"
-                                id="date_start" required>
+                                id="date_start" required readonly>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div> <!-- End Get date now with carbon-->
 
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Date de sortie</label>
-                            <input type="date" name="date_sortie" value="<?php echo e($data_eleve['date_sortie']); ?>" class="form-control" id="date_end" required>
+                            <input type="date" name="date_sortie" value="<?php echo e($data_eleve['date_sortie']); ?>"
+                                class="form-control" id="date_end">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div>
+                                <img src="<?php echo e(asset($data_eleve->getFirstMediaUrl('profilFile'))); ?>"
+                                    alt="<?php echo e(asset($data_eleve->getFirstMediaUrl('profilFile'))); ?>" class="img-thumbnail"
+                                    id="imgProfil" width="50">
+                            </div>
+                            <label for="validationCustom01" class="form-label">Ajouter une photo</label>
+                            <input type="file" name="profil_file" accept=".jpg, .jpeg, .png"
+                                class="form-control fileInsertProfil">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <?php $__currentLoopData = $data_eleve->getMedia('extraitFile'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $media): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div>
+                                    <?php if($media->extension == 'pdf'): ?>
+                                        <p>Lien du fichier: <a href="<?php echo e($media->getUrl()); ?>"
+                                                target="_blank"><?php echo e($media->file_name); ?></a> </p>
+                                    <?php else: ?>
+                                        <img src="<?php echo e(asset($media->getFullUrl())); ?>"
+                                            alt="<?php echo e(asset($media->getFullUrl())); ?>" class="img-thumbnail"
+                                            width="50">
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+                            <label for="validationCustom01" class="form-label">Ajouter un extrait de naissance</label>
+                            <input type="file" name="extrait_file" accept=".jpg, .jpeg, .png, .pdf"
+                                class="form-control fileInsertExtrait">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -341,49 +380,92 @@
         $(function() {
             //comparaison des dates admission et sortie
 
-            $('#date_start').change(function(e) {
-                var date_start = $(this).val();
-                var date_end = $('#date_end').val();
+            // $('#date_start').change(function(e) {
+            //     var date_start = $(this).val();
+            //     var date_end = $('#date_end').val();
 
-                if (date_start > date_end) {
-                    $('#MsgError').html(
-                        'La date d\'admission  ne doit pas etre superieur à la date de sortie de l\'élève'
-                    ).css({
-                        'color': 'white',
-                        'text-align': 'center',
-                        'background-color': '#f06548',
-                        'font-size': '16px'
-                    });
+            //     if (date_start > date_end) {
+            //         $('#MsgError').html(
+            //             'La date d\'admission  ne doit pas etre superieur à la date de sortie de l\'élève'
+            //         ).css({
+            //             'color': 'white',
+            //             'text-align': 'center',
+            //             'background-color': '#f06548',
+            //             'font-size': '16px'
+            //         });
+            //         $('.btn-submit').prop('disabled', true)
+            //     } else {
+            //         $('#MsgError').html(' ')
+            //         $('.btn-submit').prop('disabled', false)
+            //     }
+            // });
+
+
+            // $('#date_end').change(function(e) {
+            //     var date_end = $(this).val();
+            //     var date_start = $('#date_start').val();
+
+            //     if (date_end < date_start) {
+            //         $('#MsgError').html(
+            //             'La date de sortie ne doit pas etre inferieur à la date d\'admission de l\'élève'
+            //         ).css({
+            //             'color': 'white',
+            //             'text-align': 'center',
+            //             'background-color': '#f06548',
+            //             'font-size': '16px'
+            //         });
+            //         $('.btn-submit').prop('disabled', true)
+            //     } else {
+            //         $('#MsgError').html(' ')
+            //         $('.btn-submit').prop('disabled', false)
+            //     }
+            // });
+
+
+            //Verifie size file
+            $('.fileInsertProfil').change(function(e) {
+                e.preventDefault();
+                var size = this.files[0].size;
+                var maxSize = 1024 * 1024 * 2; // 2Mo
+                if (size > maxSize) {
+                    $('.fileInsertProfil').val('')
+                    $('#MsgError').html('La taille du fichier ne dois pas depasser 2MB')
+                        .css({
+                            'color': 'white',
+                            'text-align': 'center',
+                            'background-color': '#f06548',
+                            'font-size': '16px',
+                        });
                     $('.btn-submit').prop('disabled', true)
                 } else {
-                    $('#MsgError').html(' ')
+                    $('#MsgError').html('')
                     $('.btn-submit').prop('disabled', false)
                 }
+
+
             });
 
-
-            $('#date_end').change(function(e) {
-                var date_end = $(this).val();
-                var date_start = $('#date_start').val();
-
-                if (date_end < date_start) {
-                    $('#MsgError').html(
-                        'La date de sortie ne doit pas etre inferieur à la date d\'admission de l\'élève'
-                    ).css({
-                        'color': 'white',
-                        'text-align': 'center',
-                        'background-color': '#f06548',
-                        'font-size': '16px'
-                    });
+            $('.fileInsertExtrait').change(function(e) {
+                e.preventDefault();
+                var size = this.files[0].size;
+                var maxSize = 1024 * 1024 * 2; // 2Mo
+                if (size > maxSize) {
+                    $('.fileInsertExtrait').val('')
+                    $('#MsgError').html('La taille du fichier ne dois pas depasser 2MB')
+                        .css({
+                            'color': 'white',
+                            'text-align': 'center',
+                            'background-color': '#f06548',
+                            'font-size': '16px',
+                        });
                     $('.btn-submit').prop('disabled', true)
                 } else {
-                    $('#MsgError').html(' ')
+                    $('#MsgError').html('')
                     $('.btn-submit').prop('disabled', false)
                 }
+
+
             });
-
-
-
 
 
 

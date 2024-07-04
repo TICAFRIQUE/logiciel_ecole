@@ -37,7 +37,12 @@
                         </div>
 
                         <div class="col-md-3">
-                            <label for="validationCustom01" class="form-label">Elèves</label>
+                            <label for="validationCustom01" class="form-label">Elèves 
+                                <span class="text-danger">
+                                    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#myModal">   <i class="ri ri-user-add-fill"></i> Ajouter
+                                        un élève</a>
+                                    </span></label>
+                            </label>
                             <select name="eleve_id" class="form-control  js-example-basic-single" required>
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_eleve as $item)
@@ -104,7 +109,7 @@
                             <label class="form-check-label" for="customBr">Boursier(e)</label>
 
                             <div class="form-check form-switch form-switch-lg col-md-2" dir="ltr">
-                                <input type="checkbox"  name="boursier" class="form-check-input" id="customBr">
+                                <input type="checkbox" name="boursier" class="form-check-input" id="customBr">
                             </div>
                             <div class="valid-feedback">
                                 Looks good!
@@ -215,7 +220,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Mode paiement</label>
                             <select name="mode_paiement_id" class="form-control  js-example-basic-single"
-                                id="modePaiement" >
+                                id="modePaiement">
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_mode_paiement as $item)
                                     <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
@@ -229,7 +234,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Motif du paiement</label>
                             <select name="motif_paiement_id" class="form-control  js-example-basic-single"
-                                id="motifPaiement" >
+                                id="motifPaiement">
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_motif_paiement as $item)
                                     <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
@@ -243,8 +248,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant versé <span class="text-danger"
                                     id="montantMinimun"></span></label>
-                            <input type="number" name="montant_scolarite_paye" class="form-control" id="montantVerse"
-                                >
+                            <input type="number" name="montant_scolarite_paye" class="form-control" id="montantVerse">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -272,6 +276,8 @@
     </div><!-- end col -->
     </div>
     <!--end row-->
+
+    @include('backend.pages.inscription.modal-create-eleve')
 
 @section('script')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"

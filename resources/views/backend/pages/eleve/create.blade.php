@@ -16,7 +16,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post" action="{{ route('eleve.store') }}" novalidate>
+                    <form class="row g-3 needs-validation" method="post" action="{{ route('eleve.store') }}" enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Matricule </label>
@@ -255,13 +255,13 @@
                         </div>
 
                         <hr>
-                       
+
                         <p class="rounded-3" id="MsgError"></p>
                         @inject('carbon', 'Carbon\Carbon')
                         @php
                             $date_now = $carbon::now()->format('Y-m-d');
                         @endphp
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Date d'admision</label>
                             <input type="date" name="date_admission" value="{{ $date_now }}" class="form-control"
                                 id="date_start" required readonly>
@@ -270,7 +270,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Date de sortie</label>
                             <input type="date" name="date_sortie" class="form-control" id="date_end">
                             <div class="valid-feedback">
@@ -278,14 +278,23 @@
                             </div>
                         </div>
 
-                         <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label">Ajouter un fichier</label>
-                            <input type="file" name="file" accept="image/pdf" class="form-control">
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Ajouter une photo</label>
+                            <input type="file" name="profil_file" accept=".jpg, .jpeg, .png"
+                                class="form-control fileInsertProfil">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
 
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Ajouter un extrait de naissance</label>
+                            <input type="file" name="extrait_file" accept=".jpg, .jpeg, .png, .pdf"
+                                class="form-control fileInsertExtrait">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
 
 
                         {{-- <div class="col-md-2">
@@ -298,10 +307,6 @@
                                 Looks good!
                             </div>
                         </div> --}}
-
-
-
-
 
                 </div>
                 <div class="">
@@ -375,11 +380,50 @@
             // });
 
 
+            //Verifie size file
+            $('.fileInsertProfil').change(function(e) {
+                e.preventDefault();
+                var size = this.files[0].size;
+                var maxSize = 1024 * 1024 * 2; // 2Mo
+                if (size > maxSize) {
+                    $('.fileInsertProfil').val('')
+                    $('#MsgError').html('La taille du fichier ne dois pas depasser 2MB')
+                        .css({
+                            'color': 'white',
+                            'text-align': 'center',
+                            'background-color': '#f06548',
+                            'font-size': '16px',
+                        });
+                    $('.btn-submit').prop('disabled', true)
+                } else {
+                    $('#MsgError').html('')
+                    $('.btn-submit').prop('disabled', false)
+                }
 
 
+            });
+
+            $('.fileInsertExtrait').change(function(e) {
+                e.preventDefault();
+                var size = this.files[0].size;
+                var maxSize = 1024 * 1024 * 2; // 2Mo
+                if (size > maxSize) {
+                    $('.fileInsertExtrait').val('')
+                    $('#MsgError').html('La taille du fichier ne dois pas depasser 2MB')
+                        .css({
+                            'color': 'white',
+                            'text-align': 'center',
+                            'background-color': '#f06548',
+                            'font-size': '16px',
+                        });
+                    $('.btn-submit').prop('disabled', true)
+                } else {
+                    $('#MsgError').html('')
+                    $('.btn-submit').prop('disabled', false)
+                }
 
 
-
+            });
         });
     </script>
 @endsection

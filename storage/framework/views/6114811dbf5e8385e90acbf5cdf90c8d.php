@@ -22,7 +22,7 @@
                         <p class="text-muted mb-0"><b><i class=" ri ri-calendar-fill"></i>
                                 <?php echo e(\Carbon\carbon::parse($data_eleve['date_naissance'])->age); ?></b> Ans</p>
                         <p class="text-muted mb-0"><b><i class=" ri ri-phone-fill"></i> <?php echo e($data_eleve['contact']); ?></b></p>
-                        <p class="text-muted mb-0"> Classe Actuelle : <?php echo e($classe['name'] ?? ''); ?> </p>
+                        <p class="text-muted mb-0"> Classe Actuelle : <?php echo e($classe['name'] ?? ' ??'); ?> </p>
 
                     </div>
                 </div>
