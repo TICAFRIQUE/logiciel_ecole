@@ -64,6 +64,8 @@ return new class extends Migration
             $table->string('statut')->nullable(); //impayé ,  soldé
             $table->longText('observation')->nullable();
 
+            $table->double('montant_cantine')->nullable();
+            $table->double('montant_transport')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

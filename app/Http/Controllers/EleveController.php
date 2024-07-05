@@ -216,10 +216,6 @@ class EleveController extends Controller
                 $eleve->addMediaFromRequest('extrait_file')->toMediaCollection('extraitFile');
             }
 
-
-
-
-
             Alert::success('Opération réussi', 'Success Message');
             return back();
         } catch (\Throwable $e) {

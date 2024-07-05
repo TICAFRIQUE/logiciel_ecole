@@ -36,6 +36,10 @@ class Inscription extends Model
         'montant_scolarite_paye',
         'montant_scolarite_restant',
         'statut', // impayé , soldé
+
+        'montant_cantine',
+        'montant_transport',
+
         'observation',
 
 

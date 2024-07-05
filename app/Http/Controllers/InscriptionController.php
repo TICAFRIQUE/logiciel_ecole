@@ -28,9 +28,12 @@ class InscriptionController extends Controller
         return view('backend.pages.inscription.index', compact('data_inscription'));
     }
 
+
+
     public function create(Request $request)
     {
 
+        //Liste des eleves avec inscriptions des années en cours
         $data_eleve = Eleve::with(['inscriptions' => fn ($q) => $q->withWhereHas(
             'anneeScolaire',
             fn ($q) => $q->whereStatus('active')
@@ -40,7 +43,14 @@ class InscriptionController extends Controller
         )])->get();
         $data_eleve =  $data_eleve->where('inscriptions_count', '=', 0);
 
-        // dd($data_eleve->toArray());
+
+        //Liste des inscriptions de l'eleve selectionné de toutes années confondus
+        // $data_inscription_eleve = Eleve::withWhereHas('inscriptions',fn($q)=>$q->where('montant_scolarite_restant', '>' , 0))->get();
+        $data_inscription_eleve = Eleve::with(['inscriptions' => fn ($q) => $q->withWhereHas(
+            'anneeScolaire',
+            fn ($q) => $q->whereStatus('desactive')
+        )])->get();
+        // dd($data_inscription_eleve->toArray());
         $data_annee_scolaire = AnneeScolaire::whereStatus('active')->OrderBy('position', 'ASC')->get();
         $data_niveaux = Niveau::OrderBy('position', 'ASC')->get();
         $data_classe = Classe::OrderBy('position', 'ASC')->get();
@@ -53,7 +63,8 @@ class InscriptionController extends Controller
             'data_niveaux',
             'data_classe',
             'data_mode_paiement',
-            'data_motif_paiement'
+            'data_motif_paiement',
+            'data_inscription_eleve'
         ));
     }
 
@@ -88,6 +99,9 @@ class InscriptionController extends Controller
                 'montant_scolarite_paye' => '',
                 'montant_scolarite_restant' => '',
                 'statut' => '',
+
+                'montant_cantine' => '',
+                'montant_transport' => '',
                 // 'mode_paiement_id' => 'required',
                 // 'motif_paiement_id' => 'required',
             ]);
@@ -245,6 +259,9 @@ class InscriptionController extends Controller
                 'montant_scolarite_paye' => '',
                 'montant_scolarite_restant' => '',
                 // 'statut' => '',
+
+                'montant_cantine' => '',
+                'montant_transport' => '',
             ]);
 
 
@@ -314,7 +331,9 @@ class InscriptionController extends Controller
                     'montant_scolarite' => $montant_scolarite,
                     'montant_scolarite_paye' => $request['montant_scolarite_paye'],
                     'montant_scolarite_restant' => $request['montant_scolarite_restant'],
-                    
+                    'montant_cantine' => $request['montant_cantine'],
+                    'montant_transport' => $request['montant_transport'],
+
                 ]
 
             );
@@ -410,8 +429,8 @@ class InscriptionController extends Controller
                 'motifPaiement'
             ])->get();
 
-    
-                return PDF::loadView('backend.pages.inscription.fiche-pdf', compact('data_inscription'))
+
+            return PDF::loadView('backend.pages.inscription.fiche-pdf', compact('data_inscription'))
                 ->setPaper('a4', 'portrait')
                 ->setWarnings(true)
                 ->stream(Str::slug($data_eleve->matricule) . ".pdf");
