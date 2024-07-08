@@ -246,7 +246,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Montant versé <span class="text-danger"
                                     id="montantMinimun"></span></label>
                             <input type="number" name="montant_scolarite_paye" class="form-control" id="montantVerse">
@@ -255,10 +255,19 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Montant restant</label>
                             <input type="number" name="montant_scolarite_restant" class="form-control"
                                 id="montantRestant" readonly>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Réliquat en cour</label>
+                            <input type="text" id="reliquat" name="reliquat" class="form-control border-danger text-danger fw-medium"
+                               readonly>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -330,9 +339,9 @@
 
 
                 if (reliquatSum > 0) {
-                     var reliquat = new Intl.NumberFormat('fr-FR').format(
+                    var reliquat = new Intl.NumberFormat('fr-FR').format(
                         reliquatSum,
-                )
+                    )
 
                     Swal.fire({
                         title: 'Réliquat en cours',
@@ -349,11 +358,16 @@
                         showCloseButton: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                           
+                            //lien pour rediriger vers la somme des reliquat de l'eleve
                         }
                     });
+                    //afficher la somme dans le champs somme
+                    $('#reliquat').val(reliquat);
+
                 } else {
                     $('#MsgError').html('');
+                    $('#reliquat').val(0);
+
                 }
 
 
@@ -396,7 +410,6 @@
                 }
 
 
-
                 //filtre des montant inscription scolarité
                 var niveaux = {{ Js::from($data_niveaux) }}
 
@@ -415,7 +428,7 @@
                 $('#remise').val('')
 
                 // definir montant minimum
-                $('#montantMinimun').html('(' + 'minimun ' + getDataNiveaux[0].montant_inscription + ')');
+                $('#montantMinimun').html('(' + 'min: ' + getDataNiveaux[0].montant_inscription + ')');
 
                 //Initialisation lorsque la remise change d"etat
                 $('#montantRestant').val(getDataNiveaux[0].total_scolarite);
@@ -426,7 +439,7 @@
 
 
 
-            //fonction pour la mise à jour des montants
+            //Start fonction pour la mise à jour des montants
             function miseAJourMontant() {
 
                 //Initialisation lorsque la remise change d"etat
@@ -442,10 +455,6 @@
 
                 var scolarite = parseFloat(fraisInscription) + parseFloat(fraisScolarite) + parseFloat(fraisCantine
                     .length > 0 ? fraisCantine : 0) + parseFloat(fraisTransport.length > 0 ? fraisTransport : 0);
-
-
-
-
 
 
 
@@ -477,7 +486,7 @@
                 miseAJourMontant();
             });
 
-            //
+            //end
 
 
 

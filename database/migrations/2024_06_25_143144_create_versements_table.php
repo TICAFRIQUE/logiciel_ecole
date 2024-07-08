@@ -42,6 +42,25 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreignId('user_delete') // utilisateur qui supprime un versement
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->timestamp('date_delete')->nullable(); // date de suppression
+            
+
+
+
+
+
             $table->softDeletes();
 
             $table->timestamps();

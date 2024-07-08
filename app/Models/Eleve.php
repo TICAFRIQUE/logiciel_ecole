@@ -41,6 +41,7 @@ class Eleve extends Model implements HasMedia
         'statut_vivant_mere', //boolean --oui ou non
         'date_admission',
         'date_sortie',
+        'user_id'
 
     ];
 

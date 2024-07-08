@@ -41,6 +41,7 @@ class Inscription extends Model
         'montant_transport',
 
         'observation',
+        'user_id',
 
 
     ];
@@ -83,6 +84,12 @@ class Inscription extends Model
     public function classe()
     {
         return $this->belongsTo(Classe::class);
+    }
+
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

@@ -20,6 +20,9 @@ class Versement extends Model
         'mode_paiement_id',
         'motif_paiement_id',
         'inscription_id',
+        'user_id', // user create versement
+        'user_delete', // user delete versement
+        'date_delete', // date of delete versement
     ];
 
     public static function boot()
@@ -47,6 +50,14 @@ class Versement extends Model
         return $this->belongsTo(MotifPaiement::class);
     }
 
+    public function user() // user to create versement
+    {
+        return $this->belongsTo(User::class , 'user_id');
+    }
 
+    public function userDelete() // user to delete versement
+    {
+        return $this->belongsTo(User::class , 'user_delete');
+    }
 
 }

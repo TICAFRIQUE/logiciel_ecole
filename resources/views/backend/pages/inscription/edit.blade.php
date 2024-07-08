@@ -41,7 +41,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Elèves</label>
-                            <select name="eleve_id" class="form-control  js-example-basic-single" required>
+                            <select id="eleve" name="eleve_id" class="form-control  js-example-basic-single" required>
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_eleve as $item)
                                     <option value="{{ $item['id'] }}"
@@ -127,7 +127,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Nom du tuteur </label>
-                            <input type="text" name="nom_tuteur" value="{{ $data_inscription['nom_tuteur'] }}"
+                            <input type="text" id="nomTuteur" name="nom_tuteur" value="{{ $data_inscription['nom_tuteur'] }}"
                                 class="form-control" id="validationCustom01" required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -137,7 +137,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Prenoms du tuteur</label>
-                            <input type="text" name="prenoms_tuteur" value="{{ $data_inscription['prenoms_tuteur'] }}"
+                            <input type="text" id="prenomsTuteur" name="prenoms_tuteur" value="{{ $data_inscription['prenoms_tuteur'] }}"
                                 class="form-control" id="validationCustom01" required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -147,7 +147,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Contact du tuteur</label>
-                            <input type="number" name="contact1_tuteur" value="{{ $data_inscription['contact1_tuteur'] }}"
+                            <input type="number" id="contactTuteur" name="contact1_tuteur" value="{{ $data_inscription['contact1_tuteur'] }}"
                                 class="form-control" id="validationCustom01" required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -197,7 +197,7 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Frais Transport</label>
-                            <input type="number" class="form-control" id="validationCustom01" readonly>
+                            <input type="number" name="montant_transport" class="form-control" id="fraisTransport">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -205,7 +205,7 @@
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Frais cantine</label>
-                            <input type="number" class="form-control" id="validationCustom01" readonly>
+                            <input type="number" name="montant_cantine" class="form-control" id="fraisCantine">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -236,7 +236,8 @@
                                 id="modePaiement">
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_mode_paiement as $item)
-                                    <option value="{{ $item['id'] }}" {{count($versement ) ==1 && $versement[0]['modePaiement']['id'] ==$item['id'] ? 'selected' : '' }} >
+                                    <option value="{{ $item['id'] }}"
+                                        {{ count($versement) == 1 && $versement[0]['modePaiement']['id'] == $item['id'] ? 'selected' : '' }}>
                                         {{ $item['name'] }}</option>
                                 @endforeach
                             </select>
@@ -252,7 +253,8 @@
                                 id="motifPaiement">
                                 <option disabled selected value>Sélectionner...</option>
                                 @foreach ($data_motif_paiement as $item)
-                                    <option value="{{ $item['id'] }}" {{count($versement ) ==1 && $versement[0]['motifPaiement']['id'] ==$item['id'] ? 'selected' : '' }}>
+                                    <option value="{{ $item['id'] }}"
+                                        {{ count($versement) == 1 && $versement[0]['motifPaiement']['id'] == $item['id'] ? 'selected' : '' }}>
                                         {{ $item['name'] }}</option>
                                 @endforeach
                             </select>
@@ -264,8 +266,8 @@
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant versé <span class="text-danger"
                                     id="montantMinimun"></span></label>
-                            <input type="number" value="{{$data_inscription['montant_scolarite_paye']}}" name="montant_scolarite_paye" class="form-control"
-                                id="montantVerse">
+                            <input type="number" value="{{ $data_inscription['montant_scolarite_paye'] }}"
+                                name="montant_scolarite_paye" class="form-control" id="montantVerse">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -273,15 +275,21 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Montant restant</label>
-                            <input type="number"
-                                value="{{ $data_inscription['montant_scolarite_restant'] }}"
+                            <input type="number" value="{{ $data_inscription['montant_scolarite_restant'] }}"
                                 name="montant_scolarite_restant" class="form-control" id="montantRestant" readonly>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
 
-
+                        {{-- <div class="col-md-2">
+                            <label for="validationCustom01" class="form-label">Réliquat en cour</label>
+                            <input type="text" id="reliquat" name="reliquat" class="form-control border-danger text-danger fw-medium"
+                               readonly>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div> --}}
 
 
 
@@ -313,6 +321,71 @@
     <script>
         $(function() {
 
+            //Afficher les infos parent elève lorsqu'on choisi un eleve
+            $('#eleve').change(function(e) {
+                e.preventDefault();
+                var eleveId = $(this).val();
+                // variable venant du controller
+                var eleveList = Object.values({{ Js::from($data_eleve) }});
+
+                var filteredEleve = eleveList.filter(function(item) {
+                    return item.id == eleveId;
+                });
+
+                var eleve = filteredEleve[0];
+                $('#nomTuteur').val(eleve.nom_pere);
+                $('#prenomsTuteur').val(eleve.prenoms_pere);
+                $('#contactTuteur').val(eleve.contact_pere);
+
+
+
+                //recuperer la liste des inscriptions de l'eleve selectionner
+                var dataEleveList =
+                    {{ Js::from($data_inscription_eleve) }} // variable venant du controller
+
+                var filteredDataEleve = dataEleveList.filter(function(item) {
+                    return item.id == eleveId;
+                });
+
+                let reliquatSum = 0
+                var dataEleveInscription = filteredDataEleve[0].inscriptions;
+                $.each(dataEleveInscription, function(key, value) {
+                    reliquatSum += value.montant_scolarite_restant;
+                });
+
+
+
+                if (reliquatSum > 0) {
+                    var reliquat = new Intl.NumberFormat('fr-FR').format(
+                        reliquatSum,
+                    )
+
+                    Swal.fire({
+                        title: 'Réliquat en cours',
+                        text: "Ce élève a un reliquat de " + reliquat + " FCFA",
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Voir les reliquats',
+                        cancelButtonText: 'Poursuire la modification',
+                        customClass: {
+                            confirmButton: 'btn btn-primary w-xs me-2 mt-2',
+                            cancelButton: 'btn btn-danger w-xs mt-2',
+                        },
+                        buttonsStyling: false,
+                        showCloseButton: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                        }
+                    });
+                } else {
+                    $('#MsgError').html('');
+                }
+
+
+            });
+
+
             //filter la liste des classe et frais d'inscription lorsqu'on choisi un niveau
             $('#niveau').change(function(e) {
                 e.preventDefault();
@@ -320,17 +393,42 @@
 
                 //fltre de classe
                 var classeList = {{ Js::from($data_classe) }} // variable venant du controller
-
                 var filteredClasse = classeList.filter(function(item) {
                     return item.niveau_id == niveauId;
                 });
 
-                $('#classe').empty();
-                $('#classe').append('<option value="">Choisir une classe</option>');
-                $.each(filteredClasse, function(key, value) {
-                    $('#classe').append('<option value="' + value.id + '">' + value.name +
-                        '</option>');
+                //infos de niveau
+                var NiveauList = {{ Js::from($data_niveaux) }} // variable venant du controller
+                var filteredNiveau = NiveauList.filter(function(item) {
+                    return item.id == niveauId;
                 });
+
+
+                // $('#classe').empty();
+                // $('#classe').append('<option value="">Choisir une classe</option>');
+                // $.each(filteredClasse, function(key, value) {
+                //     $('#classe').append('<option value="' + value.id + '">' + value.name +
+                //         '</option>');
+                // });
+
+
+                //
+                if (filteredClasse.length == 0) {
+                    $('#classe').empty();
+                    $('#classe').append('<option value="' + filteredNiveau[0].id + '">' + filteredNiveau[0]
+                        .name +
+                        '</option>');
+                } else {
+                    $('#classe').empty();
+                    $('#classe').append('<option value="">Choisir une classe</option>');
+                    $.each(filteredClasse, function(key, value) {
+                        $('#classe').append('<option value="' + value.id + '">' + value.name +
+                            '</option>');
+                    });
+
+                }
+                //
+
 
 
                 //filtre des montant inscription scolarité
@@ -352,7 +450,7 @@
                 $('#remise').val('')
 
                 // definir montant minimum
-                $('#montantMinimun').html('(' + 'minimun ' + getDataNiveaux[0].montant_inscription + ')');
+                $('#montantMinimun').html('(' + 'min: ' + getDataNiveaux[0].montant_inscription + ')');
 
                 //Initialisation lorsque la remise change d"etat
                 $('#montantRestant').val('');
@@ -363,18 +461,26 @@
 
 
 
-            //gestion de la remise sur la scolarité
-            $('#remise').keyup(function(e) {
+            //Start fonction pour la mise à jour des montants
+            function miseAJourMontant() {
 
                 //Initialisation lorsque la remise change d"etat
-                $('#montantVerse').val('');
-                //
+                // $('#montantRestant').val('');
+                // $('#montantVerse').val('');
 
                 var remise = $('#remise').val()
                 var fraisInscription = $('#montantInscription').val();
                 var fraisScolarite = $('#montantScolarite').val();
-                var scolarite = parseFloat(fraisInscription) + parseFloat(
-                    fraisScolarite) // total de : frais inscription + frais scolarite
+                var fraisCantine = $('#fraisCantine').val();
+                var fraisTransport = $('#fraisTransport').val();
+
+
+                var scolarite = parseFloat(fraisInscription) + parseFloat(fraisScolarite) + parseFloat(fraisCantine
+                    .length > 0 ? fraisCantine : 0) + parseFloat(fraisTransport.length > 0 ? fraisTransport : 0);
+
+
+
+                // total de : frais inscription + frais scolarite
                 if (remise > 100) {
                     $('#MsgError').html('Le pourcentage ne doit pas exceder 100%').css({
                         'color': 'white',
@@ -384,21 +490,25 @@
                     $('.btn-submit').prop('disabled', true)
 
                     $('#montantTotalScolarite').val(scolarite)
-                    $('#montantRestant').val(scolarite); // montant restant versement
-
                 } else {
                     var montant_remise = parseFloat(scolarite) * (remise / 100)
                     var scolarite_remise = scolarite - montant_remise
 
-                    $('#montantTotalScolarite').val((scolarite_remise.toFixed(0)));
-                    $('#montantRestant').val((scolarite_remise.toFixed(0))); // montant restant versement
+                    $('#montantTotalScolarite').val((scolarite_remise.toFixed(0)))
+                    $('#montantRestant').val((scolarite_remise.toFixed(0)))
 
 
                     $('#MsgError').html(' ')
                     $('.btn-submit').prop('disabled', false)
                 }
 
+            };
+
+            $("#remise, #fraisCantine ,#fraisTransport ").on("input", function() {
+                miseAJourMontant();
             });
+
+            //end
 
             //gestion des versements
             $('#montantVerse').keyup(function(e) {

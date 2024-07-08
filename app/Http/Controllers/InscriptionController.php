@@ -13,8 +13,9 @@ use Illuminate\Http\Request;
 use App\Models\AnneeScolaire;
 use App\Models\MotifPaiement;
 use App\Http\Controllers\Controller;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InscriptionController extends Controller
 {
@@ -161,6 +162,8 @@ class InscriptionController extends Controller
                     'montant_restant' => $request['montant_scolarite_restant'], // from inscription request
                     'mode_paiement_id' => $request['mode_paiement_id'],
                     'motif_paiement_id' => $request['motif_paiement_id'],
+                    'user_id' => Auth::user()->id,     //user create
+
                 ]);
             }
 
@@ -172,7 +175,6 @@ class InscriptionController extends Controller
             return back();
         }
     }
-
 
 
     public function edit($id)
@@ -194,6 +196,10 @@ class InscriptionController extends Controller
                 // )])->get();
                 // $data_eleve =  $data_eleve->where('inscriptions_count', '=', 0);
 
+                $data_inscription_eleve = Eleve::with(['inscriptions' => fn ($q) => $q->withWhereHas(
+                    'anneeScolaire',
+                    fn ($q) => $q->whereStatus('desactive')
+                )])->get();
 
                 $data_eleve = Eleve::get();
                 $data_annee_scolaire = AnneeScolaire::whereStatus('active')->OrderBy('position', 'ASC')->get();
@@ -218,7 +224,8 @@ class InscriptionController extends Controller
 
                     //
                     'data_classe_edit',
-                    'versement'
+                    'versement',
+                    'data_inscription_eleve'
                 ));
             }
         } catch (\Throwable $e) {
@@ -359,6 +366,7 @@ class InscriptionController extends Controller
                     'montant_restant' => $request['montant_scolarite_restant'], // from inscription request
                     'mode_paiement_id' => $request['mode_paiement_id'],
                     'motif_paiement_id' => $request['motif_paiement_id'],
+                    'user_id' => Auth::user()->id,     //user create
                 ]);
             } elseif ($request['remise'] != $inscription->remise) {
                 Versement::where('inscription_id', $data_inscription['id'])->delete();
@@ -380,8 +388,10 @@ class InscriptionController extends Controller
             $data_inscription = Inscription::find($id);
             $data_eleve = Eleve::find($data_inscription['eleve_id']);
 
-            $data_versement = Versement::where('inscription_id', $id)->with(['inscription', 'modePaiement', 'motifPaiement'])->get();
-            // dd($data_versement[0]->modePaiement->toArray());
+            $data_versement = Versement::where('inscription_id', $id)->with(['inscription', 'modePaiement', 'motifPaiement' , 'userDelete' , 'user'])
+            ->withTrashed()
+            ->get();
+            // dd($data_versement->toArray());
 
 
             //inserer un versement

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Versement;
+use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Inscription;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VersementController extends Controller
@@ -48,6 +50,8 @@ class VersementController extends Controller
                 'montant_restant' => $request['montant_scolarite_restant'], // from inscription request
                 'mode_paiement_id' => $request['mode_paiement_id'],
                 'motif_paiement_id' => $request['motif_paiement_id'],
+                'user_id' => Auth::user()->id,     //user create
+
             ]);
 
             //modifier les infos de inscription montant restant & payé
@@ -101,6 +105,12 @@ class VersementController extends Controller
     {
         try {
             $versement = versement::find($id);
+            //update in user delete and date delete
+            $versement->update([
+                'date_delete' => Carbon::now(),
+                'user_delete' =>  Auth::user()->id,
+            ]);
+
             $versement->delete();
 
 

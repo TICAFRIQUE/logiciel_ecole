@@ -8,7 +8,7 @@
             <div class="card mt-n5">
                 <a href="javascript:history.back()" class="btn btn-primary w-25"><i class="ri ri-arrow-left-fill"></i> Retour à
                     la liste </a>
-                    
+
                 <div class="card-body p-4">
                     <div class="text-center">
                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
@@ -28,7 +28,8 @@
                         </p>
 
                         <p class="mt-3">
-                            Statut : <span class="badge badge-gradient-primary fs-4"><i class=" ri ri-money-dollar-circle-fill"></i>
+                            Statut : <span class="badge badge-gradient-primary fs-4"><i
+                                    class=" ri ri-money-dollar-circle-fill"></i>
                                 <?php echo e($data_inscription['statut']); ?></span>
 
                         </p>
@@ -69,10 +70,6 @@
 
                                         FCFA</b></li>
                             </div>
-
-
-
-
                         </ul>
                     </div>
 
@@ -103,7 +100,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="HistoriqueVersement" role="tabpanel">
                             
-                            <?php echo $__env->make('backend.pages.inscription.versement', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            <?php echo $__env->make('backend.pages.inscription.versement-user', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         </div>
                         <!--end tab-pane-historique-versement-->
                         <div class="tab-pane" id="HistoriqueScolarite" role="tabpanel">
@@ -127,7 +124,6 @@
                                         <li>Ville / Commune : <b><?php echo e($data_eleve['ville']['city'] ?? 'pas defini'); ?> </b>
                                         </li>
                                         <li>Quartier : <b><?php echo e($data_eleve['quartier']); ?> </b></li>
-
                                     </div>
 
                                     <div class="col-md-4">
@@ -139,7 +135,6 @@
                                         <li>Prenoms de la mère : <b><?php echo e($data_eleve['prenoms_mere']); ?> </b></li>
                                         <li>Contact de la mère : <b><?php echo e($data_eleve['contact_mere']); ?> </b></li>
                                         <li>statut vivant(mère) : <b><?php echo e($data_eleve['statut_vivant_mere']); ?> </b></li>
-
                                     </div>
 
                                     <div class="col-md-4">
@@ -167,7 +162,7 @@
     </div>
     <!--end row-->
 
-    <?php echo $__env->make('backend.pages.inscription.create-versement', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('backend.pages.versement.create-versement', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
     <script src="<?php echo e(URL::asset('build/js/pages/profile-setting.init.js')); ?>"></script>
