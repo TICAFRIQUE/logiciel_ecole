@@ -3,7 +3,6 @@
     <?php echo app('translator')->get('translation.settings'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    
 
     <div class="row">
         <div class="col-xxl-12">
@@ -32,7 +31,7 @@
                                 <div class="row">
 
                                     <!-- ========== Start Section ========== -->
-                                    <div class="col-lg-12 mb-3">
+                                    <div class="col-lg-4 mb-3">
                                         <label for="">Background image</label>
                                         <input type="file" name="cover" class="form-control" accept="image/*">
 
@@ -56,7 +55,7 @@
 
 
                                     <!-- ========== Start logo header ========== -->
-                                    <div class="text-center col-lg-6">
+                                    <div class="text-center col-lg-4">
                                         <div class="profile-user position-relative d-inline-block mx-auto  ">
                                             <?php if($data_setting != null): ?>
                                                 <img src="<?php echo e(URL::asset($data_setting->getFirstMediaUrl('logo_header'))); ?>"
@@ -87,7 +86,7 @@
 
 
                                     <!-- ========== Start logo footer ========== -->
-                                    <div class="text-center col-lg-6">
+                                    <div class="text-center col-lg-4">
                                         <div class="profile-user position-relative d-inline-block mx-auto ">
 
                                             <?php if($data_setting != null): ?>

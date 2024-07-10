@@ -3,22 +3,6 @@
     @lang('translation.settings')
 @endsection
 @section('content')
-    {{-- <div class="position-relative mx-n4 mt-n4">
-        <div class="profile-wid-bg profile-setting-img">
-            <img src="{{ URL::asset('build/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
-            <div class="overlay-content">
-                <div class="text-end p-3">
-                    <div class="p-0 ms-auto rounded-circle profile-photo-edit">
-                        <input id="profile-foreground-img-file-input" type="file"
-                            class="profile-foreground-img-file-input">
-                        <label for="profile-foreground-img-file-input" class="profile-photo-edit btn btn-light">
-                            <i class="ri-image-edit-line align-bottom me-1"></i> Change Cover
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
     <div class="row">
         <div class="col-xxl-12">
@@ -47,7 +31,7 @@
                                 <div class="row">
 
                                     <!-- ========== Start Section ========== -->
-                                    <div class="col-lg-12 mb-3">
+                                    <div class="col-lg-4 mb-3">
                                         <label for="">Background image</label>
                                         <input type="file" name="cover" class="form-control" accept="image/*">
 
@@ -71,7 +55,7 @@
 
 
                                     <!-- ========== Start logo header ========== -->
-                                    <div class="text-center col-lg-6">
+                                    <div class="text-center col-lg-4">
                                         <div class="profile-user position-relative d-inline-block mx-auto  ">
                                             @if ($data_setting != null)
                                                 <img src="{{ URL::asset($data_setting->getFirstMediaUrl('logo_header')) }}"
@@ -102,7 +86,7 @@
 
 
                                     <!-- ========== Start logo footer ========== -->
-                                    <div class="text-center col-lg-6">
+                                    <div class="text-center col-lg-4">
                                         <div class="profile-user position-relative d-inline-block mx-auto ">
 
                                             @if ($data_setting != null)

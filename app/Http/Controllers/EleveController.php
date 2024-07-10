@@ -8,8 +8,10 @@ use App\Models\Ville;
 use App\Models\Classe;
 use Nette\Utils\Random;
 use Illuminate\Support\Str;
+use App\Models\ModePaiement;
 use Illuminate\Http\Request;
 use App\Models\GroupeSanguin;
+use App\Models\MotifPaiement;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -141,16 +143,36 @@ class EleveController extends Controller
                 'anneeScolaire',
                 fn ($q) => $q->whereStatus('active')
             )])->withCount('inscriptions')->whereId($id)->first();
-
-            $classe = '';
-            if ($data_classe->inscriptions_count > 0) {
-                $classe = Classe::whereId($data_classe->inscriptions[0]->classe_id)->first();
-            } //
-
-            // dd($classe->toArray());
+            
+            // dd($data_classe->inscriptions->count());
 
 
-            return view('backend.pages.eleve.detail', compact('data_eleve', 'classe'));
+            // $classe = '';
+            // if ($data_classe->inscriptions_count > 0) {
+            //     $classe = Classe::whereId($data_classe->inscriptions[0]->classe_id)->first();
+            // } //
+            // dd($data_classe->inscriptions[0]->classe->toArray());
+
+            // liste des reliquats of user
+            $data_reliquat = Eleve::with(['inscriptions' => fn ($q) => $q->withWhereHas(
+                'anneeScolaire',
+                fn ($q) => $q->whereStatus('desactive')
+            )])->whereId($id)->first();
+
+            $data_mode_paiement = ModePaiement::whereStatus('active')->OrderBy('position', 'ASC')->get();
+            $data_motif_paiement = MotifPaiement::whereStatus('active')->OrderBy('position', 'ASC')->get();
+
+            // dd($data_reliquat->toArray());
+
+
+            return view('backend.pages.eleve.detail', compact(
+                'data_eleve', 
+                'data_classe',
+                'data_reliquat',
+                'data_mode_paiement',
+                'data_motif_paiement'
+
+            ));
         } catch (\Throwable $th) {
             Alert::error('Erreur', $th->getMessage());
             return back();

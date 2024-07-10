@@ -86,6 +86,8 @@
                             </a>
                         </li>
 
+
+
                         <li class="nav-item">
                             <a class="nav-link " data-bs-toggle="tab" href="#HistoriqueScolarite" role="tab">
                                 <i class="fas fa-home"></i> Informations Elève
@@ -96,9 +98,9 @@
                 <div class="card-body p-4">
                     <div class="tab-content">
                         <div class="tab-pane active" id="HistoriqueVersement" role="tabpanel">
-                            {{-- <h3>Historique des versements</h3> --}}
                             @include('backend.pages.inscription.versement-user')
                         </div>
+
                         <!--end tab-pane-historique-versement-->
                         <div class="tab-pane" id="HistoriqueScolarite" role="tabpanel">
                             <h3>Informations Personnelles</h3>

@@ -41,7 +41,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Annee Scolaire</th>◘
+                                    <th>Annee Scolaire</th>
                                     <th>No inscription</th>
                                     <th>Eleve</th>
                                     <th>Niveau</th>
@@ -55,7 +55,7 @@
                                 <?php $__currentLoopData = $data_inscription; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="row_<?php echo e($item['id']); ?>">
                                         <td> <?php echo e(++$key); ?> </td>
-                                        <td><?php echo e($item['anneeScolaire']['indice']); ?></td>◘
+                                        <td><?php echo e($item['anneeScolaire']['indice']); ?></td>
                                         <td><?php echo e($item['numero_inscription']); ?></td>
                                         <td><?php echo e($item['eleve']['nom']); ?> <?php echo e($item['eleve']['prenoms']); ?></td>
                                         <td><?php echo e($item['niveau']['name']); ?></td>
@@ -69,7 +69,8 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="<?php echo e(route('inscription.print' ,$item['id'] )); ?>" class="dropdown-item"><i
+                                                    <li><a href="<?php echo e(route('inscription.print', $item['id'])); ?>" target="blank"
+                                                            class="dropdown-item"><i
                                                                 class=" ri-printer-fill  align-bottom me-2 text-muted"></i>
                                                             Imprimer</a>
                                                     </li>

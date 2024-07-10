@@ -14,14 +14,13 @@
                             <img src="{{ URL::asset('build/images/users/avatar.jpg') }}"
                                 class="rounded-circle avatar-xl img-thumbnail user-profile-image material-shadow"
                                 alt="user-profile-image">
-
                         </div>
                         <h5 class="fs-16 mb-1"> {{ $data_eleve['nom'] }} {{ $data_eleve['prenoms'] }}
                         </h5>
                         <p class="text-muted mb-0"><b><i class=" ri ri-calendar-fill"></i>
                                 {{ \Carbon\carbon::parse($data_eleve['date_naissance'])->age }}</b> Ans</p>
                         <p class="text-muted mb-0"><b><i class=" ri ri-phone-fill"></i> {{ $data_eleve['contact'] }}</b></p>
-                        <p class="text-muted mb-0"> Classe Actuelle : {{ $classe['name'] ?? ' ??' }} </p>
+                        <p class="text-muted mb-0"> Classe Actuelle : {{ count($data_classe->inscriptions)>0 ? $data_classe->inscriptions[0]->classe->name : '??'}} </p>
 
                     </div>
                 </div>
@@ -106,6 +105,8 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="HistoriqueScolarite" role="tabpanel">
                             <h3>Historique des scolarites</h3>
+                            @include('backend.pages.reliquat.index')
+
                         </div>
                         <!--end tab-pane-historique-scolarite-->
                         <div class="tab-pane" id="HistoriqueVersement" role="tabpanel">

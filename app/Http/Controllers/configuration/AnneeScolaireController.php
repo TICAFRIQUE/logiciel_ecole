@@ -56,6 +56,13 @@ class AnneeScolaireController extends Controller
             'position' => $data_count + 1,
         ]);
 
+             //update status where status are enable if status request is active
+             if ($request['status'] == 'active') {
+                $data_annee = AnneeScolaire::where('status', 'active')
+                ->whereNotIn('id' ,[ $data_annee_scolaire->id] )
+                ->update(['status' => 'desactive']);
+            }
+
         Alert::success('Operation réussi', 'Success Message');
 
         return back();
@@ -87,20 +94,26 @@ class AnneeScolaireController extends Controller
             'date_fin' => 'required',
             'status' => 'required',
         ]);
-
+// dd($request->toArray());
 
         $date_debut = Carbon::parse($request['date_debut'])->format('Y-m-d');
         $date_fin = Carbon::parse($request['date_fin'])->format('Y-m-d');
 
         $indice = carbon::parse($date_debut)->format('Y') . '-' . carbon::parse($date_fin)->format('Y');
 
-        $data_page = AnneeScolaire::find($id)->update([
+        $data_annee = AnneeScolaire::find($id)->update([
             'indice' => $indice,
             'date_debut' => $date_debut,
             'date_fin' => $date_fin,
             'status' => $request['status'],
-
         ]);
+
+        //update status where status are enable if status request is active
+        if ($request['status'] == 'active') {
+            $data_annee = AnneeScolaire::where('status', 'active')
+            ->whereNotIn('id' ,[$id] )
+            ->update(['status' => 'desactive']);
+        }
 
         Alert::success('Opération réussi', 'Success Message');
         return back();

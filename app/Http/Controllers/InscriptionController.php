@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Eleve;
 use App\Models\Classe;
 use App\Models\Niveau;
+use App\Models\Setting;
 use App\Models\Versement;
 use App\Models\Inscription;
 use Illuminate\Support\Str;
@@ -382,30 +383,40 @@ class InscriptionController extends Controller
     }
 
 
+
+    /**
+     * get detail ,  versement, reliquat of student
+     */
+
     public function detail($id)
     {
         try {
             $data_inscription = Inscription::find($id);
             $data_eleve = Eleve::find($data_inscription['eleve_id']);
 
-            $data_versement = Versement::where('inscription_id', $id)->with(['inscription', 'modePaiement', 'motifPaiement' , 'userDelete' , 'user'])
-            ->withTrashed()
-            ->get();
+            //liste des versements
+            $data_versement = Versement::where('inscription_id', $id)->with(['inscription', 'modePaiement', 'motifPaiement', 'userDelete', 'user'])
+                ->withTrashed()
+                ->get();
             // dd($data_versement->toArray());
 
 
-            //inserer un versement
             $data_mode_paiement = ModePaiement::whereStatus('active')->OrderBy('position', 'ASC')->get();
             $data_motif_paiement = MotifPaiement::whereStatus('active')->OrderBy('position', 'ASC')->get();
+
+            
+
+            // dd($data_reliquat->toArray());
+
 
             return view('backend.pages.inscription.detail', compact(
                 'data_inscription',
                 'data_eleve',
                 'data_versement',
                 'data_mode_paiement',
-                'data_motif_paiement'
+                'data_motif_paiement',
 
-            ));
+            )); 
         } catch (\Throwable $e) {
             return  $e->getMessage();
             // Alert::error('Erreur', $e->getMessage());
@@ -433,6 +444,7 @@ class InscriptionController extends Controller
         try {
             $data_inscription = Inscription::find($id);
             $data_eleve = Eleve::find($data_inscription['eleve_id']);
+            $data_setting = Setting::first(); // informations du site
             $data_versement = Versement::where('inscription_id', $id)->with([
                 'inscription',
                 'modePaiement',
@@ -440,7 +452,7 @@ class InscriptionController extends Controller
             ])->get();
 
 
-            return PDF::loadView('backend.pages.inscription.fiche-pdf', compact('data_inscription'))
+            return PDF::loadView('backend.pages.inscription.fiche-pdf', compact('data_inscription' ,  'data_setting'))
                 ->setPaper('a4', 'portrait')
                 ->setWarnings(true)
                 ->stream(Str::slug($data_eleve->matricule) . ".pdf");
@@ -448,7 +460,7 @@ class InscriptionController extends Controller
 
 
 
-            return view('backend.pages.inscription.fiche-pdf', compact('data_inscription'));
+            // return view('backend.pages.inscription.fiche-pdf', compact('data_inscription' , 'data_setting'));
         } catch (\Throwable $e) {
             return  $e->getMessage();
             // Alert::error('Erreur', $e->getMessage());

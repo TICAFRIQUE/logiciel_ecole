@@ -24,6 +24,7 @@ class VersementController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->toArray());
         try {
             $data = $request->validate([
                 // 'code'=>'required',
@@ -51,7 +52,6 @@ class VersementController extends Controller
                 'mode_paiement_id' => $request['mode_paiement_id'],
                 'motif_paiement_id' => $request['motif_paiement_id'],
                 'user_id' => Auth::user()->id,     //user create
-
             ]);
 
             //modifier les infos de inscription montant restant & payé

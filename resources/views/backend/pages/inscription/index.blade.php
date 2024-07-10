@@ -42,7 +42,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Annee Scolaire</th>◘
+                                    <th>Annee Scolaire</th>
                                     <th>No inscription</th>
                                     <th>Eleve</th>
                                     <th>Niveau</th>
@@ -56,7 +56,7 @@
                                 @foreach ($data_inscription as $key => $item)
                                     <tr id="row_{{ $item['id'] }}">
                                         <td> {{ ++$key }} </td>
-                                        <td>{{ $item['anneeScolaire']['indice'] }}</td>◘
+                                        <td>{{ $item['anneeScolaire']['indice'] }}</td>
                                         <td>{{ $item['numero_inscription'] }}</td>
                                         <td>{{ $item['eleve']['nom'] }} {{ $item['eleve']['prenoms'] }}</td>
                                         <td>{{ $item['niveau']['name'] }}</td>
@@ -70,7 +70,8 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="{{route('inscription.print' ,$item['id'] )}}" class="dropdown-item"><i
+                                                    <li><a href="{{ route('inscription.print', $item['id']) }}" target="blank"
+                                                            class="dropdown-item"><i
                                                                 class=" ri-printer-fill  align-bottom me-2 text-muted"></i>
                                                             Imprimer</a>
                                                     </li>
