@@ -1,35 +1,35 @@
-@extends('backend.layouts.master')
-@section('css')
+
+<?php $__env->startSection('css'); ?>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
-@endsection
-@section('title')
-    {{-- @lang('translation.datatables') --}}
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?>
+    
     Inscription
-@endsection
-@section('content')
-    @component('backend.components.breadcrumb')
-        @slot('li_1')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('backend.components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             inscription
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             Créer un inscription
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post" action="{{ route('inscription.store') }}" novalidate>
-                        @csrf
+                    <form class="row g-3 needs-validation" method="post" action="<?php echo e(route('inscription.store')); ?>" novalidate>
+                        <?php echo csrf_field(); ?>
 
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Année scolaire</label>
                             <select name="annee_scolaire_id" class="form-control  js-example-basic-single" required>
-                                {{-- <option disabled selected value>Sélectionner...</option> --}}
-                                @foreach ($data_annee_scolaire as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['indice'] }}</option>
-                                @endforeach
+                                
+                                <?php $__currentLoopData = $data_annee_scolaire; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['indice']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -46,11 +46,12 @@
                             </label>
                             <select id="eleve" name="eleve_id" class="form-control  js-example-basic-single" required>
                                 <option disabled selected value>Sélectionner...</option>
-                                @foreach ($data_eleve as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['nom'] }} {{ $item['prenoms'] }}
-                                        ({{ $item['code'] }})
+                                <?php $__currentLoopData = $data_eleve; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['nom']); ?> <?php echo e($item['prenoms']); ?>
+
+                                        (<?php echo e($item['code']); ?>)
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -61,9 +62,9 @@
                             <label for="validationCustom01" class="form-label">Niveaux</label>
                             <select id="niveau" name="niveau_id" class="form-control  js-example-basic-single" required>
                                 <option disabled selected value>Sélectionner...</option>
-                                @foreach ($data_niveaux as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $data_niveaux; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -74,9 +75,7 @@
                             <label for="validationCustom01" class="form-label">Classe</label>
                             <select name="classe_id" class="form-control  js-example-basic-single" id="classe" required>
                                 <option disabled selected value>Sélectionner...</option>
-                                {{-- @foreach ($data_classe as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                @endforeach --}}
+                                
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -223,9 +222,9 @@
                             <select name="mode_paiement_id" class="form-control  js-example-basic-single"
                                 id="modePaiement">
                                 <option disabled selected value>Sélectionner...</option>
-                                @foreach ($data_mode_paiement as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $data_mode_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -237,9 +236,9 @@
                             <select name="motif_paiement_id" class="form-control  js-example-basic-single"
                                 id="motifPaiement">
                                 <option disabled selected value>Sélectionner...</option>
-                                @foreach ($data_motif_paiement as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $data_motif_paiement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -287,9 +286,9 @@
     </div>
     <!--end row-->
 
-    @include('backend.pages.inscription.modal-create-eleve')
+    <?php echo $__env->make('backend.pages.inscription.modal-create-eleve', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
@@ -297,8 +296,8 @@
     <!--select2 cdn-->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="{{ URL::asset('build/js/pages/select2.init.js') }}"></script>
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <script src="<?php echo e(URL::asset('build/js/pages/select2.init.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 
 
     <script>
@@ -309,7 +308,7 @@
                 e.preventDefault();
                 var eleveId = $(this).val();
                 // variable venant du controller
-                var eleveList = Object.values({{ Js::from($data_eleve) }});
+                var eleveList = Object.values(<?php echo e(Js::from($data_eleve)); ?>);
 
                 var filteredEleve = eleveList.filter(function(item) {
                     return item.id == eleveId;
@@ -324,7 +323,7 @@
 
                 //Gestion de reliquat
                 var dataEleveList =
-                    {{ Js::from($data_inscription_eleve) }} // variable venant du controller
+                    <?php echo e(Js::from($data_inscription_eleve)); ?> // variable venant du controller
 
                 var filteredDataEleve = dataEleveList.filter(function(item) {
                     return item.id == eleveId;
@@ -357,7 +356,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             //lien pour rediriger vers la somme des reliquat de l'eleve
-                            var routeUrl = "{{ route('eleve.detail', ['id' => ':id']) }}";
+                            var routeUrl = "<?php echo e(route('eleve.detail', ['id' => ':id'])); ?>";
                             var url = routeUrl.replace(':id', eleveId);
                             window.location = url;
                         }
@@ -382,13 +381,13 @@
 
 
                 //fltre de classe a partir du niveau selectioné
-                var classeList = {{ Js::from($data_classe) }} // variable venant du controller
+                var classeList = <?php echo e(Js::from($data_classe)); ?> // variable venant du controller
                 var filteredClasse = classeList.filter(function(item) {
                     return item.niveau_id == niveauId;
                 });
 
                 //infos de niveau
-                var NiveauList = {{ Js::from($data_niveaux) }} // variable venant du controller
+                var NiveauList = <?php echo e(Js::from($data_niveaux)); ?> // variable venant du controller
                 var filteredNiveau = NiveauList.filter(function(item) {
                     return item.id == niveauId;
                 });
@@ -412,7 +411,8 @@
 
 
                 //filtre des montant inscription scolarité
-                var niveaux = {{ Js::from($data_niveaux) }}
+                var niveaux = <?php echo e(Js::from($data_niveaux)); ?>
+
 
                 var getDataNiveaux = niveaux.filter(function(item) {
                     return item.id == niveauId;
@@ -523,5 +523,7 @@
 
         });
     </script>
-@endsection
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\logiciel_ecole\resources\views/backend/pages/inscription/create.blade.php ENDPATH**/ ?>

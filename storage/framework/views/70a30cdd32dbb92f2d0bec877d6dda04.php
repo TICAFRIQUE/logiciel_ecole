@@ -48,7 +48,7 @@
 
                                 <a href="index" class="d-inline-block auth-logo">
                                     <img src="<?php echo e(URL::asset($data_setting->getFirstMediaUrl('logo_header'))); ?>" alt=""
-                                        height="20">
+                                        width="50px">
                                 </a>
                                 <p class="mt-3 fs-15 fw-medium"> <?php echo e($data_setting['projet_title'] ?? ''); ?> </p>
 
@@ -100,7 +100,7 @@
                                         
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                            <button class="btn btn-success w-100" type="submit">Connexion</button>
                                         </div>
 
                                         

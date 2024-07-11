@@ -2,7 +2,24 @@
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
     <div class="navbar-brand-box">
-        <h4 class="text-white text-uppercase my-3"> <?php echo e(config('app.name')); ?> </h4>
+        <!-- Dark Logo-->
+            
+    
+
+        <!-- Light Logo-->
+        <a href="index" class="logo logo-light">
+            <span class="logo-sm">
+                <img src="<?php echo e(URL::asset($data_setting->getFirstMediaUrl('logo_header'))); ?>" alt="logo" width="30">
+            </span>
+            <span class="logo-lg">
+                <img src="<?php echo e(URL::asset($data_setting->getFirstMediaUrl('logo_header'))); ?>" alt="logo" width="30">
+            </span>
+        </a>
+
+        <span class="text-white fs-5 px-3">
+            <?php echo e($data_annee->indice); ?>
+
+        </span>
         
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
             id="vertical-hover">
@@ -77,7 +94,6 @@
                         <i class="ri-dashboard-2-line"></i> <span>DASHBOARD</span>
                     </a>
                 </li>
-
 
 
                 
