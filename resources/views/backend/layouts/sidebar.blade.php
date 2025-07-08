@@ -16,10 +16,14 @@
         <!-- Light Logo-->
         <a href="index" class="logo logo-light">
             <span class="logo-sm">
-                <img src="{{ URL::asset($data_setting->getFirstMediaUrl('logo_header')) }}" alt="logo" width="30">
+              @if ($data_setting && $data_setting->hasMedia('logo_header'))
+                    <img src="{{ URL::asset($data_setting->getFirstMediaUrl('logo_header')) }}" alt="logo" width="30">
+              @endif
             </span>
             <span class="logo-lg">
-                <img src="{{ URL::asset($data_setting->getFirstMediaUrl('logo_header')) }}" alt="logo" width="30">
+              @if ($data_setting && $data_setting->hasMedia('logo_header'))
+                    <img src="{{ URL::asset($data_setting->getFirstMediaUrl('logo_header')) }}" alt="logo" width="150">
+              @endif
             </span>
         </a>
 
