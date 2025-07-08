@@ -28,7 +28,7 @@
         </a>
 
         <span class="text-white fs-5 px-3">
-            {{$data_annee->indice}}
+            {{$data_annee->indice ?? ''}}
         </span>
         
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -54,7 +54,9 @@
         </button>
         <div class="dropdown-menu dropdown-menu-end">
             <!-- item-->
-            <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}!</h6>
+            <h6 class="dropdown-header">Welcome @auth
+                {{ Auth::user()->name }}
+            @endauth!</h6>
             <a class="dropdown-item" href="pages-profile"><i
                     class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                     class="align-middle">Profile</span></a>
