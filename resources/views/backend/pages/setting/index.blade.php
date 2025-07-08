@@ -3,7 +3,6 @@
     @lang('translation.settings')
 @endsection
 @section('content')
-
     <div class="row">
         <div class="col-xxl-12">
             <div class="card mt-xxl-n5">
@@ -37,19 +36,18 @@
 
 
                                         <div class="profile-wid-bg profile-setting-img mt-2">
-                                            @if ($data_setting != null)
-                                            <img src="{{ URL::asset($data_setting->getFirstMediaUrl('cover')) }}"
-                                               class="profile-wid-img"
-                                                alt="{{ $data_setting->getFirstMediaUrl('cover') }}">
-                                        @else
-                                            <img src="{{ URL::asset('build/images/profile-bg.jpg') }}"
-                                                class="rounded-circle avatar-xl img-thumbnail user-profile-image-header material-shadow"
-                                                alt="">
-                                        @endif
-                                          
+                                            @if ($data_setting && $data_setting->hasMedia('cover'))
+                                                <img src="{{ $data_setting->getFirstMediaUrl('cover') }}"
+                                                    class="profile-wid-img" alt="Image de couverture">
+                                            @else
+                                                <img src="{{ asset('build/images/profile-bg.jpg') }}"
+                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image-header material-shadow"
+                                                    alt="Image par défaut">
+                                            @endif
                                         </div>
 
-                                      
+
+
                                     </div>
                                     <!-- ========== End Section ========== -->
 
@@ -57,7 +55,7 @@
                                     <!-- ========== Start logo header ========== -->
                                     <div class="text-center col-lg-4">
                                         <div class="profile-user position-relative d-inline-block mx-auto  ">
-                                            @if ($data_setting != null)
+                                            @if ($data_setting && $data_setting->hasMedia('logo_header'))
                                                 <img src="{{ URL::asset($data_setting->getFirstMediaUrl('logo_header')) }}"
                                                     class="rounded-circle avatar-xl img-thumbnail user-profile-image-header material-shadow"
                                                     alt="{{ $data_setting->getFirstMediaUrl('logo_header') }}">
@@ -89,7 +87,7 @@
                                     <div class="text-center col-lg-4">
                                         <div class="profile-user position-relative d-inline-block mx-auto ">
 
-                                            @if ($data_setting != null)
+                                            @if ($data_setting && $data_setting->hasMedia('logo_footer'))
                                                 <img src="{{ URL::asset($data_setting->getFirstMediaUrl('logo_footer')) }}"
                                                     class="rounded-circle avatar-xl img-thumbnail user-profile-image-footer material-shadow"
                                                     alt="{{ $data_setting->getFirstMediaUrl('logo_footer') }}">
@@ -129,8 +127,8 @@
                                     <div class="col-lg-7">
                                         <div class="mb-3">
                                             <label for="emailInput" class="form-label">Description du projet</label>
-                                            <input type="text" name="projet_description" class="form-control" id="emailInput"
-                                                value="{{ $data_setting['projet_description'] ?? '' }}">
+                                            <input type="text" name="projet_description" class="form-control"
+                                                id="emailInput" value="{{ $data_setting['projet_description'] ?? '' }}">
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -138,26 +136,23 @@
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="phonenumberInput" class="form-label">Telephone1</label>
-                                            <input type="text" name="phone1" class="form-control" id="phonenumberInput"
-                                               
-                                                value="{{ $data_setting['phone1'] ?? '' }}">
+                                            <input type="text" name="phone1" class="form-control"
+                                                id="phonenumberInput" value="{{ $data_setting['phone1'] ?? '' }}">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="phonenumberInput" class="form-label">Telephone2</label>
-                                            <input type="text" name="phone2" class="form-control" id="phonenumberInput"
-                                               
-                                                value="{{ $data_setting['phone2'] ?? '' }}">
+                                            <input type="text" name="phone2" class="form-control"
+                                                id="phonenumberInput" value="{{ $data_setting['phone2'] ?? '' }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="phonenumberInput" class="form-label">Telephone3</label>
-                                            <input type="text" name="phone3" class="form-control" id="phonenumberInput"
-                                               
-                                                value="{{ $data_setting['phone3'] ?? '' }}">
+                                            <input type="text" name="phone3" class="form-control"
+                                                id="phonenumberInput" value="{{ $data_setting['phone3'] ?? '' }}">
                                         </div>
                                     </div>
                                     <!--end col-->

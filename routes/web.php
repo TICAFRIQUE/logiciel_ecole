@@ -75,7 +75,6 @@ Route::controller(AuthAdminController::class)->prefix('admin')->group(function (
 });
 
 
-
 Route::middleware(['admin'])->group(function () {
 
     //Dashboard
